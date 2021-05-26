@@ -1,0 +1,134 @@
+class player:
+    def __init__(self,Name):
+        self.currency=0
+        self.score=0
+        self.picture=None
+        self.shield=None
+        self.name=Name
+        self.buildings=[]
+        self.buildingnumber=0
+
+class healShield:
+    def __init__(self):
+        self.abilitypower=
+        self.size=
+        self.chargespeed=
+        self.speed=
+        self.abilitymultiplier=
+        self.sizem=
+        self.chargem=
+        self.speedm=
+
+    def heal(self):
+        pass
+
+class strongshield:
+    def __init__(self):
+        self.abilitypower =
+        self.size =
+        self.chargespeed =
+        self.speed =
+        self.abilitymultiplier =
+        self.sizem =
+        self.chargem =
+        self.speedm =
+    def grow(self):
+        backup=self.sizemultiplier
+        self.sizemultiplier= #a lot
+        can.after()
+        self.sizemultiplier=backup
+
+class buisinessshield:
+    def __init__(self):
+        self.abilitypower =
+        self.size =
+        self.chargespeed =
+        self.speed =
+        self.abilitymultiplier =
+        self.sizem =
+        self.chargem =
+        self.speedm =
+    def boost(self):
+        pass
+
+
+class attackbuilding:
+    def __init__(self):
+        self.price=
+        self.maxhealth=
+        self.health=
+        self.damage=
+        self.attackspeed=
+        self.damagem=
+        self.speedm=
+    def shoot(self):
+        pass
+
+class healbulding:
+    def __init__(self):
+        self.price=
+        self.maxhealth =
+        self.health=
+        self.healing=
+        self.healingrange=
+        self.healm=
+        self.rangem=
+    def healing(self):
+        pass
+
+
+class factory:
+    def __init__(self):
+        self.price=
+        self.maxhealth =
+        self.health=
+        self.productionspeed=
+        self.value=
+        self.speedm=
+        self.valuem=
+    def produce(self):
+        pass
+class enemyship:
+    def __init__(self):
+        self.maxhealth=
+        self.health=
+        self.size=
+class strongship(enemyship):
+    def __init__(self):
+        super().__init__()
+        self.speed =
+        self.damage =
+        self.attackspeed =
+        self.healthm=
+    def shoot(self):
+        pass
+
+class fastship(enemyship):
+    def __init__(self):
+        super().__init__()
+        self.speed =
+        self.damage =
+        self.attackspeed =
+    def shoot(self):
+        pass
+
+class buffship(enemyship):
+    def __init__(self,bufftype):
+        super().__init__()
+        self.speed =
+        self.bufftype=
+        self.buff=
+        self.range=
+    def buff(self):
+        pass
+
+
+class bossship:
+    def __init__(self,ability):
+        self.health=
+        self.maxhealth
+        self.ability=
+        self.damage=
+        self.attackspeed=
+    def use(self):
+        pass
