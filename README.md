@@ -1,45 +1,55 @@
 # SPG
 to-do list
 # keep in mind:
-the funky OOP shit
-say what the things do
+- the funky OOP shit
+- say what the things do
 # 1 Main Screen 
--start button
--achievement button
--title
--currency
--cool funky background
--credits
+- start button
+- achievement button
+- title
+- currency
+- cool funky background
+- credits
 # 2 Game screen
--city 
- shooty buildings 
- defense buildings
- generation buildings
+- city <br>
+ shooty buildings<br> 
+ heal buildings<br>
+ generation buildings<br>
  the whole building process
--player
-  reflection attack
-  power ups?
--enemy
-  ships
-  big ship
--boss health bar?
+- player <br>
+  invulnerability<br>
+  healing<br>
+  boost<br>
+  attack boost<br>
+- enemy<br>
+  fast ships<br>
+  strong ships<br>
+  buff ships<br>
+- boss health bar
+- boss ship
+- final boss
 # 3 End screen
--win/lose
--score 
--earned points 
--back to menu
+- win/lose
+- score 
+- earned points 
+- back to menu
 # 4 Buy Screen
--prices
--stats
--previews, 
+- prices
+- stats
+- previews, 
 # 5 Selection Screen ?
--umm, i dunno, we might do stuff with this for the formulars
--name
--picture
+- shield
+- name
+- picture
 # 6 Achievement screen + achievements themselves
--read from a text file
--also saves from the text files i guess
+- read from a text file
+- saves 
+- beat game
+- beat game no loss
+- beat game with secret
 # 7 combat animations
-do we really wanna make the aliens have animations? they will already have to move.
+- shoot
+- move
+- generate
 # 8 some random portraits and weird story ig
-aliens vs aliens ,i also found out how to make the fancy text stuff
+- cutscenes
