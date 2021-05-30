@@ -19,8 +19,8 @@
 
 - Rich Lizard (dont bully me for the dollar sign i tried)
 
-![richboino](https://user-images.githubusercontent.com/84735216/120103729-4f302880-c151-11eb-8331-f74ee7413749.png)
-![richboi](https://user-images.githubusercontent.com/84735216/120103722-48a1b100-c151-11eb-9816-d66738f2f15b.gif)
+![richboi](https://user-images.githubusercontent.com/84735216/120112640-f4112c80-c176-11eb-988a-d235b3b51e99.png)
+![richboino](https://user-images.githubusercontent.com/84735216/120112642-f4a9c300-c176-11eb-806c-dc3cf97bb81e.gif)
 
 - Secret Lizard
 
