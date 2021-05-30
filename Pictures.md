@@ -1,0 +1,28 @@
+# Shields (gotta split them later)
+![shields](https://user-images.githubusercontent.com/84735216/120103562-7cc8a200-c150-11eb-9944-f9996c84cd1b.png)
+# Heal Building
+![heal](https://user-images.githubusercontent.com/84735216/120103622-d4670d80-c150-11eb-92ce-08ecc9ae56ee.png)
+# Generation Building
+![gen](https://user-images.githubusercontent.com/84735216/120103641-efd21880-c150-11eb-90a2-6b148fba2118.png)
+# Shooty Building
+![pew](https://user-images.githubusercontent.com/84735216/120103673-0d9f7d80-c151-11eb-992d-52663b8c2255.png)
+# Portraits (i made speaking gifs in case we need em)
+- Heal Lizard
+
+![healboino](https://user-images.githubusercontent.com/84735216/120103703-3293f080-c151-11eb-83b4-4eddba7ab8cc.png)
+![healboi](https://user-images.githubusercontent.com/84735216/120103696-27d95b80-c151-11eb-8ede-4b730aba2cb8.gif)
+
+- Defense Lizard
+
+![defboino](https://user-images.githubusercontent.com/84735216/120103717-42133980-c151-11eb-988c-0c86ca472c7d.png)
+![defboi](https://user-images.githubusercontent.com/84735216/120103710-3aec2b80-c151-11eb-8abf-f2743172898c.gif)
+
+- Rich Lizard (dont bully me for the dollar sign i tried)
+
+![richboino](https://user-images.githubusercontent.com/84735216/120103729-4f302880-c151-11eb-8331-f74ee7413749.png)
+![richboi](https://user-images.githubusercontent.com/84735216/120103722-48a1b100-c151-11eb-9816-d66738f2f15b.gif)
+
+- Secret Lizard
+
+![secretboino](https://user-images.githubusercontent.com/84735216/120103735-5d7e4480-c151-11eb-8785-bb1980cc82d6.png)
+![secretboi](https://user-images.githubusercontent.com/84735216/120103734-56573680-c151-11eb-8c02-eb7406a4f424.gif)
