@@ -18,6 +18,8 @@ class healShield:
         self.sizem = 1
         self.chargem = 1
         self.speedm = 1
+        self.x = 500
+        self.y = 400
 
     def heal(self):
         pass
@@ -32,6 +34,8 @@ class strongshield:
         self.sizem = 1
         self.chargem = 1
         self.speedm = 1
+        self.x = 500
+        self.y = 400
     def grow(self):
         pass
         #backup = self.sizemultiplier
@@ -49,6 +53,8 @@ class buisinessshield:
         self.sizem = 1
         self.chargem = 1
         self.speedm = 1
+        self.x = 500
+        self.y = 400
     def boost(self):
         pass
 
@@ -100,7 +106,9 @@ class strongship(enemyship):
         self.speed = 2
         self.damage = 10
         self.attackspeed = 1
-        self.healthm = 1 
+        self.healthm = 1
+        self.x = 0
+        self.y = 0
     def shoot(self):
         pass
 
@@ -110,6 +118,8 @@ class fastship(enemyship):
         self.speed = 4
         self.damage = 5
         self.attackspeed = 2
+        self.x = 0
+        self.y = 0
     def shoot(self):
         pass
 
@@ -120,6 +130,8 @@ class buffship(enemyship):
         self.bufftype = None
         self.buff = 1
         self.range = 1
+        self.x = 0
+        self.y = 0
     def buff(self):
         pass
 
@@ -131,5 +143,7 @@ class bossship:
         self.ability = 1
         self.damage = 30
         self.attackspeed = 2
+        self.x = 0
+        self.y = 0
     def use(self):
         pass
