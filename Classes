@@ -10,125 +10,126 @@ class player:
 
 class healShield:
     def __init__(self):
-        self.abilitypower=
-        self.size=
-        self.chargespeed=
-        self.speed=
-        self.abilitymultiplier=
-        self.sizem=
-        self.chargem=
-        self.speedm=
+        self.abilitypower = 1
+        self.size = 3
+        self.chargespeed = 3
+        self.speed = 3
+        self.abilitymultiplier = 1
+        self.sizem = 1
+        self.chargem = 1
+        self.speedm = 1
 
     def heal(self):
         pass
 
 class strongshield:
     def __init__(self):
-        self.abilitypower =
-        self.size =
-        self.chargespeed =
-        self.speed =
-        self.abilitymultiplier =
-        self.sizem =
-        self.chargem =
-        self.speedm =
+        self.abilitypower = 1
+        self.size = 3
+        self.chargespeed = 3
+        self.speed = 3
+        self.abilitymultiplier = 1
+        self.sizem = 1
+        self.chargem = 1
+        self.speedm = 1
     def grow(self):
-        backup=self.sizemultiplier
-        self.sizemultiplier= #a lot
-        can.after()
-        self.sizemultiplier=backup
+        pass
+        #backup = self.sizemultiplier
+        #self.sizemultiplier = a lot
+        #can.after()
+        #self.sizemultiplier = backup
 
 class buisinessshield:
     def __init__(self):
-        self.abilitypower =
-        self.size =
-        self.chargespeed =
-        self.speed =
-        self.abilitymultiplier =
-        self.sizem =
-        self.chargem =
-        self.speedm =
+        self.abilitypower = 1
+        self.size = 3
+        self.chargespeed = 3
+        self.speed = 3
+        self.abilitymultiplier = 1
+        self.sizem = 1
+        self.chargem = 1
+        self.speedm = 1
     def boost(self):
         pass
 
 
 class attackbuilding:
     def __init__(self):
-        self.price=
-        self.maxhealth=
-        self.health=
-        self.damage=
-        self.attackspeed=
-        self.damagem=
-        self.speedm=
+        self.price = 10
+        self.maxhealth = 100
+        self.health = 100
+        self.damage = 10
+        self.attackspeed = 2
+        self.damagem = 1
+        self.speedm = 1
     def shoot(self):
         pass
 
 class healbulding:
     def __init__(self):
-        self.price=
-        self.maxhealth =
-        self.health=
-        self.healing=
-        self.healingrange=
-        self.healm=
-        self.rangem=
+        self.price = 10
+        self.maxhealth = 100
+        self.health = 100
+        self.healing = 10
+        self.healingrange = 2
+        self.healm = 1
+        self.rangem = 1
     def healing(self):
         pass
 
 
 class factory:
     def __init__(self):
-        self.price=
-        self.maxhealth =
-        self.health=
-        self.productionspeed=
-        self.value=
-        self.speedm=
-        self.valuem=
+        self.price = 10
+        self.maxhealth = 100
+        self.health = 100
+        self.productionspeed = 1
+        self.value = 5
+        self.speedm = 1
+        self.valuem = 1
     def produce(self):
         pass
 class enemyship:
     def __init__(self):
-        self.maxhealth=
-        self.health=
-        self.size=
+        self.maxhealth= 40
+        self.health= 40
+        self.size= 3
 class strongship(enemyship):
     def __init__(self):
         super().__init__()
-        self.speed =
-        self.damage =
-        self.attackspeed =
-        self.healthm=
+        self.speed = 2
+        self.damage = 10
+        self.attackspeed = 1
+        self.healthm = 1 
     def shoot(self):
         pass
 
 class fastship(enemyship):
     def __init__(self):
         super().__init__()
-        self.speed =
-        self.damage =
-        self.attackspeed =
+        self.speed = 4
+        self.damage = 5
+        self.attackspeed = 2
     def shoot(self):
         pass
 
 class buffship(enemyship):
     def __init__(self,bufftype):
         super().__init__()
-        self.speed =
-        self.bufftype=
-        self.buff=
-        self.range=
+        self.speed = 3
+        self.bufftype = None
+        self.buff = 1
+        self.range = 1
     def buff(self):
         pass
 
 
 class bossship:
     def __init__(self,ability):
-        self.health=
-        self.maxhealth
-        self.ability=
-        self.damage=
-        self.attackspeed=
+        self.health = 200
+        self.maxhealth = 200
+        self.ability = 1
+        self.damage = 30
+        self.attackspeed = 2
     def use(self):
         pass
