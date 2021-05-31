@@ -6,7 +6,7 @@ class player:
         self.shield = None
         self.name = Name
         self.buildings = []
-        self.buildingnumber = 0
+        self.enemies = []
 
 class healShield:
     def __init__(self):
