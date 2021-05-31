@@ -1,0 +1,53 @@
+from classes import *
+import tkinter
+
+window = tkinter.Tk()
+canvas = tkinter.Canvas(window, width=1000, height=1000, bg='white')
+canvas.pack()
+
+p=player("test")
+
+a=attackbuilding()
+f=factory()
+h=healbuilding()
+f2=factory()
+h2=healbuilding()
+p.buildings.append(a)
+p.buildings.append(f)
+p.buildings.append(h)
+p.buildings.append(f2)
+p.buildings.append(h2)
+
+s=strongship(340,230)
+f=fastship(100,100)
+b=buffship(None,50,50)
+p.enemies.append(s)
+p.enemies.append(f)
+p.enemies.append(b)
+def drawbuildings():
+    for i in range(len(p.buildings)):
+        if type(p.buildings[i]) is attackbuilding:
+            canvas.create_rectangle(0+200*i,1000,200+200*i,800,fill="red")
+        if type(p.buildings[i]) is healbuilding:
+            canvas.create_rectangle(0+200*i,1000,200+200*i,800,fill="green")
+        if type(p.buildings[i]) is factory:
+            canvas.create_rectangle(0+200*i,1000,200+200*i,800,fill="yellow")
+
+def drawenemies():
+    for i in range(len(p.enemies)):
+        if type(p.enemies[i]) is strongship:
+            canvas.create_rectangle(p.enemies[i].x-p.enemies[i].size,p.enemies[i].y-p.enemies[i].size,p.enemies[i].x+p.enemies[i].size,p.enemies[i].y+p.enemies[i].size,fill="black")
+
+        if type(p.enemies[i]) is fastship:
+            canvas.create_rectangle(p.enemies[i].x-p.enemies[i].size,p.enemies[i].y-p.enemies[i].size,p.enemies[i].x+p.enemies[i].size,p.enemies[i].y+p.enemies[i].size,fill="blue")
+
+        if type(p.enemies[i]) is buffship:
+            canvas.create_rectangle(p.enemies[i].x-p.enemies[i].size,p.enemies[i].y-p.enemies[i].size,p.enemies[i].x+p.enemies[i].size,p.enemies[i].y+p.enemies[i].size,fill="purple")
+
+
+
+
+
+drawbuildings()
+drawenemies()
+window.mainloop()
