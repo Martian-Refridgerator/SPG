@@ -1,12 +1,12 @@
 class player:
     def __init__(self,Name):
-        self.currency=0
-        self.score=0
-        self.picture=None
-        self.shield=None
-        self.name=Name
-        self.buildings=[]
-        self.buildingnumber=0
+        self.currency = 0
+        self.score = 0
+        self.picture = None
+        self.shield = None
+        self.name = Name
+        self.buildings = []
+        self.buildingnumber = 0
 
 class healShield:
     def __init__(self):
@@ -65,7 +65,7 @@ class attackbuilding:
     def shoot(self):
         pass
 
-class healbulding:
+class healbuilding:
     def __init__(self):
         self.price = 10
         self.maxhealth = 100
