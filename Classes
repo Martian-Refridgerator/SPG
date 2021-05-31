@@ -99,7 +99,7 @@ class enemyship:
     def __init__(self):
         self.maxhealth= 40
         self.health= 40
-        self.size= 3
+        self.size= 30
 class strongship(enemyship):
     def __init__(self):
         super().__init__()
