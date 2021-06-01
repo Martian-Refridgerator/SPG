@@ -26,3 +26,7 @@
 
 ![secretboino](https://user-images.githubusercontent.com/84735216/120103735-5d7e4480-c151-11eb-8785-bb1980cc82d6.png)
 ![secretboi](https://user-images.githubusercontent.com/84735216/120103734-56573680-c151-11eb-8c02-eb7406a4f424.gif)
+
+# Screens
+![main](https://user-images.githubusercontent.com/84735216/120377022-dda4d580-c31c-11eb-8d70-cacae8d7253a.png)
+![choose](https://user-images.githubusercontent.com/84735216/120377018-db427b80-c31c-11eb-9b29-53b45fa52964.png)
