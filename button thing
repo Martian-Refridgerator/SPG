@@ -1,0 +1,57 @@
+import pygame
+
+pygame.init()
+
+screen = pygame.display.set_mode((1200,800))
+
+pygame.display.set_caption("lizardshieldthing")
+
+class button():
+    def __init__(self, color, x,y,width,height, text=''):
+        self.color = color
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.text = text
+
+    def draw(self, screen, outline=None):
+        # Call this method to draw the button on the screen
+        if outline:
+            pygame.draw.rect(screen, outline, (self.x - 2, self.y - 2, self.width + 4, self.height + 4), 0)
+
+        pygame.draw.rect(screen, self.color, (self.x, self.y, self.width, self.height), 0)
+
+        if self.text != '':
+            font = pygame.font.SysFont('comicsans', 40)
+            text = font.render(self.text, 1, (0, 0, 0))
+            screen.blit(text, (
+            self.x + (self.width / 2 - text.get_width() / 2), self.y + (self.height / 2 - text.get_height() / 2)))
+
+    def isOver(self, pos):
+        # Pos is the mouse position or a tuple of (x,y) coordinates
+        if pos[0] > self.x and pos[0] < self.x + self.width:
+            if pos[1] > self.y and pos[1] < self.y + self.height:
+                return True
+
+        return False
+def windowdraw():
+    screen.fill((0, 0, 0))
+    startbutton.draw(screen)
+startbutton = button((0, 50, 120),550,300,150,30,"New Game")
+running = True
+while running:
+    for event in pygame.event.get():
+        pos = pygame.mouse.get_pos()
+        if event.type == pygame.QUIT:
+            running = False
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if startbutton.isOver(pos):
+                print("game start not implemented yet")
+        if event.type == pygame.MOUSEMOTION:
+            if startbutton.isOver(pos):
+                startbutton.color = (0,70,120)
+            else:
+                startbutton.color = (0,50,120)
+    windowdraw()
+    pygame.display.update()
