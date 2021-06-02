@@ -2,6 +2,9 @@
 ![shields](https://user-images.githubusercontent.com/84735216/120103562-7cc8a200-c150-11eb-9944-f9996c84cd1b.png)
 
 ![meanshield](https://user-images.githubusercontent.com/84734669/120506262-0d5be800-c3c6-11eb-9c62-3a6a37463a70.png)
+![moneyshield](https://user-images.githubusercontent.com/84734669/120506444-35e3e200-c3c6-11eb-84e7-0631c215ab88.png)
+![shieldshield](https://user-images.githubusercontent.com/84734669/120506450-38463c00-c3c6-11eb-9d1d-72be7d07064c.png)
+![healshield](https://user-images.githubusercontent.com/84734669/120506464-3b412c80-c3c6-11eb-8cd8-523f7ca8a5f4.png)
 # Heal Building
 ![heal](https://user-images.githubusercontent.com/84735216/120103622-d4670d80-c150-11eb-92ce-08ecc9ae56ee.png)
 # Generation Building
