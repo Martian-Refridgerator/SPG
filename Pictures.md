@@ -1,5 +1,7 @@
-# Shields (gotta split them later)
+# Shields (gotta split them later) (not anymore)
 ![shields](https://user-images.githubusercontent.com/84735216/120103562-7cc8a200-c150-11eb-9944-f9996c84cd1b.png)
+
+![meanshield](https://user-images.githubusercontent.com/84734669/120506262-0d5be800-c3c6-11eb-9c62-3a6a37463a70.png)
 # Heal Building
 ![heal](https://user-images.githubusercontent.com/84735216/120103622-d4670d80-c150-11eb-92ce-08ecc9ae56ee.png)
 # Generation Building
