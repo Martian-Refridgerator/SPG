@@ -1,10 +1,20 @@
 import pygame
-
 pygame.init()
 
 screen = pygame.display.set_mode((1200,800))
 main_screen_bg=pygame.image.load("mainscreen.png")
+select_screen_background=pygame.image.load("choosecreen.png")
 pygame.display.set_caption("lizardshieldthing")
+heal_shield_img = pygame.image.load("healshield.png")
+mean_shield_img = pygame.image.load("meanshield.png")
+money_shield_img = pygame.image.load("moneyshield.png")
+shield_shield_img = pygame.image.load("shieldshield.png")
+heal_man_img = pygame.image.load("healman.png")
+mean_man_img = pygame.image.load("meanman.png")
+money_man_img = pygame.image.load("moneyman.png")
+shield_man_img = pygame.image.load("shieldman.png")
+
+x=1
 
 class button():
     def __init__(self, color, x,y,width,height, text=''):
@@ -23,7 +33,7 @@ class button():
         pygame.draw.rect(screen, self.color, (self.x, self.y, self.width, self.height), 0)
 
         if self.text != '':
-            font = pygame.font.SysFont('comicsans', 40)
+            font = pygame.font.Font('Pixel Digivolve.otf', 20)
             text = font.render(self.text, 1, (0, 0, 0))
             screen.blit(text, (
             self.x + (self.width / 2 - text.get_width() / 2), self.y + (self.height / 2 - text.get_height() / 2)))
@@ -35,26 +45,58 @@ class button():
                 return True
 
         return False
-def windowdraw():
-    screen.fill((0, 0, 0))
-    screen.blit(main_screen_bg, [0, 0])
-    startbutton.draw(screen)
-startbutton = button((0, 50, 120),550,300,150,30,"New Game")
+def windowdraw(number):
+    number=number
+    if number==1:
+        screen.fill((0, 0, 0))
+        screen.blit(main_screen_bg, [0, 0])
+        startbutton.draw(screen)
+        continuebutton.draw(screen)
+        quitbutton.draw(screen)
+        achievementbutton.draw(screen)
+    if number==2:
+        screen.fill((0, 0, 0))
+        screen.blit(select_screen_background,[0,0])
+startbutton = button((125,255,255),520,500,150,30,"New Game")
+continuebutton = button((125,255,255),520,550,150,30,"Continue")
+achievementbutton = button((125,255,255),515,600,160,30,"Achievements")
+quitbutton = button((125,255,255),520,700,150,30,"Quit")
 running = True
+
 while running:
     for event in pygame.event.get():
         pos = pygame.mouse.get_pos()
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if startbutton.isOver(pos):
-                print("game start not implemented yet")
-
+            if startbutton.isOver(pos) and x == 1:
+                x=2
+            if continuebutton.isOver(pos) and x == 1:
+                x=2
+            if quitbutton.isOver(pos) and x == 1:
+                running = False
+            if achievementbutton.isOver(pos) and x == 1:
+                x=2
         if event.type == pygame.MOUSEMOTION:
             if startbutton.isOver(pos):
-                startbutton.color = (0,70,120)
+                startbutton.color = (255,226,68)
             else:
-                startbutton.color = (0,50,120)
+                startbutton.color = (125,255,255)
 
-    windowdraw()
+            if continuebutton.isOver(pos):
+                continuebutton.color = (255,226,68)
+            else:
+                continuebutton.color = (125,255,255)
+
+            if quitbutton.isOver(pos):
+                quitbutton.color = (255,226,68)
+            else:
+                quitbutton.color = (125,255,255)
+
+            if achievementbutton.isOver(pos):
+                achievementbutton.color = (255,226,68)
+            else:
+                achievementbutton.color = (125,255,255)
+
+    windowdraw(x)
     pygame.display.update()
