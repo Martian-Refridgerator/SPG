@@ -3,7 +3,7 @@ pygame.init()
 
 screen = pygame.display.set_mode((1200,800))
 main_screen_bg=pygame.image.load("mainscreen.png")
-select_screen_background=pygame.image.load("choosecreen.png")
+select_screen_background=pygame.image.load("choosescreen.png")
 pygame.display.set_caption("lizardshieldthing")
 heal_shield_img = pygame.image.load("healshield.png")
 mean_shield_img = pygame.image.load("meanshield.png")
