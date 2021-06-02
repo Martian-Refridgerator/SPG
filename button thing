@@ -14,8 +14,8 @@ mean_man_img = pygame.image.load("meanman.png")
 money_man_img = pygame.image.load("moneyman.png")
 shield_man_img = pygame.image.load("shieldman.png")
 
-x=1
-
+screenidentity=1
+charselectvar=1
 class button():
     def __init__(self, color, x,y,width,height, text=''):
         self.color = color
@@ -57,10 +57,24 @@ def windowdraw(number):
     if number==2:
         screen.fill((0, 0, 0))
         screen.blit(select_screen_background,[0,0])
+        charselectbutton.draw(screen)
+        if charselectvar == 1:
+            screen.blit(shield_man_img, (200, 160))
+            screen.blit(shield_shield_img, (272,650))
+        if charselectvar == 2:
+            screen.blit(heal_man_img, (200, 160))
+            screen.blit(heal_shield_img, (272, 650))
+        if charselectvar == 3:
+            screen.blit(money_man_img, (200, 160))
+            screen.blit(money_shield_img, (272, 650))
+        if charselectvar == 4:
+            screen.blit(mean_man_img, (200, 160))
+            screen.blit(mean_shield_img, (272, 650))
 startbutton = button((125,255,255),520,500,150,30,"New Game")
 continuebutton = button((125,255,255),520,550,150,30,"Continue")
 achievementbutton = button((125,255,255),515,600,160,30,"Achievements")
 quitbutton = button((125,255,255),520,700,150,30,"Quit")
+charselectbutton = button((255,255,255),700,300,100,30,"Next")
 running = True
 
 while running:
@@ -69,14 +83,19 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if startbutton.isOver(pos) and x == 1:
-                x=2
-            if continuebutton.isOver(pos) and x == 1:
-                x=2
-            if quitbutton.isOver(pos) and x == 1:
+            if startbutton.isOver(pos) and screenidentity == 1:
+                screenidentity=2
+            if continuebutton.isOver(pos) and screenidentity == 1:
+                screenidentity=2
+            if quitbutton.isOver(pos) and screenidentity == 1:
                 running = False
-            if achievementbutton.isOver(pos) and x == 1:
-                x=2
+            if achievementbutton.isOver(pos) and screenidentity == 1:
+                screenidentity=2
+
+            if charselectbutton.isOver(pos) and screenidentity == 2:
+                if charselectvar == 4:
+                    charselectvar = 0
+                charselectvar += 1
         if event.type == pygame.MOUSEMOTION:
             if startbutton.isOver(pos):
                 startbutton.color = (255,226,68)
@@ -97,6 +116,11 @@ while running:
                 achievementbutton.color = (255,226,68)
             else:
                 achievementbutton.color = (125,255,255)
+            if charselectbutton.isOver(pos):
+                charselectbutton.color = (200,200,200)
+            else:
+                charselectbutton.color = (255,255,255)
 
-    windowdraw(x)
+
+    windowdraw(screenidentity)
     pygame.display.update()
