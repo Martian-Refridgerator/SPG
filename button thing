@@ -3,7 +3,7 @@ import pygame
 pygame.init()
 
 screen = pygame.display.set_mode((1200,800))
-
+main_screen_bg=pygame.image.load("mainscreen.png")
 pygame.display.set_caption("lizardshieldthing")
 
 class button():
@@ -37,6 +37,7 @@ class button():
         return False
 def windowdraw():
     screen.fill((0, 0, 0))
+    screen.blit(main_screen_bg, [0, 0])
     startbutton.draw(screen)
 startbutton = button((0, 50, 120),550,300,150,30,"New Game")
 running = True
@@ -48,10 +49,12 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if startbutton.isOver(pos):
                 print("game start not implemented yet")
+
         if event.type == pygame.MOUSEMOTION:
             if startbutton.isOver(pos):
                 startbutton.color = (0,70,120)
             else:
                 startbutton.color = (0,50,120)
+
     windowdraw()
     pygame.display.update()
