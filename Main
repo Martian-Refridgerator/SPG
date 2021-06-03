@@ -5,7 +5,6 @@ screen = pygame.display.set_mode((1200,800))
 screenidentity=1
 charselectvar=1
 Name = ''
-Name_rect = pygame.Rect(182,570,297,35)
 active = False
 game_beaten=False
 def windowdraw(number):
