@@ -34,6 +34,7 @@
 ![secretboi](https://user-images.githubusercontent.com/84735216/120103734-56573680-c151-11eb-8c02-eb7406a4f424.gif)
 
 - Secret Screen
+
 ![secret_character](https://user-images.githubusercontent.com/84735216/120664323-224e7f00-c48b-11eb-8306-d5f10ad38c60.png)
 
 # Ability icons
