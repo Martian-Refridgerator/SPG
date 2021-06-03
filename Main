@@ -30,6 +30,13 @@ scaled_secret_shield=pygame.transform.scale(secret_shield_img, (191,64))
 screenidentity=1
 charselectvar=1
 game_beaten=False
+typing_font = pygame.font.Font('Pixel Digivolve.otf',32)
+Name = ''
+Name_rect = pygame.Rect(215,550,230,35)
+color_passive = (200,200,200)
+color_active = (255,255,255)
+color = color_passive
+active = False
 class button():
     def __init__(self, color, x,y,width,height, text=''):
         self.color = color
@@ -103,7 +110,22 @@ while running:
         pos = pygame.mouse.get_pos()
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.KEYDOWN:
+            if active == True:
+                if event.key == pygame.K_BACKSPACE:
+                    Name = Name[:-1]
+                elif len(Name) < 10:
+                    Name += event.unicode
+        if active == False:
+            color = color_passive
+        else:
+            color = color_active
+        Namebox = typing_font.render(Name,True,color)
         if event.type == pygame.MOUSEBUTTONDOWN:
+            if Name_rect.collidepoint(event.pos):
+                active = True
+            else:
+                active = False
             if startbutton.isOver(pos) and screenidentity == 1:
                 screenidentity=2
             if continuebutton.isOver(pos) and screenidentity == 1:
@@ -151,5 +173,9 @@ while running:
 
 
     windowdraw(screenidentity)
+    if screenidentity == 2:
+        Name_rect.w = max(230,Namebox.get_width()+10)
+        screen.blit(Namebox, (Name_rect.x+5,Name_rect.y))
+        pygame.draw.rect(screen,color,Name_rect,2)
     pygame.display.update()
 
