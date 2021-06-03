@@ -68,7 +68,7 @@ def windowdraw(number):
         continuebutton.draw(screen)
         quitbutton.draw(screen)
         achievementbutton.draw(screen)
-    if number==2 and game_beaten==True:
+    if number==2:
         screen.fill((0, 0, 0))
         screen.blit(select_screen_background,[0,0])
         charselectbutton.draw(screen)
@@ -83,25 +83,12 @@ def windowdraw(number):
             screen.blit(scaled_money_man, (150, 220))
             screen.blit(scaled_money_shield, (185, 600))
         if charselectvar == 4:
-            screen.blit(scaled_mean_man, (150, 220))
-            screen.blit(scaled_mean_shield, (185, 600))
-    if number==2 and game_beaten==False:
-        screen.fill((0, 0, 0))
-        screen.blit(select_screen_background, [0, 0])
-        charselectbutton.draw(screen)
-        backbutton.draw(screen)
-        if charselectvar == 1:
-            screen.blit(scaled_shield_man, (150, 220))
-            screen.blit(scaled_shield_shield, (185, 600))
-        if charselectvar == 2:
-            screen.blit(scaled_heal_man, (150, 220))
-            screen.blit(scaled_heal_shield, (185, 600))
-        if charselectvar == 3:
-            screen.blit(scaled_money_man, (150, 220))
-            screen.blit(scaled_money_shield, (185, 600))
-        if charselectvar == 4:
-            screen.blit(scaled_secret_man, (150, 220))
-            screen.blit(scaled_secret_shield, (185, 600))
+            if game_beaten==True:
+                screen.blit(scaled_mean_man, (150, 220))
+                screen.blit(scaled_mean_shield, (185, 600))
+            if game_beaten==False:
+                screen.blit(scaled_secret_man, (150, 220))
+                screen.blit(scaled_secret_shield, (185, 600))
 
 startbutton = button((125,255,255),520,500,150,30,"New Game")
 continuebutton = button((125,255,255),520,550,150,30,"Continue")
@@ -165,3 +152,4 @@ while running:
 
     windowdraw(screenidentity)
     pygame.display.update()
+
