@@ -48,6 +48,7 @@ typing_font = pygame.font.Font('Pixel Digivolve.otf',32)
 #Colours
 color_passive = (0,0,0)
 color_active = (200,200,200)
+color = color_passive
 
 #Headers
 
