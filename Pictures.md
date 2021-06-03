@@ -5,6 +5,7 @@
 ![moneyshield](https://user-images.githubusercontent.com/84734669/120508903-64fb5300-c3c8-11eb-9cae-176b1522d4ac.png)
 ![shieldshield](https://user-images.githubusercontent.com/84734669/120507325-fff32d80-c3c6-11eb-9a97-667e971f275e.png)
 ![healshield](https://user-images.githubusercontent.com/84734669/120506464-3b412c80-c3c6-11eb-8cd8-523f7ca8a5f4.png)
+![secret_shield](https://user-images.githubusercontent.com/84735216/120664341-25496f80-c48b-11eb-926b-1eaed9759012.png)
 # Heal Building
 ![heal](https://user-images.githubusercontent.com/84735216/120103622-d4670d80-c150-11eb-92ce-08ecc9ae56ee.png)
 # Generation Building
@@ -27,10 +28,20 @@
 ![richboi](https://user-images.githubusercontent.com/84735216/120112640-f4112c80-c176-11eb-988a-d235b3b51e99.png)
 ![richboino](https://user-images.githubusercontent.com/84735216/120112642-f4a9c300-c176-11eb-806c-dc3cf97bb81e.gif)
 
-- Secret Lizard
+- Mean Lizard
 
 ![secretboino](https://user-images.githubusercontent.com/84735216/120103735-5d7e4480-c151-11eb-8785-bb1980cc82d6.png)
 ![secretboi](https://user-images.githubusercontent.com/84735216/120103734-56573680-c151-11eb-8c02-eb7406a4f424.gif)
+
+- Secret Screen
+![secret_character](https://user-images.githubusercontent.com/84735216/120664323-224e7f00-c48b-11eb-8306-d5f10ad38c60.png)
+
+# Ability icons
+![Shieldicon](https://user-images.githubusercontent.com/84735216/120664449-37c3a900-c48b-11eb-95af-060cce0f5837.png)
+![Healicon](https://user-images.githubusercontent.com/84735216/120664418-32665e80-c48b-11eb-8f51-b6bb317f76fa.png)
+![Moneyicon](https://user-images.githubusercontent.com/84735216/120664442-36927c00-c48b-11eb-874b-1ece4c611811.png)
+![Attackicon](https://user-images.githubusercontent.com/84735216/120664407-30040480-c48b-11eb-8260-71cb07056776.png)
+![secreticon](https://user-images.githubusercontent.com/84735216/120664356-29758d00-c48b-11eb-8539-9bb23a4fd0c8.png)
 
 # Screens
 ![main](https://user-images.githubusercontent.com/84735216/120377022-dda4d580-c31c-11eb-8d70-cacae8d7253a.png)
