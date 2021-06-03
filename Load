@@ -1,5 +1,5 @@
 import pygame
-from Classess import button
+from Classes import button
 
 pygame.init()
 #Images
