@@ -61,6 +61,7 @@ shieldabilitytext3=main_font.render("rendering enemy attacks useless.",1, (0, 0,
 
 healabilitytext = main_font.render("Instantly restores a set amount", 1,(0, 0, 0))
 healabilitytext2=main_font.render("of health to all friendly buildings.",1,(0,0,0))
+healabilitytext3=main_font.render("",1,(0,0,0))
 
 moneyabilitytext=main_font.render("For x seconds boosts the production,",1, (0, 0, 0))
 moneyabilitytext2=main_font.render("heal or attack speed of all generation, heal",1,(0,0,0))
@@ -68,5 +69,14 @@ moneyabilitytext3=main_font.render("or damage ally buildings.",1,(0,0,0))
 
 attackabilitytext=main_font.render("Releases all built up charge to",1,(0,0,0))
 attackabilitytext2=main_font.render("unleash a devastating attack on the enemies.",1,(0,0,0))
+attackabilitytext3=main_font.render("",1,(0,0,0))
 
 secretabilitytext=small_header_font.render("Secret",1,(0,0,0))
+
+#heronumbers
+shield_hero= [shieldabilitytext,shieldabilitytext2,shieldabilitytext3,scaled_shield_man,scaled_shield_shield,scaled_shield_icon]
+heal_hero= [healabilitytext,healabilitytext2,healabilitytext3,scaled_heal_man,scaled_heal_shield,scaled_heal_icon]
+money_hero= [moneyabilitytext,moneyabilitytext2,moneyabilitytext3,scaled_money_man,scaled_money_shield,scaled_money_icon]
+attack_hero= [attackabilitytext,attackabilitytext2,attackabilitytext3,scaled_mean_man,scaled_mean_shield,scaled_attack_icon]
+heroes=[shield_hero,heal_hero,money_hero,attack_hero]
+charscreencoords=[(600,350),(500,370),(500,390),(150, 220),(500, 253),(670,214)]
