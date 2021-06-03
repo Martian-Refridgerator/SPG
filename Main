@@ -1,4 +1,3 @@
-import pygame
 from Load import *
 pygame.init()
 
@@ -44,55 +43,34 @@ def windowdraw(number):
     if number==1:
         screen.fill((0, 0, 0))
         screen.blit(main_screen_bg, [0, 0])
-        startbutton.draw(screen)
-        continuebutton.draw(screen)
-        quitbutton.draw(screen)
-        achievementbutton.draw(screen)
+        for i in range(len(mainmenubuttons)):
+            mainmenubuttons[i].draw(screen)
     if number==2:
         screen.fill((125,255,255))
         screen.blit(abilityheader, (500, 340))
         screen.blit(maintext,(180,100))
         charselectbutton.draw(screen)
         backbutton.draw(screen)
-        if charselectvar == 1:
-            screen.blit(shieldabilitytext,(600,350))
-            screen.blit(shieldabilitytext2,(500,370))
-            screen.blit(shieldabilitytext3,(500,390))
-            screen.blit(scaled_shield_man, (150, 220))
-            screen.blit(scaled_shield_shield, (500, 253))
-            screen.blit(scaled_shield_icon,(670,214))
-        if charselectvar == 2:
-            screen.blit(healabilitytext, (600, 350))
-            screen.blit(healabilitytext2, (500, 370))
-            screen.blit(scaled_heal_man, (150, 220))
-            screen.blit(scaled_heal_shield, (500, 253))
-            screen.blit(scaled_heal_icon, (670,214))
-        if charselectvar == 3:
-            screen.blit(moneyabilitytext,(600,350))
-            screen.blit(moneyabilitytext2,(500,370))
-            screen.blit(moneyabilitytext3, (500, 390))
-            screen.blit(scaled_money_man, (150, 220))
-            screen.blit(scaled_money_shield, (500, 253))
-            screen.blit(scaled_money_icon, (670,214))
-        if charselectvar == 4:
-            if game_beaten==True:
-                screen.blit(attackabilitytext,(600,350))
-                screen.blit(attackabilitytext2,(500,370))
-                screen.blit(scaled_mean_man, (150, 220))
-                screen.blit(scaled_mean_shield, (500, 253))
-                screen.blit(scaled_attack_icon, (670,214))
-            if game_beaten==False:
-                screen.blit(secretabilitytext,(600,340))
+        for i in range(4):
+            if charselectvar == i+1:
+                if i+1 != 4 or game_beaten == True:
+                    for j in range(6):
+                        screen.blit(heroes[i][j],charscreencoords[j])
+            if charselectvar == 4 and game_beaten == False:
+                screen.blit(secretabilitytext, (600, 340))
                 screen.blit(scaled_secret_man, (150, 220))
                 screen.blit(scaled_secret_shield, (500, 253))
-                screen.blit(scaled_secret_icon, (670,214))
+                screen.blit(scaled_secret_icon, (670, 214))
 
 startbutton = button((125,255,255),520,500,150,30,"New Game")
 continuebutton = button((125,255,255),520,550,150,30,"Continue")
 achievementbutton = button((125,255,255),515,600,160,30,"Achievements")
 quitbutton = button((125,255,255),520,700,150,30,"Quit")
+mainmenubuttons=[startbutton,continuebutton,achievementbutton,quitbutton]
+
 charselectbutton = button((255,255,255),1000,400,100,30,"Next")
-backbutton=button((255,255,255),50,720,200,30,"Back to Menu")
+backbutton= button((255,255,255),50,720,200,30,"Back to Menu")
+
 running = True
 
 while running:
@@ -135,25 +113,12 @@ while running:
                 screenidentity=1
 
         if event.type == pygame.MOUSEMOTION:
-            if startbutton.isOver(pos):
-                startbutton.color = (255,226,68)
-            else:
-                startbutton.color = (125,255,255)
+            for i in range(len(mainmenubuttons)):
+                if mainmenubuttons[i].isOver(pos):
+                    mainmenubuttons[i].color = (255,226,68)
+                else:
+                    mainmenubuttons[i].color = (125,255,255)
 
-            if continuebutton.isOver(pos):
-                continuebutton.color = (255,226,68)
-            else:
-                continuebutton.color = (125,255,255)
-
-            if quitbutton.isOver(pos):
-                quitbutton.color = (255,226,68)
-            else:
-                quitbutton.color = (125,255,255)
-
-            if achievementbutton.isOver(pos):
-                achievementbutton.color = (255,226,68)
-            else:
-                achievementbutton.color = (125,255,255)
             if charselectbutton.isOver(pos):
                 charselectbutton.color = (200,200,200)
             else:
@@ -170,4 +135,3 @@ while running:
         screen.blit(Namebox, (Name_rect.x+5,Name_rect.y))
         pygame.draw.rect(screen,color,Name_rect,2)
     pygame.display.update()
-
