@@ -5,8 +5,7 @@ screen = pygame.display.set_mode((1200,800))
 screenidentity=1
 charselectvar=1
 Name = ''
-Name_rect = pygame.Rect(215,570,230,35)
-color = color_passive
+Name_rect = pygame.Rect(182,570,297,35)
 active = False
 game_beaten=False
 def windowdraw(number):
@@ -49,7 +48,7 @@ while running:
                     Name = Name[:-1]
                 elif event.key== pygame.K_RETURN:
                     active=False
-                elif len(Name) < 10:
+                elif len(Name) < 11:
                     Name += event.unicode
         if active == False:
             color = color_passive
@@ -96,7 +95,6 @@ while running:
 
     windowdraw(screenidentity)
     if screenidentity == 2:
-        Name_rect.w = max(230,Namebox.get_width()+10)
         screen.blit(Namebox, (Name_rect.x+5,Name_rect.y))
         pygame.draw.rect(screen,color,Name_rect,2)
     pygame.display.update()
