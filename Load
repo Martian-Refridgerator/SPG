@@ -96,3 +96,4 @@ mainmenubuttons=[startbutton,continuebutton,achievementbutton,quitbutton]
 
 charselectbutton = button((255,255,255),1000,400,100,30,"Next")
 backbutton= button((255,255,255),50,720,200,30,"Back to Menu")
+finishbutton = button((255,255,255),950,720,200,30,"Finish")
