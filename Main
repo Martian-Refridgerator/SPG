@@ -79,11 +79,11 @@ while running:
                     charselectvar = 0
                 charselectvar += 1
             if backbutton.isOver(pos) and screenidentity == 2:
-                screenidentity=1
+                screenidentity= 1
             if backbutton.isOver(pos) and screenidentity == 3:
-                screenidentity=1
+                screenidentity= 1
             if finishbutton.isOver(pos) and screenidentity==2:
-                screenidentity=4
+                screenidentity= 4
 
         if event.type == pygame.MOUSEMOTION:
             for i in range(len(mainmenubuttons)):
