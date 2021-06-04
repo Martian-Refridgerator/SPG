@@ -5,6 +5,8 @@ screen = pygame.display.set_mode((1200,800))
 screenidentity=1
 charselectvar=1
 Name = ''
+Name_rect = pygame.Rect(215,570,230,35)
+color = color_passive
 active = False
 game_beaten=False
 def windowdraw(number):
@@ -18,6 +20,7 @@ def windowdraw(number):
         screen.fill((125,255,255))
         screen.blit(abilityheader, (500, 340))
         screen.blit(maintext,(180,100))
+        finishbutton.draw(screen)
         charselectbutton.draw(screen)
         backbutton.draw(screen)
         for i in range(4):
@@ -30,9 +33,12 @@ def windowdraw(number):
                 screen.blit(scaled_secret_man, (150, 220))
                 screen.blit(scaled_secret_shield, (500, 253))
                 screen.blit(scaled_secret_icon, (670, 214))
+    if number==3:
+        screen.fill((0,0,0))
+        backbutton.draw(screen)
+    if number==4:
+        screen.fill((0,0,0))
 
-charselectbutton = button((255,255,255),1000,400,100,30,"Next")
-backbutton= button((255,255,255),50,720,200,30,"Back to Menu")
 
 running = True
 
@@ -47,7 +53,7 @@ while running:
                     Name = Name[:-1]
                 elif event.key== pygame.K_RETURN:
                     active=False
-                elif len(Name) < 11:
+                elif len(Name) < 10:
                     Name += event.unicode
         if active == False:
             color = color_passive
@@ -66,7 +72,7 @@ while running:
             if quitbutton.isOver(pos) and screenidentity == 1:
                 running = False
             if achievementbutton.isOver(pos) and screenidentity == 1:
-                screenidentity=2
+                screenidentity=3
 
             if charselectbutton.isOver(pos) and screenidentity == 2:
                 if charselectvar == 4:
@@ -74,6 +80,10 @@ while running:
                 charselectvar += 1
             if backbutton.isOver(pos) and screenidentity == 2:
                 screenidentity=1
+            if backbutton.isOver(pos) and screenidentity == 3:
+                screenidentity=1
+            if finishbutton.isOver(pos) and screenidentity==2:
+                screenidentity=4
 
         if event.type == pygame.MOUSEMOTION:
             for i in range(len(mainmenubuttons)):
@@ -90,10 +100,15 @@ while running:
                 backbutton.color = (200,200,200)
             else:
                 backbutton.color = (255,255,255)
+            if finishbutton.isOver(pos):
+                finishbutton.color = (200,200,200)
+            else:
+                finishbutton.color = (255, 255, 255)
 
 
     windowdraw(screenidentity)
     if screenidentity == 2:
+        Name_rect.w = max(230,Namebox.get_width()+10)
         screen.blit(Namebox, (Name_rect.x+5,Name_rect.y))
         pygame.draw.rect(screen,color,Name_rect,2)
     pygame.display.update()
