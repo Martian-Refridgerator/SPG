@@ -41,6 +41,7 @@ scaled_secret_icon=pygame.transform.scale(secret_icon,(150,150))
 
 #Fonts
 header_font=pygame.font.Font('Pixel Digivolve.otf', 70)
+achievement_font=pygame.font.Font('Pixel Digivolve.otf',40)
 main_font=pygame.font.Font('Pixel Digivolve.otf', 18)
 small_header_font=pygame.font.Font('Pixel Digivolve.otf', 24)
 typing_font = pygame.font.Font('Pixel Digivolve.otf',32)
@@ -55,34 +56,78 @@ Name_rect = pygame.Rect(182,570,297,35) #not a color but it fits with the stuff 
 
 maintext=header_font.render("Choose your reptile",1,(0,0,0))
 abilityheader = small_header_font.render("Ability:", 1, (0, 0, 0))
+achievementheader = header_font.render("Achievements",1,(255,255,255))
+achievementsubheader = small_header_font.render("Seriously, how much time have you spent on this game?",1,(255,255,255))
 
 #Text
 
 shieldabilitytext=main_font.render("For x seconds, the shield enlarges,",1,(0,0,0))
 shieldabilitytext2 = main_font.render("spanning the entire screen and effectively",1, (0, 0, 0))
 shieldabilitytext3=main_font.render("rendering enemy attacks useless.",1, (0, 0, 0))
+shieldloretext1=main_font.render("The Shieldbearers, the protectors of the Khvlik’i. Since",1,(0,0,0))
+shieldloretext2=main_font.render("the ancient times in which they were named, their philosophy",1,(0,0,0))
+shieldloretext3=main_font.render("believes in preserving peace by stopping conflict and",1,(0,0,0))
+shieldloretext4=main_font.render("disaster before it affects anyone.",1,(0,0,0))
+shieldloretext5=main_font.render("",1,(0,0,0))
+shieldloretext6=main_font.render("",1,(0,0,0))
+# The Shieldbearers, the protectors of the Khvlik’i. Since the ancient times in which they were named, their philosophy believes in preserving peace by stopping conflict and disaster before it affects anyone.
 
 healabilitytext = main_font.render("Instantly restores a set amount", 1,(0, 0, 0))
 healabilitytext2=main_font.render("of health to all friendly buildings.",1,(0,0,0))
 healabilitytext3=main_font.render("",1,(0,0,0))
+healloretext1=main_font.render("The Menders, a beacon of hope for the ill and injured.",1,(0,0,0))
+healloretext2=main_font.render("Rooted in the ritualistic practices of their predecessors,",1,(0,0,0))
+healloretext3=main_font.render("their methods often employ herbal medication and meditation.",1,(0,0,0))
+healloretext4=main_font.render("They aim to keep peace by healing the wounds and dispelling",1,(0,0,0))
+healloretext5=main_font.render("the grudges caused by conflict",1,(0,0,0))
+healloretext6=main_font.render("",1,(0,0,0))
+# The Menders, a beacon of hope for the ill and injured. Rooted in the ritualistic practices of their predecessors, their methods often employ herbal medication and meditation. They aim to keep peace by healing the wounds and dispelling the grudges caused by conflict
+
 
 moneyabilitytext=main_font.render("For x seconds boosts the production,",1, (0, 0, 0))
 moneyabilitytext2=main_font.render("heal or attack speed of all generation, heal",1,(0,0,0))
 moneyabilitytext3=main_font.render("or damage ally buildings.",1,(0,0,0))
+moneyloretext1=main_font.render("The Merchant Association, the driving force",1,(0,0,0))
+moneyloretext2=main_font.render("behind the Khvlik’i economy. Unlike their fellow",1,(0,0,0))
+moneyloretext3=main_font.render("factions of the council, the Merchant Association",1,(0,0,0))
+moneyloretext4=main_font.render("formed sometime after the industrial era, aiming",1,(0,0,0))
+moneyloretext5=main_font.render("to help maintain peace by improving the citizens'",1,(0,0,0))
+moneyloretext6=main_font.render("living standards with commerce.",1,(0,0,0))
+
+
+# The Merchant Association, the driving force behind the Khvlik’i economy. Unlike their fellow factions of the council, the Merchant Association formed sometime after the industrial era, aiming to help maintain peace by improving the citizens' living standards with commerce.
 
 attackabilitytext=main_font.render("Releases all built up charge to",1,(0,0,0))
 attackabilitytext2=main_font.render("unleash a devastating attack on the enemies.",1,(0,0,0))
 attackabilitytext3=main_font.render("",1,(0,0,0))
+attackloretext1=main_font.render("General Mk’vleli II was a member of the shieldbearers",1,(0,0,0))
+attackloretext2=main_font.render("before his supposed death. He was always more agressive",1,(0,0,0))
+attackloretext3=main_font.render("than his peers, though no one had suspected he was working",1,(0,0,0))
+attackloretext4=main_font.render("on a taboo shield with offensive capabilities.",1,(0,0,0))
+attackloretext5=main_font.render("",1,(0,0,0))
+attackloretext6=main_font.render("",1,(0,0,0))
+# General Mk’vleli II was a member of the shieldbearers before his supposed death. He was always more agressive than his peers, though no one had suspected he was working on a taboo shield with offensive capabilities.
 
 secretabilitytext=small_header_font.render("Secret",1,(0,0,0))
 
+achievementtext1false=achievement_font.render("???",1,(255,255,255))
+achievementtext1true=achievement_font.render("Wow! You beat the game!",1,(255,255,255))
+achievementsubtext1=small_header_font.render("(Beat the game)",1,(255,255,255))
+achievementtext2false=achievement_font.render("???",1,(255,255,255))
+achievementtext2true=achievement_font.render("Guess you just had to try out the General, huh?",1,(255,255,255))
+achievementsubtext2=small_header_font.render("(Beat the game with the General character)",1,(255,255,255))
+achievementtext3false=achievement_font.render("???",1,(255,255,255))
+achievementtext3true=achievement_font.render("A flawless run, eh? Pretty impressive!",1,(255,255,255))
+achievementsubtext3=small_header_font.render("(Beat the game without incurring any losses)",1,(255,255,255))
+
 #heronumbers
-shield_hero= [shieldabilitytext,shieldabilitytext2,shieldabilitytext3,scaled_shield_man,scaled_shield_shield,scaled_shield_icon]
-heal_hero= [healabilitytext,healabilitytext2,healabilitytext3,scaled_heal_man,scaled_heal_shield,scaled_heal_icon]
-money_hero= [moneyabilitytext,moneyabilitytext2,moneyabilitytext3,scaled_money_man,scaled_money_shield,scaled_money_icon]
-attack_hero= [attackabilitytext,attackabilitytext2,attackabilitytext3,scaled_mean_man,scaled_mean_shield,scaled_attack_icon]
+shield_hero= [shieldabilitytext,shieldabilitytext2,shieldabilitytext3,scaled_shield_man,scaled_shield_shield,scaled_shield_icon,shieldloretext1,shieldloretext2,shieldloretext3,shieldloretext4,shieldloretext5,shieldloretext6]
+heal_hero= [healabilitytext,healabilitytext2,healabilitytext3,scaled_heal_man,scaled_heal_shield,scaled_heal_icon,healloretext1,healloretext2,healloretext3,healloretext4,healloretext5,healloretext6]
+money_hero= [moneyabilitytext,moneyabilitytext2,moneyabilitytext3,scaled_money_man,scaled_money_shield,scaled_money_icon,moneyloretext1,moneyloretext2,moneyloretext3,moneyloretext4,moneyloretext5,moneyloretext6]
+attack_hero= [attackabilitytext,attackabilitytext2,attackabilitytext3,scaled_mean_man,scaled_mean_shield,scaled_attack_icon,attackloretext1,attackloretext2,attackloretext3,attackloretext4,attackloretext5,attackloretext6]
 heroes=[shield_hero,heal_hero,money_hero,attack_hero]
-charscreencoords=[(600,350),(500,370),(500,390),(150, 220),(500, 253),(670,214)]
+
+charscreencoords=[(600,350),(500,370),(500,390),(150, 220),(500, 253),(670,214),(500,430),(500,450),(500,470),(500,490),(500,510),(500,530)]
 
 
 #buttons
