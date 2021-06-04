@@ -5,12 +5,38 @@
 ![shieldshield](https://user-images.githubusercontent.com/84734669/120507325-fff32d80-c3c6-11eb-9a97-667e971f275e.png)
 ![healshield](https://user-images.githubusercontent.com/84734669/120506464-3b412c80-c3c6-11eb-8cd8-523f7ca8a5f4.png)
 ![secret_shield](https://user-images.githubusercontent.com/84735216/120664341-25496f80-c48b-11eb-926b-1eaed9759012.png)
-# Heal Building
+# Buildings
+- Heal Building
+
 ![heal](https://user-images.githubusercontent.com/84735216/120103622-d4670d80-c150-11eb-92ce-08ecc9ae56ee.png)
-# Generation Building
+- Generation Building
+
 ![gen](https://user-images.githubusercontent.com/84735216/120103641-efd21880-c150-11eb-90a2-6b148fba2118.png)
-# Shooty Building
+- Shooty Building
+
 ![pew](https://user-images.githubusercontent.com/84735216/120103673-0d9f7d80-c151-11eb-992d-52663b8c2255.png)
+
+# Ships
+- Small Enemy ship
+
+![small_pew_pew](https://user-images.githubusercontent.com/84735216/120809138-14abfe80-c54a-11eb-87fc-f9bbee0a2ecf.png)
+
+- Big Enemy ship
+
+![big_pew_pew](https://user-images.githubusercontent.com/84735216/120809137-14136800-c54a-11eb-95a2-44bfdfe23077.png)
+
+- Buff Ships
+
+![fire_rate_ship](https://user-images.githubusercontent.com/84735216/120809123-107fe100-c54a-11eb-9441-a26626fc4a70.png)
+![projectile_speed_ship](https://user-images.githubusercontent.com/84735216/120809125-11187780-c54a-11eb-96a7-7b4f71fc514e.png)
+![damage_ship](https://user-images.githubusercontent.com/84735216/120809127-11b10e00-c54a-11eb-97a7-317d10e3c9fd.png)
+
+# Boss Ships
+
+- Boss 1
+
+![boss_1](https://user-images.githubusercontent.com/84735216/120809122-0fe74a80-c54a-11eb-8a6a-81f910d8be07.png)
+
 # Portraits (i made speaking gifs in case we need em)
 - Heal Lizard
 
