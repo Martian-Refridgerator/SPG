@@ -1,4 +1,4 @@
-# Shields (gotta split them later) (not anymore)
+# Shields
 
 ![meanshield](https://user-images.githubusercontent.com/84734669/120508201-d090f080-c3c7-11eb-9758-6733c10e5ef2.png)
 ![moneyshield](https://user-images.githubusercontent.com/84734669/120508903-64fb5300-c3c8-11eb-9cae-176b1522d4ac.png)
