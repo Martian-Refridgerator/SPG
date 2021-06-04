@@ -1,15 +1,3 @@
-from Load import *
-pygame.init()
-
-screen = pygame.display.set_mode((1200,800))
-screenidentity=1
-charselectvar=1
-Name = ''
-Name_rect = pygame.Rect(215,570,230,35)
-color = color_passive
-active = False
-game_beaten=False
-game_beaten_general=False
 game_beaten_perfect=False
 def windowdraw(number):
     number=number
@@ -35,6 +23,7 @@ def windowdraw(number):
                 screen.blit(scaled_secret_man, (150, 220))
                 screen.blit(scaled_secret_shield, (500, 253))
                 screen.blit(scaled_secret_icon, (670, 214))
+                screen.blit(secretloretext,(500,400))
     if number==3:
         screen.fill((0,0,0))
         screen.blit(achievementheader,(310,50))
