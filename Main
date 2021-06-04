@@ -9,6 +9,8 @@ Name_rect = pygame.Rect(215,570,230,35)
 color = color_passive
 active = False
 game_beaten=False
+game_beaten_general=False
+game_beaten_perfect=False
 def windowdraw(number):
     number=number
     if number==1:
@@ -26,7 +28,7 @@ def windowdraw(number):
         for i in range(4):
             if charselectvar == i+1:
                 if i+1 != 4 or game_beaten == True:
-                    for j in range(6):
+                    for j in range(12):
                         screen.blit(heroes[i][j],charscreencoords[j])
             if charselectvar == 4 and game_beaten == False:
                 screen.blit(secretabilitytext, (600, 340))
@@ -35,6 +37,23 @@ def windowdraw(number):
                 screen.blit(scaled_secret_icon, (670, 214))
     if number==3:
         screen.fill((0,0,0))
+        screen.blit(achievementheader,(310,50))
+        screen.blit(achievementsubheader,(210,120))
+        if game_beaten == False:
+            screen.blit(achievementtext1false, (520,300))
+            if game_beaten_general == False:
+                screen.blit(achievementtext2false, (520,400))
+            if game_beaten_perfect == False:
+                screen.blit(achievementtext3false, (520,500))
+        if game_beaten == True:
+            screen.blit(achievementtext1true,(300,220))
+            screen.blit(achievementsubtext1,(470,270))
+            if game_beaten_general == True:
+                screen.blit(achievementtext2true,(25,370))
+                screen.blit(achievementsubtext2, (280,420))
+            if game_beaten_perfect == True:
+                screen.blit(achievementtext3true,(130,520))
+                screen.blit(achievementsubtext3, (275,570))
         backbutton.draw(screen)
     if number==4:
         screen.fill((0,0,0))
