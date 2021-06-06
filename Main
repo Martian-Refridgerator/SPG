@@ -19,6 +19,8 @@ playerx=500
 playery=400
 playerwidth=191
 playerheight=64
+enemies=[[testenemy1],[],[]] #first is strongship second is fastship and third is buffship
+
 def windowdraw(number):
     number=number
     if number==1:
@@ -90,7 +92,9 @@ def windowdraw(number):
         if player.character==4:
             player.shield=attackshield(playerx,playery)
             screen.blit(scaled_mean_shield,(playerx,playery))
-
+        for i in range(len(enemies)):
+            for k in range(len(enemies[i])):
+                screen.blit(scaled_mean_shield,(enemies[i][k].x,enemies[i][k].y))
 
 
 running = True
@@ -187,6 +191,18 @@ while running:
         playerx += 1
     if movingleft == 1 and playerx > 350:
         playerx -= 1
+    if screenidentity == 4:
+        for i in range(len(enemies)):
+            for k in range(len(enemies[i])):
+                if enemies[i][k].x + enemies[i][k].width < 1200 and enemies[i][k].direction == "r":
+                    enemies[i][k].x += 0.5
+                if enemies[i][k].x + enemies[i][k].width >= 1200 and enemies[i][k].direction == "r":
+                    enemies[i][k].direction = "l"
+                if enemies[i][k].x > 350 and enemies[i][k].direction == "l":
+                    enemies[i][k].x -= 0.5
+                if enemies[i][k].x <= 350 and enemies[i][k].direction == "l":
+                    enemies[i][k].direction = "r"
+
     windowdraw(screenidentity)
     if screenidentity == 2:
         Name_rect.w = max(230,Namebox.get_width()+10)
