@@ -38,7 +38,10 @@ scaled_heal_icon=pygame.transform.scale(heal_icon,(150,150))
 scaled_money_icon=pygame.transform.scale(money_icon,(150,150))
 scaled_attack_icon=pygame.transform.scale(attack_icon,(150,150))
 scaled_secret_icon=pygame.transform.scale(secret_icon,(150,150))
-
+main_scaled_heal_man=pygame.transform.scale(heal_man_img, (270,270))
+main_scaled_shield_man=pygame.transform.scale(shield_man_img, (270,270))
+main_scaled_money_man=pygame.transform.scale(money_man_img, (270,270))
+main_scaled_mean_man=pygame.transform.scale(mean_man_img, (270,270))
 #Fonts
 header_font=pygame.font.Font('Pixel Digivolve.otf', 70)
 achievement_font=pygame.font.Font('Pixel Digivolve.otf',40)
@@ -58,8 +61,10 @@ maintext=header_font.render("Choose your reptile",1,(0,0,0))
 abilityheader = small_header_font.render("Ability:", 1, (0, 0, 0))
 achievementheader = header_font.render("Achievements",1,(125,255,255))
 achievementsubheader = small_header_font.render("Seriously, how much time have you spent on this game?",1,(125,255,255))
-
+etext=small_header_font.render("E",1,(0,0,0))
 #Text
+
+secretselectedtext=main_font.render("Please select an available character.",1,(0,0,0))
 
 shieldabilitytext=main_font.render("For x seconds, the shield enlarges,",1,(0,0,0))
 shieldabilitytext2 = main_font.render("spanning the entire screen and effectively",1, (0, 0, 0))
@@ -129,8 +134,8 @@ attack_hero= [attackabilitytext,attackabilitytext2,attackabilitytext3,scaled_mea
 heroes=[shield_hero,heal_hero,money_hero,attack_hero]
 
 charscreencoords=[(600,350),(500,370),(500,390),(150, 220),(500, 253),(670,214),(500,430),(500,450),(500,470),(500,490),(500,510),(500,530)]
-
-
+characterpictures=[main_scaled_shield_man,main_scaled_heal_man,main_scaled_money_man,main_scaled_mean_man]
+abilitypictures=[scaled_shield_icon,scaled_heal_icon,scaled_money_icon,scaled_attack_icon]
 #buttons
 
 
