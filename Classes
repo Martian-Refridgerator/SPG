@@ -1,13 +1,14 @@
-import pygame
+mport pygame
 pygame.init()
 
 class player:
-    def __init__(self,Name):
+    def __init__(self):
         self.currency = 0
         self.score = 0
-        self.picture = None
-        self.shield = None
-        self.name = Name
+        self.character = None
+        self.name = None
+        self.shield=None
+        self.charge=0
         self.buildings = []
         self.enemies = []
 
@@ -24,7 +25,7 @@ class healShield:
         self.x = 500
         self.y = 400
 
-    def heal(self):
+    def ability(self):
         pass
 
 class strongshield:
@@ -39,12 +40,28 @@ class strongshield:
         self.speedm = 1
         self.x = 500
         self.y = 400
-    def grow(self):
+    def ability(self):
         pass
         #backup = self.sizemultiplier
         #self.sizemultiplier = a lot
         #can.after()
         #self.sizemultiplier = backup
+
+class attackshield:
+    def __init__(self):
+        self.abilitypower = 1
+        self.size = 3
+        self.chargespeed = 3
+        self.speed = 3
+        self.abilitymultiplier = 1
+        self.sizem = 1
+        self.chargem = 1
+        self.speedm = 1
+        self.x = 500
+        self.y = 400
+    def ability(self):
+        pass
+
 
 class buisinessshield:
     def __init__(self):
@@ -58,7 +75,7 @@ class buisinessshield:
         self.speedm = 1
         self.x = 500
         self.y = 400
-    def boost(self):
+    def ability(self):
         pass
 
 
@@ -140,7 +157,7 @@ class buffship(enemyship):
 
 
 class bossship:
-    def __init__(self,ability,x,y):
+    def __init__(self,ability,x,y,picture):
         self.health = 200
         self.maxhealth = 200
         self.ability = 1
@@ -148,6 +165,7 @@ class bossship:
         self.attackspeed = 2
         self.x = x
         self.y = y
+        self.picture=picture
     def use(self):
         pass
 
