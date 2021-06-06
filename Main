@@ -13,6 +13,12 @@ active = False
 game_beaten=False
 game_beaten_general=False
 game_beaten_perfect=False
+movingright=0
+movingleft=0
+playerx=500
+playery=400
+playerwidth=191
+playerheight=64
 def windowdraw(number):
     number=number
     if number==1:
@@ -73,14 +79,17 @@ def windowdraw(number):
         screen.blit(abilitypictures[player.character-1],(200,660))
         screen.blit(etext,(310,670))
         if player.character==1:
-            player.shield=strongshield()
+            player.shield=strongshield(playerx,playery)
+            screen.blit(scaled_shield_shield,(playerx,playery))
         if player.character == 2:
-            player.shield=healShield()
+            player.shield=healShield(playerx,playery)
+            screen.blit(scaled_heal_shield,(playerx,playery))
         if player.character==3:
-            player.shield=buisinessshield()
+            player.shield=buisinessshield(playerx,playery)
+            screen.blit(scaled_money_shield,(playerx,playery))
         if player.character==4:
-            player.shield=attackshield()
-
+            player.shield=attackshield(playerx,playery)
+            screen.blit(scaled_mean_shield,(playerx,playery))
 
 
 
@@ -101,6 +110,16 @@ while running:
                     Name += event.unicode
             if event.key==pygame.K_e and screenidentity== 4 and player.charge==100:
                 player.shield.ability()
+            if screenidentity == 4:
+                if event.key == pygame.K_d:
+                    movingright = 1
+                if event.key == pygame.K_a:
+                    movingleft = 1
+        if event.type == pygame.KEYUP:
+                if event.key == pygame.K_d:
+                    movingright = 0
+                if event.key == pygame.K_a:
+                    movingleft = 0
 
         if active == False:
             color = color_passive
@@ -164,7 +183,10 @@ while running:
             else:
                 finishbutton.color = (255, 255, 255)
 
-
+    if movingright == 1 and (playerx+(playerwidth)) < 1200:
+        playerx += 1
+    if movingleft == 1 and playerx > 350:
+        playerx -= 1
     windowdraw(screenidentity)
     if screenidentity == 2:
         Name_rect.w = max(230,Namebox.get_width()+10)
