@@ -24,6 +24,8 @@ class healShield:
         self.speedm = 1
         self.x = x
         self.y = y
+        self.width = 191
+        self.height = 64
 
     def ability(self):
         pass
@@ -40,6 +42,8 @@ class strongshield:
         self.speedm = 1
         self.x = x
         self.y = y
+        self.width = 191
+        self.height = 64
     def ability(self):
         pass
         #backup = self.sizemultiplier
@@ -59,6 +63,8 @@ class attackshield:
         self.speedm = 1
         self.x = x
         self.y = y
+        self.width = 191
+        self.height = 64
     def ability(self):
         pass
 
@@ -75,6 +81,8 @@ class buisinessshield:
         self.speedm = 1
         self.x = x
         self.y = y
+        self.width = 191
+        self.height = 64
     def ability(self):
         pass
 
@@ -129,6 +137,9 @@ class strongship(enemyship):
         self.healthm = 1
         self.x = x
         self.y = y
+        self.width = 191
+        self.height = 64
+        self.direction = "r"
     def shoot(self):
         pass
 
@@ -140,6 +151,9 @@ class fastship(enemyship):
         self.attackspeed = 2
         self.x = x
         self.y = y
+        self.width = 191
+        self.height = 64
+        self.direction = "r"
     def shoot(self):
         pass
 
@@ -152,6 +166,9 @@ class buffship(enemyship):
         self.range = 1
         self.x = x
         self.y = y
+        self.width = 191
+        self.height = 64
+        self.direction = "r"
     def buff(self):
         pass
 
