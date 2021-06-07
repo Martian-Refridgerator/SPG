@@ -8,13 +8,13 @@
 # Buildings
 - Heal Building
 
-![heal](https://user-images.githubusercontent.com/84735216/120103622-d4670d80-c150-11eb-92ce-08ecc9ae56ee.png)
+![heal_building](https://user-images.githubusercontent.com/84735216/121052393-9e620300-c7ba-11eb-8089-c2f7e0048956.png)
 - Generation Building
 
-![gen](https://user-images.githubusercontent.com/84735216/120103641-efd21880-c150-11eb-90a2-6b148fba2118.png)
+![money_building](https://user-images.githubusercontent.com/84735216/121052384-9d30d600-c7ba-11eb-986e-70ac02bce2cf.png)
 - Shooty Building
 
-![pew](https://user-images.githubusercontent.com/84735216/120103673-0d9f7d80-c151-11eb-992d-52663b8c2255.png)
+![attack_building](https://user-images.githubusercontent.com/84735216/121052374-9b671280-c7ba-11eb-9b72-28cc3f236b4b.png)
 
 # Ships
 - Small Enemy ship
