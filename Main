@@ -2,13 +2,21 @@ from Load import *
 pygame.init()
 from Classes import *
 
+pygame.mouse.set_cursor(*pygame.cursors.arrow)
 player=player()
 screen = pygame.display.set_mode((1200,800))
 screenidentity=1
 charselectvar=1
+scoretext=main_font.render("Score: "+str(player.score),1,(0,0,0))
+moneytext=main_font.render("Money: "+str(player.currency),1,(0,0,0))
 Name = ''
 Name_rect = pygame.Rect(215,570,230,35)
 color = color_passive
+building_active_attack=False
+building_active_heal=False
+building_active_money=False
+deleting_active=False
+level=1
 active = False
 game_beaten=False
 game_beaten_general=False
@@ -21,6 +29,10 @@ playerwidth=191
 playerheight=64
 enemies=[[testenemy1],[],[]] #first is strongship second is fastship and third is buffship
 
+for i in range(6):
+    x=400
+    a=freespace(x+120*i+10*i,700)
+    player.buildings.append(a)
 def windowdraw(number):
     number=number
     if number==1:
@@ -80,21 +92,32 @@ def windowdraw(number):
         screen.blit(characterpictures[player.character-1],(-20,550))
         screen.blit(abilitypictures[player.character-1],(200,660))
         screen.blit(etext,(310,670))
+        screen.blit(scoretext,(20,230))
+        screen.blit(moneytext,(230,230))
+        screen.blit(nametext,(25,760))
         if player.character==1:
-            player.shield=strongshield(playerx,playery)
-            screen.blit(scaled_shield_shield,(playerx,playery))
+            player.shield = strongshield(playerx, playery)
+            screen.blit(scaled_shield_shield, (playerx, playery))
         if player.character == 2:
-            player.shield=healShield(playerx,playery)
-            screen.blit(scaled_heal_shield,(playerx,playery))
+            player.shield = healShield(playerx, playery)
+            screen.blit(scaled_heal_shield, (playerx, playery))
         if player.character==3:
-            player.shield=buisinessshield(playerx,playery)
-            screen.blit(scaled_money_shield,(playerx,playery))
+            player.shield = buisinessshield(playerx, playery)
+            screen.blit(scaled_money_shield, (playerx, playery))
         if player.character==4:
-            player.shield=attackshield(playerx,playery)
-            screen.blit(scaled_mean_shield,(playerx,playery))
+            player.shield = attackshield(playerx, playery)
+            screen.blit(scaled_mean_shield, (playerx, playery))
         for i in range(len(enemies)):
             for k in range(len(enemies[i])):
-                screen.blit(scaled_mean_shield,(enemies[i][k].x,enemies[i][k].y))
+                screen.blit(scaled_mean_shield, (enemies[i][k].x, enemies[i][k].y))
+        for i in range(len(buildingbuttons)):
+            buildingbuttons[i-1].draw(screen)
+        for i in range(len(player.buildings)):
+            screen.blit(player.buildings[i].picture,(player.buildings[i].x,player.buildings[i].y))
+
+
+
+
 
 
 running = True
@@ -120,10 +143,10 @@ while running:
                 if event.key == pygame.K_a:
                     movingleft = 1
         if event.type == pygame.KEYUP:
-                if event.key == pygame.K_d:
-                    movingright = 0
-                if event.key == pygame.K_a:
-                    movingleft = 0
+            if event.key == pygame.K_d:
+                movingright = 0
+            if event.key == pygame.K_a:
+                movingleft = 0
 
         if active == False:
             color = color_passive
@@ -161,10 +184,70 @@ while running:
             if finishbutton.isOver(pos) and screenidentity == 2 and game_beaten==False:
                 if charselectvar<4:
                     player.name = Name
+                    nametext = small_header_font.render(player.name, 1, (0, 0, 0))
                     player.character = charselectvar
                     screenidentity = 4
                 else:
                     charselectvar=5
+            if cancelbutton.isOver(pos) and screenidentity==4:
+                building_active_attack = False
+                building_active_heal = False
+                building_active_money = False
+                deleting_active=False
+                pygame.mouse.set_cursor(*pygame.cursors.arrow)
+            if deletebutton.isOver(pos) and screenidentity==4:
+                deleting_active=True
+                pygame.mouse.set_cursor(*pygame.cursors.broken_x)
+            if attackbutton.isOver(pos) and screenidentity==4:
+                building_active_attack=True
+                pygame.mouse.set_cursor(*pygame.cursors.diamond)
+            if healbutton.isOver(pos) and screenidentity==4:
+                building_active_heal=True
+                pygame.mouse.set_cursor(*pygame.cursors.diamond)
+            if genbutton.isOver(pos) and screenidentity==4:
+                building_active_money=True
+                pygame.mouse.set_cursor(*pygame.cursors.diamond)
+            if building_active_attack==True and screenidentity==4:
+                for i in range(len(player.buildings)):
+                    if pos[0]>player.buildings[i].x and pos[0]<player.buildings[i].x+120 and pos[1]>player.buildings[i].y and pos[1]<player.buildings[i].y+20 and player.buildings[i].__class__==freespace:
+                        x=player.buildings[i].x
+                        y=player.buildings[i].y
+                        player.buildings[i]=attackbuilding(x,y)
+                        building_active_attack=False
+                        pygame.mouse.set_cursor(*pygame.cursors.arrow)
+            if building_active_heal == True and screenidentity == 4:
+                for i in range(len(player.buildings)):
+                    if pos[0] > player.buildings[i].x and pos[0] < player.buildings[i].x + 120 and pos[1] > player.buildings[i].y and pos[1] < player.buildings[i].y + 20 and player.buildings[i].__class__ == freespace:
+                        x = player.buildings[i].x
+                        y = player.buildings[i].y
+                        player.buildings[i] = healbuilding(x, y)
+                        building_active_heal = False
+                        pygame.mouse.set_cursor(*pygame.cursors.arrow)
+            if building_active_money == True and screenidentity == 4:
+                for i in range(len(player.buildings)):
+                    if pos[0] > player.buildings[i].x and pos[0] < player.buildings[i].x + 120 and pos[1] > player.buildings[i].y and pos[1] < player.buildings[i].y + 20 and player.buildings[i].__class__ == freespace:
+                        x = player.buildings[i].x
+                        y = player.buildings[i].y
+                        player.buildings[i] = factory(x, y)
+                        building_active_money = False
+                        pygame.mouse.set_cursor(*pygame.cursors.arrow)
+            if deleting_active==True and screenidentity==4:
+                for i in range(len(player.buildings)):
+                    if player.buildings[i].__class__ != freespace and pos[0]>player.buildings[i].x and pos[0]<player.buildings[i].x+player.buildings[i].width and pos[1]>player.buildings[i].y and pos[1]<player.buildings[i].y+player.buildings[i].height:
+                        if player.buildings[i].__class__==attackbuilding:
+                            x=player.buildings[i].x
+                            y=player.buildings[i].y+player.buildings[i].height-10
+                            player.buildings[i]=freespace(x,y)
+                        if player.buildings[i].__class__ == healbuilding:
+                            x = player.buildings[i].x
+                            y = player.buildings[i].y + player.buildings[i].height - 20
+                            player.buildings[i] = freespace(x, y)
+                        if player.buildings[i].__class__==factory:
+                            x=player.buildings[i].x
+                            y=player.buildings[i].y+player.buildings[i].height
+                            player.buildings[i] = freespace(x, y)
+                        deleting_active=False
+                        pygame.mouse.set_cursor(*pygame.cursors.arrow)
 
 
         if event.type == pygame.MOUSEMOTION:
@@ -186,23 +269,42 @@ while running:
                 finishbutton.color = (200,200,200)
             else:
                 finishbutton.color = (255, 255, 255)
+            if deletebutton.isOver(pos):
+                deletebutton.color=(200,200,200)
+            else:
+                deletebutton.color = (255, 255, 255)
+            if cancelbutton.isOver(pos):
+                cancelbutton.color=(200,200,200)
+            else:
+                cancelbutton.color = (255, 255, 255)
+            if attackbutton.isOver(pos):
+                attackbutton.color=(200,200,200)
+            else:
+                attackbutton.color = (255, 255, 255)
+            if healbutton.isOver(pos):
+                healbutton.color=(200,200,200)
+            else:
+                healbutton.color = (255, 255, 255)
+            if genbutton.isOver(pos):
+                genbutton.color=(200,200,200)
+            else:
+                genbutton.color = (255, 255, 255)
 
-    if movingright == 1 and (playerx+(playerwidth)) < 1200:
-        playerx += 1
+    if movingright == 1 and (playerx + (playerwidth)) < 1200:
+        playerx += 2.5
     if movingleft == 1 and playerx > 350:
-        playerx -= 1
+        playerx -= 2.5
     if screenidentity == 4:
         for i in range(len(enemies)):
             for k in range(len(enemies[i])):
                 if enemies[i][k].x + enemies[i][k].width < 1200 and enemies[i][k].direction == "r":
-                    enemies[i][k].x += 0.5
+                    enemies[i][k].x += 1
                 if enemies[i][k].x + enemies[i][k].width >= 1200 and enemies[i][k].direction == "r":
                     enemies[i][k].direction = "l"
                 if enemies[i][k].x > 350 and enemies[i][k].direction == "l":
-                    enemies[i][k].x -= 0.5
+                    enemies[i][k].x -= 1
                 if enemies[i][k].x <= 350 and enemies[i][k].direction == "l":
                     enemies[i][k].direction = "r"
-
     windowdraw(screenidentity)
     if screenidentity == 2:
         Name_rect.w = max(230,Namebox.get_width()+10)
