@@ -1,5 +1,11 @@
 import pygame
+from Load import *
 pygame.init()
+
+attack_building=pygame.image.load("attack_building.png")
+heal_building=pygame.image.load("heal_building.png")
+money_building=pygame.image.load("money_building.png")
+untaken=pygame.image.load("untaken.png")
 
 class player:
     def __init__(self):
@@ -86,9 +92,13 @@ class buisinessshield:
     def ability(self):
         pass
 
-
+class freespace:
+    def __init__(self,x,y):
+        self.x=x
+        self.y=y
+        self.picture=pygame.transform.scale(untaken, (120,20))
 class attackbuilding:
-    def __init__(self):
+    def __init__(self,x,y):
         self.price = 10
         self.maxhealth = 100
         self.health = 100
@@ -96,11 +106,16 @@ class attackbuilding:
         self.attackspeed = 2
         self.damagem = 1
         self.speedm = 1
+        self.width = 60
+        self.height = 100
+        self.x = x
+        self.y = y - self.height+10
+        self.picture = pygame.transform.scale(attack_building, (60,100))
     def shoot(self):
         pass
 
 class healbuilding:
-    def __init__(self):
+    def __init__(self,x,y):
         self.price = 10
         self.maxhealth = 100
         self.health = 100
@@ -108,12 +123,17 @@ class healbuilding:
         self.healingrange = 2
         self.healm = 1
         self.rangem = 1
+        self.width = 100
+        self.height = 120
+        self.x = x
+        self.y = y - self.height+20
+        self.picture = pygame.transform.scale(heal_building, (100,120))
     def healing(self):
         pass
 
 
 class factory:
-    def __init__(self):
+    def __init__(self,x,y):
         self.price = 10
         self.maxhealth = 100
         self.health = 100
@@ -121,6 +141,11 @@ class factory:
         self.value = 5
         self.speedm = 1
         self.valuem = 1
+        self.width=70
+        self.height=150
+        self.x = x
+        self.y = y - self.height
+        self.picture = pygame.transform.scale(money_building, (70,160))
     def produce(self):
         pass
 class enemyship:
@@ -170,6 +195,20 @@ class buffship(enemyship):
         self.height = 64
         self.direction = "r"
     def buff(self):
+        pass
+
+
+class bossship:
+    def __init__(self,ability,x,y,picture):
+        self.health = 200
+        self.maxhealth = 200
+        self.ability = 1
+        self.damage = 30
+        self.attackspeed = 2
+        self.x = x
+        self.y = y
+        self.picture=picture
+    def use(self):
         pass
 
 
