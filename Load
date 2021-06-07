@@ -1,4 +1,6 @@
+import pygame
 from Classes import *
+
 
 pygame.init()
 #Images
@@ -20,7 +22,10 @@ shield_icon=pygame.image.load("Shieldicon.png")
 money_icon=pygame.image.load("Moneyicon.png")
 attack_icon=pygame.image.load("Attackicon.png")
 secret_icon=pygame.image.load("secreticon.png")
-
+attack_building=pygame.image.load("attack_building.png")
+heal_building=pygame.image.load("heal_building.png")
+money_building=pygame.image.load("money_building.png")
+untaken=pygame.image.load("untaken.png")
 #Resizes
 scaled_heal_man=pygame.transform.scale(heal_man_img, (350,350))
 scaled_shield_man=pygame.transform.scale(shield_man_img, (350,350))
@@ -125,6 +130,7 @@ achievementtext3false=achievement_font.render("???",1,(125,255,255))
 achievementtext3true=achievement_font.render("A flawless run, eh? Pretty impressive!",1,(125,255,255))
 achievementsubtext3=small_header_font.render("(Beat the game without incurring any losses)",1,(125,255,255))
 
+
 #heronumbers
 shield_hero= [shieldabilitytext,shieldabilitytext2,shieldabilitytext3,scaled_shield_man,scaled_shield_shield,scaled_shield_icon,shieldloretext1,shieldloretext2,shieldloretext3,shieldloretext4,shieldloretext5,shieldloretext6]
 heal_hero= [healabilitytext,healabilitytext2,healabilitytext3,scaled_heal_man,scaled_heal_shield,scaled_heal_icon,healloretext1,healloretext2,healloretext3,healloretext4,healloretext5,healloretext6]
@@ -135,6 +141,10 @@ heroes=[shield_hero,heal_hero,money_hero,attack_hero]
 charscreencoords=[(600,350),(500,370),(500,390),(150, 220),(500, 253),(670,214),(500,430),(500,450),(500,470),(500,490),(500,510),(500,530)]
 characterpictures=[main_scaled_shield_man,main_scaled_heal_man,main_scaled_money_man,main_scaled_mean_man]
 abilitypictures=[scaled_shield_icon,scaled_heal_icon,scaled_money_icon,scaled_attack_icon]
+
+#enemies(for now)
+testenemy1=strongship(357,100)
+
 #buttons
 
 
@@ -148,5 +158,9 @@ charselectbutton = button((255,255,255),1000,400,100,30,"Next")
 backbutton= button((255,255,255),50,720,200,30,"Back to Menu")
 finishbutton = button((255,255,255),950,720,200,30,"Finish")
 
-#enemies(for now)
-testenemy1=strongship(357,100)
+cancelbutton=button((255,255,255),20,530,30,30,"X")
+deletebutton=button((255,255,255),70,530,160,30,"Delete")
+attackbutton=button((255,255,255),20,440,300,80,"Attack Building")
+healbutton=button((255,255,255),20,350,300,80,"Heal Building")
+genbutton=button((255,255,255),20,260,300,80,"Business Building")
+buildingbuttons=[cancelbutton,deletebutton,attackbutton,healbutton,genbutton]
