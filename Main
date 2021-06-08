@@ -1,7 +1,6 @@
 from Load import *
 pygame.init()
 from Classes import *
-
 pygame.mouse.set_cursor(*pygame.cursors.arrow)
 player=player()
 screen = pygame.display.set_mode((1200,800))
@@ -27,7 +26,8 @@ playerx=500
 playery=400
 playerwidth=191
 playerheight=64
-enemies=[[testenemy1],[],[]] #first is strongship second is fastship and third is buffship
+enemies=[testenemy1,testenemy2,testenemy3] #first is strongship second is fastship and third is buffship
+bullets = []
 
 for i in range(6):
     x=400
@@ -108,12 +108,14 @@ def windowdraw(number):
             player.shield = attackshield(playerx, playery)
             screen.blit(scaled_mean_shield, (playerx, playery))
         for i in range(len(enemies)):
-            for k in range(len(enemies[i])):
-                screen.blit(scaled_mean_shield, (enemies[i][k].x, enemies[i][k].y))
+            screen.blit(scaled_mean_shield, (enemies[i].x, enemies[i].y))
         for i in range(len(buildingbuttons)):
             buildingbuttons[i-1].draw(screen)
         for i in range(len(player.buildings)):
             screen.blit(player.buildings[i].picture,(player.buildings[i].x,player.buildings[i].y))
+        for i in range(len(bullets)):
+            if bullets[i].type == "player":
+                screen.blit(scaled_player_bullet,(bullets[i].x,bullets[i].y))
 
 
 
@@ -248,6 +250,12 @@ while running:
                             player.buildings[i] = freespace(x, y)
                         deleting_active=False
                         pygame.mouse.set_cursor(*pygame.cursors.arrow)
+            if screenidentity == 4 and pos[0]>350:
+                for i in range(len(player.buildings)):
+                    if player.buildings[i].__class__ == attackbuilding:
+                        a = bullet(player.buildings[i].x,player.buildings[i].y,pos[0],pos[1],4,"player",20,20)
+                        bullets.append(a)
+
 
 
         if event.type == pygame.MOUSEMOTION:
@@ -296,15 +304,23 @@ while running:
         playerx -= 2.5
     if screenidentity == 4:
         for i in range(len(enemies)):
-            for k in range(len(enemies[i])):
-                if enemies[i][k].x + enemies[i][k].width < 1200 and enemies[i][k].direction == "r":
-                    enemies[i][k].x += 1
-                if enemies[i][k].x + enemies[i][k].width >= 1200 and enemies[i][k].direction == "r":
-                    enemies[i][k].direction = "l"
-                if enemies[i][k].x > 350 and enemies[i][k].direction == "l":
-                    enemies[i][k].x -= 1
-                if enemies[i][k].x <= 350 and enemies[i][k].direction == "l":
-                    enemies[i][k].direction = "r"
+            if enemies[i].x + enemies[i].width < 1200 and enemies[i].direction == "r":
+                enemies[i].x += enemies[i].speed
+            if enemies[i].x + enemies[i].width >= 1200 and enemies[i].direction == "r":
+                enemies[i].direction = "l"
+            if enemies[i].x > 350 and enemies[i].direction == "l":
+                enemies[i].x -= enemies[i].speed
+            if enemies[i].x <= 350 and enemies[i].direction == "l":
+                enemies[i].direction = "r"
+        bulletstobedeleted=[]
+        for i in range(len(bullets)):
+            if bullets[i].x + bullets[i].dx + bullets[i].width > 1200 or bullets[i].x + bullets[i].dx < 350 or bullets[i].y + bullets[i].dy +bullets[i].height > 800 or bullets[i].y + bullets[i].dy < 0:
+                bulletstobedeleted.append(i)
+            else:
+                bullets[i].x += bullets[i].dx
+                bullets[i].y += bullets[i].dy
+        for i in range(len(bulletstobedeleted)):
+            del(bullets[bulletstobedeleted[len(bulletstobedeleted)-i-1]])
     windowdraw(screenidentity)
     if screenidentity == 2:
         Name_rect.w = max(230,Namebox.get_width()+10)
