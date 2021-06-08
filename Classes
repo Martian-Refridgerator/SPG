@@ -1,5 +1,6 @@
-import pygame
 from Load import *
+import pygame
+import math
 pygame.init()
 
 attack_building=pygame.image.load("attack_building.png")
@@ -104,6 +105,7 @@ class attackbuilding:
         self.health = 100
         self.damage = 10
         self.attackspeed = 2
+        self.shotspeed = 1
         self.damagem = 1
         self.speedm = 1
         self.width = 60
@@ -156,9 +158,10 @@ class enemyship:
 class strongship(enemyship):
     def __init__(self,x,y):
         super().__init__()
-        self.speed = 2
+        self.speed = 0.5
         self.damage = 10
         self.attackspeed = 1
+        self.shotspeed = 1
         self.healthm = 1
         self.x = x
         self.y = y
@@ -171,9 +174,10 @@ class strongship(enemyship):
 class fastship(enemyship):
     def __init__(self,x,y):
         super().__init__()
-        self.speed = 4
+        self.speed = 2
         self.damage = 5
         self.attackspeed = 2
+        self.shotspeed = 1
         self.x = x
         self.y = y
         self.width = 191
@@ -185,9 +189,9 @@ class fastship(enemyship):
 class buffship(enemyship):
     def __init__(self,bufftype,x,y):
         super().__init__()
-        self.speed = 3
+        self.speed = 1
         self.bufftype = None
-        self.buff = 1
+        self.buff = bufftype
         self.range = 1
         self.x = x
         self.y = y
@@ -212,18 +216,17 @@ class bossship:
         pass
 
 
-class bossship:
-    def __init__(self,ability,x,y,picture):
-        self.health = 200
-        self.maxhealth = 200
-        self.ability = 1
-        self.damage = 30
-        self.attackspeed = 2
-        self.x = x
-        self.y = y
-        self.picture=picture
-    def use(self):
-        pass
+class bullet:
+    def __init__(self,shotx,shoty,targetx,targety,shotspeed,bullettype,width,height):
+        self.speed = shotspeed
+        self.type = bullettype
+        self.x = shotx
+        self.y = shoty
+        self.width = width
+        self.height = height
+        self.angle = math.atan2(targety-shoty,targetx-shotx)
+        self.dx = math.cos(self.angle)*self.speed
+        self.dy = math.sin(self.angle)*self.speed
 
 class button():
     def __init__(self, color, x,y,width,height, text=''):
