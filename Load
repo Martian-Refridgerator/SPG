@@ -29,6 +29,11 @@ untaken=pygame.image.load("untaken.png")
 big_bullet=pygame.image.load("big_enemy_bullet.png")
 small_bullet=pygame.image.load("small_enemy_bullet.png")
 player_bullet=pygame.image.load("player_bullet.png")
+strong_ship=pygame.image.load("big_ship.png")
+fast_ship=pygame.image.load("small_ship.png")
+buff_ship_strength=pygame.image.load("attack_buff_ship.png")
+buff_ship_firerate=pygame.image.load("fire_rate_buff_ship.png")
+buff_ship_speed=pygame.image.load("projectile_speed_buff_ship.png")
 #Resizes
 scaled_heal_man=pygame.transform.scale(heal_man_img, (350,350))
 scaled_shield_man=pygame.transform.scale(shield_man_img, (350,350))
@@ -49,9 +54,14 @@ main_scaled_heal_man=pygame.transform.scale(heal_man_img, (270,270))
 main_scaled_shield_man=pygame.transform.scale(shield_man_img, (270,270))
 main_scaled_money_man=pygame.transform.scale(money_man_img, (270,270))
 main_scaled_mean_man=pygame.transform.scale(mean_man_img, (270,270))
-scaled_big_bullet=pygame.transform.scale(big_bullet,(30,30))
+scaled_big_bullet=pygame.transform.scale(big_bullet,(40,40))
 scaled_small_bullet=pygame.transform.scale(small_bullet,(20,20))
 scaled_player_bullet=pygame.transform.scale(player_bullet,(20,20))
+scaled_fast_ship=pygame.transform.scale(fast_ship,(80,80))
+scaled_strong_ship=pygame.transform.scale(strong_ship,(80,80))
+scaled_buff_ship_strength=pygame.transform.scale(buff_ship_strength,(80,80))
+scaled_buff_ship_firerate=pygame.transform.scale(buff_ship_firerate,(80,80))
+scaled_buff_ship_speed=pygame.transform.scale(buff_ship_speed,(80,80))
 #Fonts
 header_font=pygame.font.Font('Pixel Digivolve.otf', 70)
 achievement_font=pygame.font.Font('Pixel Digivolve.otf',40)
@@ -147,11 +157,6 @@ heroes=[shield_hero,heal_hero,money_hero,attack_hero]
 charscreencoords=[(600,350),(500,370),(500,390),(150, 220),(500, 253),(670,214),(500,430),(500,450),(500,470),(500,490),(500,510),(500,530)]
 characterpictures=[main_scaled_shield_man,main_scaled_heal_man,main_scaled_money_man,main_scaled_mean_man]
 abilitypictures=[scaled_shield_icon,scaled_heal_icon,scaled_money_icon,scaled_attack_icon]
-
-#enemies(for now)
-testenemy1=strongship(357,100)
-testenemy2=fastship(357,100)
-testenemy3=buffship("None",357,100)
 
 #buttons
 
