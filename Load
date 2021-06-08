@@ -26,6 +26,9 @@ attack_building=pygame.image.load("attack_building.png")
 heal_building=pygame.image.load("heal_building.png")
 money_building=pygame.image.load("money_building.png")
 untaken=pygame.image.load("untaken.png")
+big_bullet=pygame.image.load("big_enemy_bullet.png")
+small_bullet=pygame.image.load("small_enemy_bullet.png")
+player_bullet=pygame.image.load("player_bullet.png")
 #Resizes
 scaled_heal_man=pygame.transform.scale(heal_man_img, (350,350))
 scaled_shield_man=pygame.transform.scale(shield_man_img, (350,350))
@@ -46,6 +49,9 @@ main_scaled_heal_man=pygame.transform.scale(heal_man_img, (270,270))
 main_scaled_shield_man=pygame.transform.scale(shield_man_img, (270,270))
 main_scaled_money_man=pygame.transform.scale(money_man_img, (270,270))
 main_scaled_mean_man=pygame.transform.scale(mean_man_img, (270,270))
+scaled_big_bullet=pygame.transform.scale(big_bullet,(30,30))
+scaled_small_bullet=pygame.transform.scale(small_bullet,(20,20))
+scaled_player_bullet=pygame.transform.scale(player_bullet,(20,20))
 #Fonts
 header_font=pygame.font.Font('Pixel Digivolve.otf', 70)
 achievement_font=pygame.font.Font('Pixel Digivolve.otf',40)
@@ -144,6 +150,8 @@ abilitypictures=[scaled_shield_icon,scaled_heal_icon,scaled_money_icon,scaled_at
 
 #enemies(for now)
 testenemy1=strongship(357,100)
+testenemy2=fastship(357,100)
+testenemy3=buffship("None",357,100)
 
 #buttons
 
