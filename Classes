@@ -156,7 +156,7 @@ class enemyship:
         self.health= 40
         self.size= 30
 class strongship(enemyship):
-    def __init__(self,x,y):
+    def __init__(self,x,y,spawntime):
         super().__init__()
         self.speed = 0.5
         self.damage = 10
@@ -165,14 +165,13 @@ class strongship(enemyship):
         self.healthm = 1
         self.x = x
         self.y = y
-        self.width = 191
-        self.height = 64
+        self.timer=spawntime
+        self.width = 80
+        self.height = 80
         self.direction = "r"
-    def shoot(self):
-        pass
 
 class fastship(enemyship):
-    def __init__(self,x,y):
+    def __init__(self,x,y,spawntime):
         super().__init__()
         self.speed = 2
         self.damage = 5
@@ -180,14 +179,13 @@ class fastship(enemyship):
         self.shotspeed = 1
         self.x = x
         self.y = y
-        self.width = 191
-        self.height = 64
+        self.timer=spawntime
+        self.width = 80
+        self.height = 80
         self.direction = "r"
-    def shoot(self):
-        pass
 
 class buffship(enemyship):
-    def __init__(self,bufftype,x,y):
+    def __init__(self,bufftype,x,y,spawntime):
         super().__init__()
         self.speed = 1
         self.bufftype = None
@@ -195,11 +193,10 @@ class buffship(enemyship):
         self.range = 1
         self.x = x
         self.y = y
-        self.width = 191
-        self.height = 64
+        self.timer=spawntime
+        self.width = 80
+        self.height = 80
         self.direction = "r"
-    def buff(self):
-        pass
 
 
 class bossship:
