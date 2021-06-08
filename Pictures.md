@@ -31,6 +31,11 @@
 ![projectile_speed_ship](https://user-images.githubusercontent.com/84735216/120809125-11187780-c54a-11eb-96a7-7b4f71fc514e.png)
 ![damage_ship](https://user-images.githubusercontent.com/84735216/120809127-11b10e00-c54a-11eb-97a7-317d10e3c9fd.png)
 
+# Bullets
+![player_bullet](https://user-images.githubusercontent.com/84734669/121239746-ec9a0380-c899-11eb-9694-2c96050584f8.png)
+![small_enemy_bullet](https://user-images.githubusercontent.com/84734669/121239750-eefc5d80-c899-11eb-9433-e0903d649dab.png)
+![big_enemy_bullet](https://user-images.githubusercontent.com/84734669/121239754-f15eb780-c899-11eb-975f-3c80bde1c7f3.png)
+
 # Boss Ships
 
 - Boss 1
