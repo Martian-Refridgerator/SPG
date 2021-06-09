@@ -29,6 +29,7 @@ playery=400
 playerwidth=191
 playerheight=64
 current_time=0
+shotcooldownbase=0
 #for now
 testenemy1=strongship(357,100,current_time)
 testenemy2=fastship(357,100,current_time)
@@ -273,10 +274,12 @@ while running:
                         deleting_active=False
                         pygame.mouse.set_cursor(*pygame.cursors.arrow)
             if screenidentity == 4 and pos[0]>350:
-                for i in range(len(player.buildings)):
-                    if player.buildings[i].__class__ == attackbuilding:
-                        a = bullet(player.buildings[i].x,player.buildings[i].y,pos[0],pos[1],4,"player",20,20)
-                        bullets.append(a)
+                if current_time - shotcooldownbase > 400:
+                    shotcooldownbase = current_time
+                    for i in range(len(player.buildings)):
+                        if player.buildings[i].__class__ == attackbuilding:
+                                a = bullet(player.buildings[i].x,player.buildings[i].y,pos[0],pos[1],4,"player",20,20)
+                                bullets.append(a)
 
 
 
@@ -321,9 +324,9 @@ while running:
                 genbutton.color = (255, 255, 255)
 
     if movingright == 1 and (playerx + (playerwidth)) < 1200:
-        playerx += 2.5
+        playerx += 5
     if movingleft == 1 and playerx > 350:
-        playerx -= 2.5
+        playerx -= 5
 
     if screenidentity == 4:
         for i in range(len(enemies)):
@@ -348,14 +351,27 @@ while running:
 
 
         bulletstobedeleted=[]
-        for i in range(len(bullets)):
-            if bullets[i].x + bullets[i].dx + bullets[i].width > 1200 or bullets[i].x + bullets[i].dx < 350 or bullets[i].y + bullets[i].dy +bullets[i].height > 800 or bullets[i].y + bullets[i].dy < 0:
-                bulletstobedeleted.append(i)
-            else:
-                bullets[i].x += bullets[i].dx
-                bullets[i].y += bullets[i].dy
-        for i in range(len(bulletstobedeleted)):
-            del(bullets[bulletstobedeleted[len(bulletstobedeleted)-i-1]])
+        if bullets != [] and player.shield != None:
+            for i in range(len(bullets)):
+                for k in range(len(enemies)):
+                    if bullets[i].hitbox.colliderect(enemies[k].hitbox) and bullets[i].type == "player":
+                        bulletstobedeleted.append(i)
+            for i in range(len(bullets)):
+                for k in range(len(player.buildings)):
+                    if player.buildings[k].__class__ != freespace:
+                        if bullets[i].hitbox.colliderect(player.buildings[k].hitbox) and bullets[i].type == "fastship" or bullets[i].type == "strongship":
+                            bulletstobedeleted.append(i)
+            for i in range(len(bullets)):
+                if bullets[i].hitbox.colliderect(player.shield.hitbox) and bullets[i].type == "fastship" or bullets[i].type == "strongship":
+                    bulletstobedeleted.append(i)
+            for i in range(len(bullets)):
+                if bullets[i].x + bullets[i].dx + bullets[i].width > 1200 or bullets[i].x + bullets[i].dx < 350 or bullets[i].y + bullets[i].dy +bullets[i].height > 800 or bullets[i].y + bullets[i].dy < 0:
+                    bulletstobedeleted.append(i)
+                else:
+                    bullets[i].x += bullets[i].dx
+                    bullets[i].y += bullets[i].dy
+            for i in range(len(bulletstobedeleted)):
+                bullets.remove(bullets[bulletstobedeleted[len(bulletstobedeleted)-i-1]])
     windowdraw(screenidentity)
     if screenidentity == 2:
         Name_rect.w = max(230,Namebox.get_width()+10)
