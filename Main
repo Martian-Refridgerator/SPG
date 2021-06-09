@@ -1,3 +1,4 @@
+
 from Load import *
 pygame.init()
 from Classes import *
@@ -352,24 +353,27 @@ while running:
         if bullets != [] and player.shield != None:
             for i in range(len(bullets)):
                 for k in range(len(enemies)):
-                    if bullets[i].x >= enemies[k].x and bullets[i].x < enemies[k].x + enemies[k].width and bullets[i].type == "player" or bullets[i].x + bullets[i].width >= enemies[k].x and bullets[i].x + bullets[i].width < enemies[k].x + enemies[k].width and bullets[i].type == "player":
-                        if bullets[i].y >= enemies[k].y and bullets[i].y < enemies[k].y + enemies[k].height and bullets[i].type == "player" or bullets[i].y + bullets[i].height >= enemies[k].y and bullets[i].y + bullets[i].height < enemies[k].y + enemies[k].height and bullets[i].type == "player":
+                    if bullets[i].x >= enemies[k].x and bullets[i].x <= enemies[k].x + enemies[k].width and bullets[i].type == "player" or bullets[i].x + bullets[i].width >= enemies[k].x and bullets[i].x + bullets[i].width <= enemies[k].x + enemies[k].width and bullets[i].type == "player":
+                        if bullets[i].y >= enemies[k].y and bullets[i].y <= enemies[k].y + enemies[k].height and bullets[i].type == "player" or bullets[i].y + bullets[i].height >= enemies[k].y and bullets[i].y + bullets[i].height <= enemies[k].y + enemies[k].height and bullets[i].type == "player":
                             bulletstobedeleted.append(i)
                 for k in range(len(player.buildings)):
                     if player.buildings[k].__class__ != freespace:
-                        if bullets[i].x+bullets[i].width>player.buildings[k].x and bullets[i].y+bullets[i].height>player.buildings[k].y and bullets[i].x>player.buildings[k].x+player.buildings[k].width and bullets[i].y>player.buildings[k].y+player.buildings[k].height and bullets[i].type == "fastship":
-                            bulletstobedeleted.append(i)
+                        if bullets[i].x >= player.buildings[k].x and bullets[i].x <= player.buildings[k].x + player.buildings[k].width and bullets[i].type == "fastship" or bullets[i].x + bullets[i].width >= player.buildings[k].x and bullets[i].x + bullets[i].width <= player.buildings[k].x + player.buildings[k].width and bullets[i].type == "fastship":
+                            if bullets[i].y >= player.buildings[k].y and bullets[i].y <= player.buildings[k].y + player.buildings[k].height and bullets[i].type == "fastship" or bullets[i].y + bullets[i].height >= player.buildings[k].y and bullets[i].y + bullets[i].height <= player.buildings[k].y + player.buildings[k].height and bullets[i].type == "fastship":
+                                  bulletstobedeleted.append(i)
                 for k in range(len(player.buildings)):
                     if player.buildings[k].__class__ != freespace:
-                        if bullets[i].x+bullets[i].width>player.buildings[k].x and bullets[i].y+bullets[i].height>player.buildings[k].y and bullets[i].x>player.buildings[k].x+player.buildings[k].width and bullets[i].y>player.buildings[k].y+player.buildings[k].height and bullets[i].type == "strongship":
-                            bulletstobedeleted.append(i)
+                        if bullets[i].x >= player.buildings[k].x and bullets[i].x <= player.buildings[k].x + player.buildings[k].width and bullets[i].type == "strongship" or bullets[i].x + bullets[i].width >= player.buildings[k].x and bullets[i].x + bullets[i].width <= player.buildings[k].x + player.buildings[k].width and bullets[i].type == "strongship":
+                            if bullets[i].y >= player.buildings[k].y and bullets[i].y <= player.buildings[k].y + player.buildings[k].height and bullets[i].type == "strongship" or bullets[i].y + bullets[i].height >= player.buildings[k].y and bullets[i].y + bullets[i].height <= player.buildings[k].y + player.buildings[k].height and bullets[i].type == "strongship":
+                                bulletstobedeleted.append(i)
 
-                if bullets[i].x+bullets[i].width>player.shield.x and bullets[i].y+bullets[i].height>player.shield.y and bullets[i].x>player.shield.x+player.shield.width and bullets[i].y>player.shield.y+player.shield.height and bullets[i].type == "fastship":
-                    bulletstobedeleted.append(i)
+                if bullets[i].x >= player.shield.x and bullets[i].x <= player.shield.x + player.shield.width and bullets[i].type == "fastship" or bullets[i].x + bullets[i].width >= player.shield.x and bullets[i].x + bullets[i].width <= player.shield.x + player.shield.width and bullets[i].type == "fastship":
+                    if bullets[i].y >= player.shield.y and bullets[i].y <= player.shield.y + player.shield.height and bullets[i].type == "fastship" or bullets[i].y + bullets[i].height >= player.shield.y and bullets[i].y + bullets[i].height <= player.shield.y + player.shield.height and bullets[i].type == "fastship":
+                        bulletstobedeleted.append(i)
 
-
-                if bullets[i].x+bullets[i].width>player.shield.x and bullets[i].y+bullets[i].height>player.shield.y and bullets[i].x>player.shield.x+player.shield.width and bullets[i].y>player.shield.y+player.shield.height and bullets[i].type == "strongship":
-                    bulletstobedeleted.append(i)
+                if bullets[i].x >= player.shield.x and bullets[i].x <= player.shield.x + player.shield.width and bullets[i].type == "strongship" or bullets[i].x + bullets[i].width >= player.shield.x and bullets[i].x + bullets[i].width <= player.shield.x + player.shield.width and bullets[i].type == "strongship":
+                    if bullets[i].y >= player.shield.y and bullets[i].y <= player.shield.y + player.shield.height and bullets[i].type == "strongship" or bullets[i].y + bullets[i].height >= player.shield.y and bullets[i].y + bullets[i].height <= player.shield.y + player.shield.height and bullets[i].type == "strongship":
+                        bulletstobedeleted.append(i)
 
 
                 if bullets[i].x + bullets[i].dx + bullets[i].width > 1200 or bullets[i].x + bullets[i].dx < 350 or bullets[i].y + bullets[i].dy +bullets[i].height > 800 or bullets[i].y + bullets[i].dy < 0:
