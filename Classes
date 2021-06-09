@@ -6,7 +6,7 @@ pygame.init()
 attack_building=pygame.image.load("attack_building.png")
 heal_building=pygame.image.load("heal_building.png")
 money_building=pygame.image.load("money_building.png")
-untaken=pygame.image.load("untaken.png")
+untaken=pygame.image.load("secret_shield.png")
 
 class player:
     def __init__(self):
@@ -14,7 +14,7 @@ class player:
         self.score = 0
         self.character = None
         self.name = None
-        self.shield=None
+        self.shield = None
         self.charge=0
         self.buildings = []
         self.enemies = []
@@ -33,6 +33,7 @@ class healShield:
         self.y = y
         self.width = 191
         self.height = 64
+        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
 
     def ability(self):
         pass
@@ -51,6 +52,7 @@ class strongshield:
         self.y = y
         self.width = 191
         self.height = 64
+        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
     def ability(self):
         pass
         #backup = self.sizemultiplier
@@ -72,6 +74,7 @@ class attackshield:
         self.y = y
         self.width = 191
         self.height = 64
+        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
     def ability(self):
         pass
 
@@ -90,6 +93,7 @@ class buisinessshield:
         self.y = y
         self.width = 191
         self.height = 64
+        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
     def ability(self):
         pass
 
@@ -112,6 +116,7 @@ class attackbuilding:
         self.height = 100
         self.x = x
         self.y = y - self.height+10
+        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
         self.picture = pygame.transform.scale(attack_building, (60,100))
     def shoot(self):
         pass
@@ -129,6 +134,7 @@ class healbuilding:
         self.height = 120
         self.x = x
         self.y = y - self.height+20
+        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
         self.picture = pygame.transform.scale(heal_building, (100,120))
     def healing(self):
         pass
@@ -147,6 +153,7 @@ class factory:
         self.height=150
         self.x = x
         self.y = y - self.height
+        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
         self.picture = pygame.transform.scale(money_building, (70,160))
     def produce(self):
         pass
@@ -168,6 +175,7 @@ class strongship(enemyship):
         self.timer=spawntime
         self.width = 80
         self.height = 80
+        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
         self.direction = "r"
 
 class fastship(enemyship):
@@ -182,6 +190,7 @@ class fastship(enemyship):
         self.timer=spawntime
         self.width = 80
         self.height = 80
+        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
         self.direction = "r"
 
 class buffship(enemyship):
@@ -196,6 +205,7 @@ class buffship(enemyship):
         self.timer=spawntime
         self.width = 80
         self.height = 80
+        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
         self.direction = "r"
 
 
@@ -224,6 +234,7 @@ class bullet:
         self.angle = math.atan2(targety-shoty,targetx-shotx)
         self.dx = math.cos(self.angle)*self.speed
         self.dy = math.sin(self.angle)*self.speed
+        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
 
 class button():
     def __init__(self, color, x,y,width,height, text=''):
