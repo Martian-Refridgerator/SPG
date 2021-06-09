@@ -348,30 +348,39 @@ while running:
                     a = bullet(enemies[i].x, enemies[i].y, enemies[i].x, enemies[i].y + 1, 4, "strongship", 40, 40)
                     bullets.append(a)
                     enemies[i].timer = current_time
-
-
-        bulletstobedeleted=[]
+        bulletstobedeleted = []
         if bullets != [] and player.shield != None:
             for i in range(len(bullets)):
                 for k in range(len(enemies)):
-                    if bullets[i].hitbox.colliderect(enemies[k].hitbox) and bullets[i].type == "player":
-                        bulletstobedeleted.append(i)
-            for i in range(len(bullets)):
+                    if bullets[i].x >= enemies[k].x and bullets[i].x < enemies[k].x + enemies[k].width and bullets[i].type == "player" or bullets[i].x + bullets[i].width >= enemies[k].x and bullets[i].x + bullets[i].width < enemies[k].x + enemies[k].width and bullets[i].type == "player":
+                        if bullets[i].y >= enemies[k].y and bullets[i].y < enemies[k].y + enemies[k].height and bullets[i].type == "player" or bullets[i].y + bullets[i].height >= enemies[k].y and bullets[i].y + bullets[i].height < enemies[k].y + enemies[k].height and bullets[i].type == "player":
+                            bulletstobedeleted.append(i)
                 for k in range(len(player.buildings)):
                     if player.buildings[k].__class__ != freespace:
-                        if bullets[i].hitbox.colliderect(player.buildings[k].hitbox) and bullets[i].type == "fastship" or bullets[i].type == "strongship":
+                        if bullets[i].x+bullets[i].width>player.buildings[k].x and bullets[i].y+bullets[i].height>player.buildings[k].y and bullets[i].x>player.buildings[k].x+player.buildings[k].width and bullets[i].y>player.buildings[k].y+player.buildings[k].height and bullets[i].type == "fastship":
                             bulletstobedeleted.append(i)
-            for i in range(len(bullets)):
-                if bullets[i].hitbox.colliderect(player.shield.hitbox) and bullets[i].type == "fastship" or bullets[i].type == "strongship":
+                for k in range(len(player.buildings)):
+                    if player.buildings[k].__class__ != freespace:
+                        if bullets[i].x+bullets[i].width>player.buildings[k].x and bullets[i].y+bullets[i].height>player.buildings[k].y and bullets[i].x>player.buildings[k].x+player.buildings[k].width and bullets[i].y>player.buildings[k].y+player.buildings[k].height and bullets[i].type == "strongship":
+                            bulletstobedeleted.append(i)
+
+                if bullets[i].x+bullets[i].width>player.shield.x and bullets[i].y+bullets[i].height>player.shield.y and bullets[i].x>player.shield.x+player.shield.width and bullets[i].y>player.shield.y+player.shield.height and bullets[i].type == "fastship":
                     bulletstobedeleted.append(i)
-            for i in range(len(bullets)):
+
+
+                if bullets[i].x+bullets[i].width>player.shield.x and bullets[i].y+bullets[i].height>player.shield.y and bullets[i].x>player.shield.x+player.shield.width and bullets[i].y>player.shield.y+player.shield.height and bullets[i].type == "strongship":
+                    bulletstobedeleted.append(i)
+
+
                 if bullets[i].x + bullets[i].dx + bullets[i].width > 1200 or bullets[i].x + bullets[i].dx < 350 or bullets[i].y + bullets[i].dy +bullets[i].height > 800 or bullets[i].y + bullets[i].dy < 0:
                     bulletstobedeleted.append(i)
+
                 else:
                     bullets[i].x += bullets[i].dx
                     bullets[i].y += bullets[i].dy
             for i in range(len(bulletstobedeleted)):
-                bullets.remove(bullets[bulletstobedeleted[len(bulletstobedeleted)-i-1]])
+
+                del bullets[bulletstobedeleted[i]]
     windowdraw(screenidentity)
     if screenidentity == 2:
         Name_rect.w = max(230,Namebox.get_width()+10)
