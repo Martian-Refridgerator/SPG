@@ -33,10 +33,10 @@ class healShield:
         self.y = y
         self.width = 191
         self.height = 64
-        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
+        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
 
-    def ability(self):
-        pass
+
+
 
 class strongshield:
     def __init__(self,x,y):
@@ -52,13 +52,7 @@ class strongshield:
         self.y = y
         self.width = 191
         self.height = 64
-        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
-    def ability(self):
-        pass
-        #backup = self.sizemultiplier
-        #self.sizemultiplier = a lot
-        #can.after()
-        #self.sizemultiplier = backup
+        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
 
 class attackshield:
     def __init__(self,x,y):
@@ -74,9 +68,7 @@ class attackshield:
         self.y = y
         self.width = 191
         self.height = 64
-        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
-    def ability(self):
-        pass
+        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
 
 
 class buisinessshield:
@@ -93,9 +85,7 @@ class buisinessshield:
         self.y = y
         self.width = 191
         self.height = 64
-        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
-    def ability(self):
-        pass
+        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
 
 class freespace:
     def __init__(self,x,y):
@@ -114,27 +104,27 @@ class attackbuilding:
         self.speedm = 1
         self.width = 60
         self.height = 100
+        self.hpbarmod=1
         self.x = x
         self.y = y - self.height+10
-        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
+        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
         self.picture = pygame.transform.scale(attack_building, (60,100))
-    def shoot(self):
-        pass
 
 class healbuilding:
     def __init__(self,x,y):
         self.price = 10
-        self.maxhealth = 100
-        self.health = 100
+        self.maxhealth = 120
+        self.health = 120
         self.healing = 10
         self.healingrange = 2
         self.healm = 1
         self.rangem = 1
         self.width = 100
         self.height = 120
+        self.hpbarmod= 0.7
         self.x = x
         self.y = y - self.height+20
-        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
+        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
         self.picture = pygame.transform.scale(heal_building, (100,120))
     def healing(self):
         pass
@@ -143,24 +133,25 @@ class healbuilding:
 class factory:
     def __init__(self,x,y):
         self.price = 10
-        self.maxhealth = 100
-        self.health = 100
+        self.maxhealth = 80
+        self.health = 80
         self.productionspeed = 1
         self.value = 5
         self.speedm = 1
         self.valuem = 1
         self.width=70
         self.height=150
+        self.hpbarmod=1.57
         self.x = x
         self.y = y - self.height
-        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
+        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
         self.picture = pygame.transform.scale(money_building, (70,160))
     def produce(self):
         pass
 class enemyship:
     def __init__(self):
-        self.maxhealth= 40
-        self.health= 40
+        self.maxhealth= 150
+        self.health= 150
         self.size= 30
 class strongship(enemyship):
     def __init__(self,x,y,spawntime):
@@ -175,7 +166,7 @@ class strongship(enemyship):
         self.timer=spawntime
         self.width = 80
         self.height = 80
-        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
+        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
         self.direction = "r"
 
 class fastship(enemyship):
@@ -190,7 +181,7 @@ class fastship(enemyship):
         self.timer=spawntime
         self.width = 80
         self.height = 80
-        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
+        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
         self.direction = "r"
 
 class buffship(enemyship):
@@ -205,7 +196,7 @@ class buffship(enemyship):
         self.timer=spawntime
         self.width = 80
         self.height = 80
-        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
+        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
         self.direction = "r"
 
 
@@ -234,7 +225,7 @@ class bullet:
         self.angle = math.atan2(targety-shoty,targetx-shotx)
         self.dx = math.cos(self.angle)*self.speed
         self.dy = math.sin(self.angle)*self.speed
-        self.hitbox = pygame.rect.Rect(self.x, self.y, self.width, self.height)
+        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
 
 class button():
     def __init__(self, color, x,y,width,height, text=''):
