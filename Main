@@ -31,6 +31,19 @@ playerwidth=191
 playerheight=64
 current_time=0
 shotcooldownbase=0
+time=0
+
+def healability():
+    for i in range(len(player.buildings)):
+        if player.buildings[i].__class__ != freespace:
+            if player.buildings[i].health<player.buildings[i].maxhealth-30:
+                player.buildings[i].health+=30
+            else:
+                player.buildings[i].health+= player.buildings[i].maxhealth-player.buildings[i].health
+    player.charge=0
+
+
+
 #for now
 testenemy1=strongship(357,100,current_time)
 testenemy2=fastship(357,100,current_time)
@@ -131,6 +144,9 @@ def windowdraw(number):
             buildingbuttons[i-1].draw(screen)
         for i in range(len(player.buildings)):
             screen.blit(player.buildings[i].picture,(player.buildings[i].x,player.buildings[i].y))
+            if player.buildings[i].__class__!=freespace:
+                pygame.draw.rect(screen,(0,0,0), (player.buildings[i].x-2, 720-2, 104, 14), 0)
+                pygame.draw.rect(screen, (252, 3, 19), (player.buildings[i].x, 720, player.buildings[i].maxhealth/100*player.buildings[i].health*player.buildings[i].hpbarmod, 10), 0)
         for i in range(len(bullets)):
             if bullets[i].type == "player":
                 screen.blit(scaled_player_bullet,(bullets[i].x,bullets[i].y))
@@ -161,8 +177,9 @@ while running:
                     active=False
                 elif len(Name) < 10:
                     Name += event.unicode
-            if event.key==pygame.K_e and screenidentity== 4 and player.charge==100:
-                player.shield.ability()
+            if event.key==pygame.K_e and screenidentity== 4 and player.charge>=100:
+                if player.shield.__class__==healShield:
+                    healability()
             if screenidentity == 4:
                 if event.key == pygame.K_d:
                     movingright = 1
@@ -356,35 +373,62 @@ while running:
                     if bullets[i].x >= enemies[k].x and bullets[i].x <= enemies[k].x + enemies[k].width and bullets[i].type == "player" or bullets[i].x + bullets[i].width >= enemies[k].x and bullets[i].x + bullets[i].width <= enemies[k].x + enemies[k].width and bullets[i].type == "player":
                         if bullets[i].y >= enemies[k].y and bullets[i].y <= enemies[k].y + enemies[k].height and bullets[i].type == "player" or bullets[i].y + bullets[i].height >= enemies[k].y and bullets[i].y + bullets[i].height <= enemies[k].y + enemies[k].height and bullets[i].type == "player":
                             bulletstobedeleted.append(i)
+                            enemies[k].health-=10
                 for k in range(len(player.buildings)):
                     if player.buildings[k].__class__ != freespace:
                         if bullets[i].x >= player.buildings[k].x and bullets[i].x <= player.buildings[k].x + player.buildings[k].width and bullets[i].type == "fastship" or bullets[i].x + bullets[i].width >= player.buildings[k].x and bullets[i].x + bullets[i].width <= player.buildings[k].x + player.buildings[k].width and bullets[i].type == "fastship":
                             if bullets[i].y >= player.buildings[k].y and bullets[i].y <= player.buildings[k].y + player.buildings[k].height and bullets[i].type == "fastship" or bullets[i].y + bullets[i].height >= player.buildings[k].y and bullets[i].y + bullets[i].height <= player.buildings[k].y + player.buildings[k].height and bullets[i].type == "fastship":
                                   bulletstobedeleted.append(i)
+                                  player.buildings[k].health-=10
                 for k in range(len(player.buildings)):
                     if player.buildings[k].__class__ != freespace:
                         if bullets[i].x >= player.buildings[k].x and bullets[i].x <= player.buildings[k].x + player.buildings[k].width and bullets[i].type == "strongship" or bullets[i].x + bullets[i].width >= player.buildings[k].x and bullets[i].x + bullets[i].width <= player.buildings[k].x + player.buildings[k].width and bullets[i].type == "strongship":
                             if bullets[i].y >= player.buildings[k].y and bullets[i].y <= player.buildings[k].y + player.buildings[k].height and bullets[i].type == "strongship" or bullets[i].y + bullets[i].height >= player.buildings[k].y and bullets[i].y + bullets[i].height <= player.buildings[k].y + player.buildings[k].height and bullets[i].type == "strongship":
                                 bulletstobedeleted.append(i)
+                                player.buildings[k].health-=20
 
                 if bullets[i].x >= player.shield.x and bullets[i].x <= player.shield.x + player.shield.width and bullets[i].type == "fastship" or bullets[i].x + bullets[i].width >= player.shield.x and bullets[i].x + bullets[i].width <= player.shield.x + player.shield.width and bullets[i].type == "fastship":
                     if bullets[i].y >= player.shield.y and bullets[i].y <= player.shield.y + player.shield.height and bullets[i].type == "fastship" or bullets[i].y + bullets[i].height >= player.shield.y and bullets[i].y + bullets[i].height <= player.shield.y + player.shield.height and bullets[i].type == "fastship":
                         bulletstobedeleted.append(i)
+                        player.charge+=2*player.shield.chargespeed
+                        print(player.charge)
 
                 if bullets[i].x >= player.shield.x and bullets[i].x <= player.shield.x + player.shield.width and bullets[i].type == "strongship" or bullets[i].x + bullets[i].width >= player.shield.x and bullets[i].x + bullets[i].width <= player.shield.x + player.shield.width and bullets[i].type == "strongship":
                     if bullets[i].y >= player.shield.y and bullets[i].y <= player.shield.y + player.shield.height and bullets[i].type == "strongship" or bullets[i].y + bullets[i].height >= player.shield.y and bullets[i].y + bullets[i].height <= player.shield.y + player.shield.height and bullets[i].type == "strongship":
                         bulletstobedeleted.append(i)
+                        player.charge += 2 * player.shield.chargespeed
+                        print(player.charge)
 
 
                 if bullets[i].x + bullets[i].dx + bullets[i].width > 1200 or bullets[i].x + bullets[i].dx < 350 or bullets[i].y + bullets[i].dy +bullets[i].height > 800 or bullets[i].y + bullets[i].dy < 0:
                     bulletstobedeleted.append(i)
 
+                if bullets[i].y+bullets[i].dy+bullets[i].height >=720 and bullets[i].type=="fastship" or bullets[i].y+bullets[i].dy+bullets[i].height >=720 and bullets[i].type=="strongship":
+                    bulletstobedeleted.append(i)
+                    for j in range (len(player.buildings)):
+                        if player.buildings[j].__class__!=freespace:
+                            player.buildings[j].health-=5
+
                 else:
                     bullets[i].x += bullets[i].dx
                     bullets[i].y += bullets[i].dy
             for i in range(len(bulletstobedeleted)):
-
                 del bullets[bulletstobedeleted[i]]
+            for i in range(len(player.buildings)):
+                if player.buildings[i].__class__!=freespace and player.buildings[i].health==0:
+                    if player.buildings[i].__class__ == attackbuilding:
+                        x = player.buildings[i].x
+                        y = player.buildings[i].y + player.buildings[i].height - 10
+                        player.buildings[i] = freespace(x, y)
+                    if player.buildings[i].__class__ == healbuilding:
+                        x = player.buildings[i].x
+                        y = player.buildings[i].y + player.buildings[i].height - 20
+                        player.buildings[i] = freespace(x, y)
+                    if player.buildings[i].__class__ == factory:
+                        x = player.buildings[i].x
+                        y = player.buildings[i].y + player.buildings[i].height
+                        player.buildings[i] = freespace(x, y)
+
     windowdraw(screenidentity)
     if screenidentity == 2:
         Name_rect.w = max(230,Namebox.get_width()+10)
