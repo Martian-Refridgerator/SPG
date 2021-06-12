@@ -190,7 +190,7 @@ while running:
                         if player.buildings[i + k + 1].__class__ != freespace:
                             if player.buildings[i + k + 1].health + 0.05 * player.shield.abilitymult <= player.buildings[i + k + 1].maxhealth:
                                 player.buildings[i + k + 1].health += 0.05 * player.shield.abilitymult
-                    if i - k - 1 => 0:
+                    if i - k - 1 >= 0:
                         if player.buildings[i - k - 1].__class__ != freespace:
                             if player.buildings[i - k - 1].health + 0.05 * player.shield.abilitymult <= player.buildings[i - k - 1].maxhealth:
                                 player.buildings[i - k - 1].health += 0.05 * player.shield.abilitymult
@@ -202,7 +202,7 @@ while running:
                         if player.buildings[i + k + 1].__class__ != freespace:
                             if player.buildings[i + k + 1].health + 0.05 <= player.buildings[i + k + 1].maxhealth:
                                 player.buildings[i + k + 1].health += 0.05
-                    if i - k - 1 => 0:
+                    if i - k - 1 >= 0:
                         if player.buildings[i - k - 1].__class__ != freespace:
                             if player.buildings[i - k - 1].health + 0.05 <= player.buildings[i - k - 1].maxhealth:
                                 player.buildings[i - k - 1].health += 0.05
