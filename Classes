@@ -35,6 +35,7 @@ class healShield:
         self.width = 191
         self.height = 64
         self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
+        self.colour= (161, 255, 107)
 
 
 
@@ -54,6 +55,7 @@ class strongshield:
         self.width = 191
         self.height = 64
         self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
+        self.colour=(126, 215, 242)
 
 class attackshield:
     def __init__(self,x,y):
@@ -70,6 +72,7 @@ class attackshield:
         self.width = 191
         self.height = 64
         self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
+        self.colour= (235, 80, 80)
 
 
 class businessshield:
@@ -87,6 +90,7 @@ class businessshield:
         self.width = 191
         self.height = 64
         self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
+        self.colour=(242, 228, 126)
 
 class freespace:
     def __init__(self,x,y):
