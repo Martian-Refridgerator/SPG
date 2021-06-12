@@ -34,6 +34,8 @@ shieldabilityactive=0
 businessabilityactive=0
 healrangeupgrade=False
 factorystorage=0
+moneyscore=0
+blockscore=0
 def healability():
     for i in range(len(player.buildings)):
         if player.buildings[i].__class__ != freespace:
@@ -48,7 +50,11 @@ def healability():
 testenemy1=strongship(357,100,current_time)
 testenemy2=fastship(357,100,current_time)
 testenemy3=buffship("Strength",357,100,current_time)
-enemies=[testenemy1,testenemy2,testenemy3] #first is strongship second is fastship and third is buffship
+testenemy4=buffship("Strength",357,100,current_time)
+testenemy5=buffship("Strength",357,100,current_time)
+testenemy6=buffship("Strength",357,100,current_time)
+testenemy7=buffship("Strength",357,100,current_time)
+enemies=[testenemy1,testenemy2,testenemy3,testenemy4,testenemy5,testenemy6,testenemy7] #first is strongship second is fastship and third is buffship
 bullets = []
 for i in range(6):
     x=400
@@ -113,8 +119,8 @@ def windowdraw(number):
                 screen.blit(achievementtext3false, (520, 500))
         backbutton.draw(screen)
     if number==4:
-        scoretext=main_font.render("Score: "+str(player.score),1,(0,0,0))
-        moneytext=main_font.render("Money: "+str(player.currency),1,(0,0,0))
+        scoretext=main_font.render("Score: "+str(player.score),1,(255,255,255))
+        moneytext=main_font.render("Money: "+str(player.currency),1,(255,255,255))
         screen.fill((250,250,250))
         pygame.draw.rect(screen,(0,0,0),(0,0,350,800),0)
         screen.blit(characterpictures[player.character-1],(-20,550))
@@ -214,6 +220,7 @@ while running:
                     factorystorage+=0.1
             if factorystorage >= 50:
                 player.currency+=50
+                moneyscore+=1
                 factorystorage=0
 
     for event in pygame.event.get():
@@ -445,10 +452,16 @@ while running:
                 for k in range(len(enemies)):
                     if bullets[i].x >= enemies[k].x and bullets[i].x <= enemies[k].x + enemies[k].width and bullets[i].type == "player" or bullets[i].x + bullets[i].width >= enemies[k].x and bullets[i].x + bullets[i].width <= enemies[k].x + enemies[k].width and bullets[i].type == "player":
                         if bullets[i].y >= enemies[k].y and bullets[i].y <= enemies[k].y + enemies[k].height and bullets[i].type == "player" or bullets[i].y + bullets[i].height >= enemies[k].y and bullets[i].y + bullets[i].height <= enemies[k].y + enemies[k].height and bullets[i].type == "player":
+                            for j in range(len(bulletstobedeleted)):
+                                if i == bulletstobedeleted[j]:
+                                    bulletstobedeleted.pop(j)
                             bulletstobedeleted.append(i)
                             enemies[k].health-=10
                     if bullets[i].x >= enemies[k].x and bullets[i].x <= enemies[k].x + enemies[k].width and bullets[i].type == "meanplayer" or bullets[i].x + bullets[i].width >= enemies[k].x and bullets[i].x + bullets[i].width <= enemies[k].x + enemies[k].width and bullets[i].type == "meanplayer":
                         if bullets[i].y >= enemies[k].y and bullets[i].y <= enemies[k].y + enemies[k].height and bullets[i].type == "meanplayer" or bullets[i].y + bullets[i].height >= enemies[k].y and bullets[i].y + bullets[i].height <= enemies[k].y + enemies[k].height and bullets[i].type == "meanplayer":
+                            for j in range(len(bulletstobedeleted)):
+                                if i == bulletstobedeleted[j]:
+                                    bulletstobedeleted.pop(j)
                             bulletstobedeleted.append(i)
                             enemies[k].health -= 50
                 for k in range(len(player.buildings)):
@@ -474,6 +487,7 @@ while running:
                             else:
                                 player.charge += 2 * player.shield.chargespeed
                                 print(player.charge)
+                            blockscore+=1
 
                 if bullets[i].x >= player.shield.x and bullets[i].x <= player.shield.x + player.shield.width and bullets[i].type == "strongship" or bullets[i].x + bullets[i].width >= player.shield.x and bullets[i].x + bullets[i].width <= player.shield.x + player.shield.width and bullets[i].type == "strongship":
                     if bullets[i].y >= player.shield.y and bullets[i].y <= player.shield.y + player.shield.height and bullets[i].type == "strongship" or bullets[i].y + bullets[i].height >= player.shield.y and bullets[i].y + bullets[i].height <= player.shield.y + player.shield.height and bullets[i].type == "strongship":
@@ -485,6 +499,7 @@ while running:
                             else:
                                 player.charge += 2 * player.shield.chargespeed
                                 print(player.charge)
+                            blockscore+=1
 
 
                 if bullets[i].x + bullets[i].dx + bullets[i].width > 1200 or bullets[i].x + bullets[i].dx < 350 or bullets[i].y + bullets[i].dy +bullets[i].height > 800 or bullets[i].y + bullets[i].dy < 0:
@@ -498,12 +513,14 @@ while running:
                 if shieldabilityactive ==1:
                     if bullets[i].y >= player.shield.y and bullets[i].y <= player.shield.y + player.shield.height and bullets[i].type == "fastship" or bullets[i].y + bullets[i].height >= player.shield.y and bullets[i].y + bullets[i].height <= player.shield.y + player.shield.height and bullets[i].type == "fastship":
                         bulletstobedeleted.append(i)
+                        blockscore+=1
                     if bullets[i].y >= player.shield.y and bullets[i].y <= player.shield.y + player.shield.height and bullets[i].type == "strongship" or bullets[i].y + bullets[i].height >= player.shield.y and bullets[i].y + bullets[i].height <= player.shield.y + player.shield.height and bullets[i].type == "strongship":
                         bulletstobedeleted.append(i)
+                        blockscore+=1
                 bullets[i].x += bullets[i].dx
                 bullets[i].y += bullets[i].dy
             for i in range(len(bulletstobedeleted)):
-                del bullets[bulletstobedeleted[i]]
+                del bullets[bulletstobedeleted[len(bulletstobedeleted)-i-1]]
             for i in range(len(player.buildings)):
                 if player.buildings[i].__class__!=freespace and player.buildings[i].health <= 0:
                     if player.buildings[i].__class__ == attackbuilding:
@@ -523,7 +540,8 @@ while running:
                 if enemies[i].health <= 0:
                     enemiestobedeleted.append(i)
             for i in range(len(enemiestobedeleted)):
-                del enemies[enemiestobedeleted[i]]
+                del enemies[enemiestobedeleted[len(enemiestobedeleted)-i-1]]
+                player.score+=1
     windowdraw(screenidentity)
     if screenidentity == 2:
         Name_rect.w = max(230,Namebox.get_width()+10)
@@ -535,5 +553,11 @@ while running:
     if businessabilityactive == 1:
         if current_time - shieldtimer > 5000:
             businessabilityactive = 0
+    if blockscore >= 10:
+        blockscore=0
+        player.score+=1
+    if moneyscore >= 2:
+        moneyscore=0
+        player.score+=1
     pygame.display.update()
     clock.tick(60)
