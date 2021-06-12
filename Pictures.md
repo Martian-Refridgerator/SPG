@@ -31,13 +31,21 @@
 
 - Buff Ships
 
+- Fire rate
 ![fire_rate_ship](https://user-images.githubusercontent.com/84735216/120809123-107fe100-c54a-11eb-9441-a26626fc4a70.png)
+- Projectile speed
 ![projectile_speed_ship](https://user-images.githubusercontent.com/84735216/120809125-11187780-c54a-11eb-96a7-7b4f71fc514e.png)
+- Damage
 ![damage_ship](https://user-images.githubusercontent.com/84735216/120809127-11b10e00-c54a-11eb-97a7-317d10e3c9fd.png)
 
 # Bullets
+- Player bullet
 ![player_bullet](https://user-images.githubusercontent.com/84734669/121239746-ec9a0380-c899-11eb-9694-2c96050584f8.png)
+- Special player bullet
+![mean_player_bullet](https://user-images.githubusercontent.com/84734669/121770423-83e8aa80-cb69-11eb-8c8b-2f92eb1148b2.png)
+- Small enemy bullet
 ![small_enemy_bullet](https://user-images.githubusercontent.com/84734669/121239750-eefc5d80-c899-11eb-9433-e0903d649dab.png)
+- Big enemy bullet
 ![big_enemy_bullet](https://user-images.githubusercontent.com/84734669/121239754-f15eb780-c899-11eb-975f-3c80bde1c7f3.png)
 
 # Boss Ships
