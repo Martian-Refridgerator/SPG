@@ -1,6 +1,6 @@
 (Disembodied Narration)*The year is 3576 on the homeworld of the Khvlik'i, a peace loving reptilian race which helps maintain friendly relations between the space-faring empires of their sector.*
 (Disembodied Narration)*Today a festival is being held in honor of a hero, <Traitor Real Name>.*
-(Disembodied Narration)*<Traitor Real Name> was a shield-bearer who valiantly gave his life to stop a planet-wiping weapon in the final war of their sector, buying the time needed to secure a peace treaty.*
+(Disembodied Narration)*<Traitor Real Rank> <Traitor Real Name> was a shield-bearer who valiantly gave his life to stop a planet-wiping weapon in the final war of their sector, buying the time needed to secure a peace treaty.*
 (Disembodied Narration)*However, as the faction representatives of the Khvlik'i finish their speech and head inside to enjoy the festivities, an unknown danger approaches.*
 
 (Electronic Speaker)"Alert, an emergency meeting of the leaders has been called, please report to the meeting chamber as soon as possible."
@@ -26,4 +26,67 @@
 (Disembodied Narration)*Two days Later*
 (Player)"My A.E.G.I.S. is up and running. We are ready to begin defending. Their fleet should arrive soon."
 (Random Lizard Worker)"We are receiving a transmission from the enemy sir!"
-(Final Boss)"*static sounds*"Our fleet is in position""
+(Final Boss)"*static sounds*"Our fleet is in position, you have one last chance to surrender before we blow you to bits.""
+(Player)"The Khvlik'i have stood worse, we will not fall here."
+
+(Level happens)
+
+(Player)"Your weapons are no match for our A.E.G.I.S., turn back now, so that we may end this foolish conflict."
+(Final Boss)"You think we will retreat because you beat some grunts? Your city cannot withstand the might of the <Name> Empire forever."
+
+(Shop happens)
+
+(Mechanic Boss)"You think your little shield is strong? I could make a stronger ship out of the spare parts from my oven!"
+(Player)"Our A.E.G.I.S. does not need brute force, it is an impenetrable shield that will protect the Khvlik'i until our final days."
+(Mechanic Boss)"Too bad those final days have arrived then, isn't it?"
+
+(Level happens)
+
+(Mechanic Boss)"Damn it! The shields are failing and the cannon will blow if we take another shot, we need more emergency repairs! WAIT, WHERE DID THE COOLING SYSTEM GET BLOWN OFF TO?!?!*explosion*" 
+(Player)"I pray he may rest in the afterlife, now please leave our homeworld be before any of us incur more needless casualties."
+(Final Boss)"Don't assume that grease monkey was the best my army could offer, lizard. We will blow through your defenses yet."
+
+(Shop happens)
+
+(Teleporter Boss)"Blasted machine! Our troops should have been transported behind enemy lines hours ago! Why is the transporter not working?!"
+(Player)"Our A.E.G.I.S. is not the only form of defensive technology we have, no one would be foolish enough to wage war without a transport disruptor."
+(Teleporter Boss)"This changes nothing! If you think that's the only trick up my sleeve you're up for a rude awakening!"
+
+(Level happens)
+
+(Teleporter Boss)"The transporter is malfunctioning! If we don't retreat now we will be sent to a godforsaken void with no return!"
+(Final Boss)"Then drag your enemy in there with you! A soldier of the <Name> Empire never retreats!"
+(Teleporter Boss)"That's not how this works sir! Please, we don't have much ti-*zap*"
+(Final Boss)"Hmph, what a waste, they did not take a single lizard with them."
+(Player)"Have you no shame?! How could you just leave them to their fates?!
+(Final Boss)"Do not speak to me of shame, lizard! I know you would sacrifice lives of your own accord too."
+
+(Shop happens)
+
+(Explosion Boss)"So you think your fancy shield can save you? Let's see how well it handles *BOOM*!"
+(Player)"Watch yourself, fool! One wrong step and you'll blow yourself to bits!"
+(Explosion Boss)"That's exactly what makes this job so damn fun!"
+
+(Level happens)
+
+(Explosion Boss)"The main ammo storage caught fire! This will be a good one! HAHAHAH! *BOANBHFBUIASHBFBVFOM*"
+(Final Boss) "Is every person in this fleet a damn idiot?! FINE! I will do this myself."
+(Player)"Finally, the end of the war approaches."
+
+(Shop happens)
+
+(Player)"WAIT, is that... an A.E.G.I.S.?!"
+(Final Boss)"Correction, it's BETTER than an A.E.G.I.S.! I have waited too long to use this for my revenge!"
+*disguise tearing noises*
+(Player) <TRAITOR REAL NAME>?!? We thought you were dead!
+(Final Boss)"How could you think anything else after you left me to face death all on my own?! But I survived and now I'm ready to pay back what you did to me!"
+(Player) <Traitor Real Name> wait! I'm sure we can resolve this peacefully!
+(Final Boss)"All you ever talk about is peace! It is for your petty peace that I almost died that day! Now shut your mouth and fight me, puny <Player Title>"
+
+(Level happens)
+
+(Final Boss)"It can't be! My A.E.G.I.S. was perfect! How could I lose?!"
+(Player)"In your futile pursuit of physical power, you forgot true power comes from those you protect. Now, I pray you may finally rest, so we may put this conflict behind us.
+(Final Boss)"NOOO!! I REFUSE TO ACCEPT THIS!! *BOOM*"
+
+(Disembodied Narration)*With <Traitor rank> <Traitor Name> gone, the Khvlik'i managed to form an alliance with humanity. Peace has returned to the world*
