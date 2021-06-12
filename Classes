@@ -1,90 +1,4 @@
-from Load import *
-import pygame
-import math
-pygame.init()
 
-attack_building=pygame.image.load("attack_building.png")
-heal_building=pygame.image.load("heal_building.png")
-money_building=pygame.image.load("money_building.png")
-untaken=pygame.image.load("secret_shield.png")
-
-class player:
-    def __init__(self):
-        self.currency = 0
-        self.score = 0
-        self.character = None
-        self.name = None
-        self.shield = None
-        self.charge=0
-        self.buildings = []
-        self.enemies = []
-
-class healShield:
-    def __init__(self,x,y):
-        self.abilitypower = 1
-        self.size = 3
-        self.chargespeed = 3
-        self.speed = 3
-        self.abilitymultiplier = 1
-        self.sizem = 1
-        self.chargem = 1
-        self.speedm = 1
-        self.x = x
-        self.y = y
-        self.width = 191
-        self.height = 64
-        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
-
-
-
-
-class strongshield:
-    def __init__(self,x,y):
-        self.abilitypower = 1
-        self.size = 3
-        self.chargespeed = 3
-        self.speed = 3
-        self.abilitymultiplier = 1
-        self.sizem = 1
-        self.chargem = 1
-        self.speedm = 1
-        self.x = x
-        self.y = y
-        self.width = 191
-        self.height = 64
-        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
-
-class attackshield:
-    def __init__(self,x,y):
-        self.abilitypower = 1
-        self.size = 3
-        self.chargespeed = 3
-        self.speed = 3
-        self.abilitymultiplier = 1
-        self.sizem = 1
-        self.chargem = 1
-        self.speedm = 1
-        self.x = x
-        self.y = y
-        self.width = 191
-        self.height = 64
-        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
-
-
-class buisinessshield:
-    def __init__(self,x,y):
-        self.abilitypower = 1
-        self.size = 3
-        self.chargespeed = 3
-        self.speed = 3
-        self.abilitymultiplier = 1
-        self.sizem = 1
-        self.chargem = 1
-        self.speedm = 1
-        self.x = x
-        self.y = y
-        self.width = 191
-        self.height = 64
         self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
 
 class freespace:
@@ -118,7 +32,7 @@ class healbuilding:
         self.healing = 10
         self.healingrange = 2
         self.healm = 1
-        self.rangem = 1
+        self.range = 1
         self.width = 100
         self.height = 120
         self.hpbarmod= 0.7
@@ -126,8 +40,6 @@ class healbuilding:
         self.y = y - self.height+20
         self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
         self.picture = pygame.transform.scale(heal_building, (100,120))
-    def healing(self):
-        pass
 
 
 class factory:
