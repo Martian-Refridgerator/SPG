@@ -18,11 +18,12 @@
 (Final Boss)"We have come to widen the borders the Great <Name> Empire, our leaders demand a portion of this sector's territory. If it is not given, we shall take it by force."
 (Player)"Calm yourself <Traitor rank>, there is no need for bloodshed. We cannot give up our land, but I'm sure our empires could mutually benefit through trade and cultural exchange."
 (Final Boss)"Our leaders have no need of your trade vermin. The wealth in the lands we will take is already ours in the first place. Since you do not wish to give up willingly, we will take what we need by force."
-(Final Boss)"Cut communications with these worthless lizards! And prepare the men for attack!*static sounds*"
+(Final Boss)"Cut communications with these worthless lizards! And prepare the men for attack!*static noises*"
 (Random Other Faction Leader)"What a crude race, They must've achieved space-faring technology very recently."
 (Player)"Their history is the least of our concerns right now, you must start evacuating the people. I will try to get at least my A.E.G.I.S. in working order"
 (Random Other Faction Leader)"Very well, you shall lead our armies. The rest of us will hide the civillians and help provide resources for battle."
 
 (Disembodied Narration)*Two days Later*
 (Player)"My A.E.G.I.S. is up and running. We are ready to begin defending. Their fleet should arrive soon."
-*maybe a bit more dialogue but then the first level starts. the first level has no boss but just ends after some time or sth and then we start putting bosses in for a total of 5 levels*
+(Random Lizard Worker)"We are receiving a transmission from the enemy sir!"
+(Final Boss)"*static sounds*"Our fleet is in position""
