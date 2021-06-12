@@ -183,37 +183,37 @@ while running:
     for i in range(len(player.buildings)):
         if player.buildings[i].__class__ == healbuilding:
             if businessabilityactive == 1:
-                if player.buildings[i].health + 0.1 * player.shield.abilitymult <= player.buildings[i].maxhealth:
-                    player.buildings[i].health += 0.1 * player.shield.abilitymult
+                if player.buildings[i].health + 0.05 * player.shield.abilitymult <= player.buildings[i].maxhealth:
+                    player.buildings[i].health += 0.05 * player.shield.abilitymult
                 for k in range(player.buildings[i].range):
                     if i + k + 1 < 6:
                         if player.buildings[i + k + 1].__class__ != freespace:
-                            if player.buildings[i + k + 1].health + 0.1 * player.shield.abilitymult <= player.buildings[i + k + 1].maxhealth:
-                                player.buildings[i + k + 1].health += 0.1 * player.shield.abilitymult
-                    if i - k - 1 > 0:
+                            if player.buildings[i + k + 1].health + 0.05 * player.shield.abilitymult <= player.buildings[i + k + 1].maxhealth:
+                                player.buildings[i + k + 1].health += 0.05 * player.shield.abilitymult
+                    if i - k - 1 => 0:
                         if player.buildings[i - k - 1].__class__ != freespace:
-                            if player.buildings[i - k - 1].health + 0.1 * player.shield.abilitymult <= player.buildings[i - k - 1].maxhealth:
-                                player.buildings[i - k - 1].health += 0.1 * player.shield.abilitymult
+                            if player.buildings[i - k - 1].health + 0.05 * player.shield.abilitymult <= player.buildings[i - k - 1].maxhealth:
+                                player.buildings[i - k - 1].health += 0.05 * player.shield.abilitymult
             else:
-                if player.buildings[i].health + 0.1 <= player.buildings[i].maxhealth:
-                    player.buildings[i].health += 0.1
+                if player.buildings[i].health + 0.05 <= player.buildings[i].maxhealth:
+                    player.buildings[i].health += 0.05
                 for k in range(player.buildings[i].range):
                     if i + k + 1 < 6:
                         if player.buildings[i + k + 1].__class__ != freespace:
-                            if player.buildings[i + k + 1].health + 0.1 <= player.buildings[i + k + 1].maxhealth:
-                                player.buildings[i + k + 1].health += 0.1
-                    if i - k - 1 > 0:
+                            if player.buildings[i + k + 1].health + 0.05 <= player.buildings[i + k + 1].maxhealth:
+                                player.buildings[i + k + 1].health += 0.05
+                    if i - k - 1 => 0:
                         if player.buildings[i - k - 1].__class__ != freespace:
-                            if player.buildings[i - k - 1].health + 0.1 <= player.buildings[i - k - 1].maxhealth:
-                                player.buildings[i - k - 1].health += 0.1
+                            if player.buildings[i - k - 1].health + 0.05 <= player.buildings[i - k - 1].maxhealth:
+                                player.buildings[i - k - 1].health += 0.05
         if player.buildings[i].__class__ == factory:
-            if factorystorage < 40:
+            if factorystorage < 50:
                 if businessabilityactive ==1:
                     factorystorage += 0.1 * player.shield.abilitymult
                 else:
                     factorystorage+=0.1
-            if factorystorage >= 40:
-                player.currency+=40
+            if factorystorage >= 50:
+                player.currency+=50
                 factorystorage=0
 
     for event in pygame.event.get():
