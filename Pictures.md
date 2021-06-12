@@ -16,7 +16,7 @@
 
 ![attack_building](https://user-images.githubusercontent.com/84735216/121052374-9b671280-c7ba-11eb-9b72-28cc3f236b4b.png)
 - Free Space
-- 
+
 ![untaken](https://user-images.githubusercontent.com/84734669/121764757-8b4a8c80-cb46-11eb-8df5-88eb71d0bc8f.png)
 
 
