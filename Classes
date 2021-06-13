@@ -207,20 +207,22 @@ class bossship:
     def __init__(self,ability,x,y,picture):
         self.health = 200
         self.maxhealth = 200
-        self.ability = 1
+        self.ability = ability
         self.damage = 30
         self.attackspeed = 2
         self.x = x
         self.y = y
+        self.width = 300
+        self.height = 120
+        self.timer = 0
         self.picture=picture
-    def use(self):
-        pass
 
 
 class bullet:
     def __init__(self,shotx,shoty,targetx,targety,shotspeed,bullettype,width,height):
         self.speed = shotspeed
         self.type = bullettype
+        self.health = 20
         self.x = shotx
         self.y = shoty
         self.width = width
