@@ -121,5 +121,5 @@
 
 - Human Background
 
-![humantown](https://user-images.githubusercontent.com/84735216/121905348-5a2ab180-cd2a-11eb-9021-c2321b9ae330.png)
+![humantown](https://user-images.githubusercontent.com/84735216/121912402-d922e880-cd30-11eb-82ca-624920ba3379.png)
 
