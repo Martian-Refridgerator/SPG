@@ -79,6 +79,31 @@
 
 ![secret_character](https://user-images.githubusercontent.com/84735216/120664323-224e7f00-c48b-11eb-8306-d5f10ad38c60.png)
 
+- Base Lizard
+
+![baselizard](https://user-images.githubusercontent.com/84735216/121905317-5303a380-cd2a-11eb-98d0-c917a83f6080.png)
+
+- Mechanic Boss
+
+![mechanicbosspic](https://user-images.githubusercontent.com/84735216/121905299-4ed78600-cd2a-11eb-97d9-08020be14ae8.png)
+
+- Teleport Boss
+
+![tpbosspic](https://user-images.githubusercontent.com/84735216/121905311-51d27680-cd2a-11eb-9d46-3ff85a83829d.png)
+
+- Bomberman Boss
+
+![bombermanpic](https://user-images.githubusercontent.com/84735216/121905313-526b0d00-cd2a-11eb-97eb-a921f37937a8.png)
+
+- Final Boss 
+
+![finalbosspic](https://user-images.githubusercontent.com/84735216/121905305-50a14980-cd2a-11eb-849b-94ffbeeeb1bc.png)
+
+- Base Human
+
+![basehuman](https://user-images.githubusercontent.com/84735216/121905302-5008b300-cd2a-11eb-89c2-44e420a9dd92.png)
+
+
 # Ability icons
 ![Shieldicon](https://user-images.githubusercontent.com/84735216/120664449-37c3a900-c48b-11eb-95af-060cce0f5837.png)
 ![Healicon](https://user-images.githubusercontent.com/84735216/120664418-32665e80-c48b-11eb-8f51-b6bb317f76fa.png)
@@ -89,3 +114,12 @@
 # Screens
 ![main](https://user-images.githubusercontent.com/84735216/120377022-dda4d580-c31c-11eb-8d70-cacae8d7253a.png)
 ![choose](https://user-images.githubusercontent.com/84735216/120377018-db427b80-c31c-11eb-9b29-53b45fa52964.png)
+
+- Lizard Background
+
+![lizardtown](https://user-images.githubusercontent.com/84735216/121905373-61ea5600-cd2a-11eb-8d30-77a04e5355aa.png)
+
+- Human Background
+
+![humantown](https://user-images.githubusercontent.com/84735216/121905348-5a2ab180-cd2a-11eb-9021-c2321b9ae330.png)
+
