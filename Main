@@ -11,6 +11,7 @@ clock=pygame.time.Clock()
 #Game_Data.close()
 screenidentity=1
 charselectvar=1
+enemyspawntimer=0
 Name = ''
 Name_rect = pygame.Rect(215,570,230,35)
 color = color_passive
@@ -40,6 +41,38 @@ moneyscore=0
 blockscore=0
 #Game_Data = open('GameData.txt','r')
 
+def enemyspawn():
+    buffpresent=0
+    for i in range(3):
+        for k in range(len(enemies)):
+            if enemies[k].__class__ == buffship:
+                buffpresent=1
+        if buffpresent == 0 and len(enemies) > 2:
+            r=random.randrange(1,4)
+            if r == 1:
+                b = "Strength"
+            if r == 2:
+                b = "Firerate"
+            if r == 3:
+                b = "Projectile_speed"
+            a = buffship(b,357+i*80,100,current_time)
+            enemies.append(a)
+        if buffpresent == 0 and len(enemies) < 3:
+            r = random.randrange(1,3)
+            if r == 1:
+                a = strongship(357+i*80,100,current_time)
+                enemies.append(a)
+            if r == 2:
+                a = fastship(357+i*80,100,current_time)
+                enemies.append(a)
+        if buffpresent == 1:
+            r = random.randrange(1, 3)
+            if r == 1:
+                a = strongship(357+i*80, 100, current_time)
+                enemies.append(a)
+            if r == 2:
+                a = fastship(357+i*80, 100, current_time)
+                enemies.append(a)
 def healability():
     for i in range(len(player.buildings)):
         if player.buildings[i].__class__ != freespace:
@@ -50,19 +83,11 @@ def healability():
     player.charge=0
 
 
-#for now
-testenemy1=strongship(357,100,current_time)
-testenemy2=fastship(357,100,current_time)
-testenemy3=buffship("Strength",357,100,current_time)
-testenemy4=buffship("Strength",357,100,current_time)
-testenemy5=buffship("Strength",357,100,current_time)
-testenemy6=buffship("Strength",357,100,current_time)
-testenemy7=buffship("Strength",357,100,current_time)
 junkyard=bossship("Healing",600,0,"idfk",300,120)
 teleport=bossship("Teleportation",600,0,"stilldfk",300,120)
 Megumin=bossship("EXPLOSION",600,0,"stop asking",300,120)
 final=bossship("Shield",600,200,"leave me alone",191,64)
-enemies=[testenemy1,testenemy2,testenemy3,testenemy4,testenemy5,testenemy6,testenemy7] #first is strongship second is fastship and third is buffship
+enemies=[]
 bullets = []
 boss = [final]
 for i in range(6):
@@ -200,7 +225,7 @@ def windowdraw(number):
 
 
 running = True
-
+enemyspawn()
 while running:
     current_time = pygame.time.get_ticks()
     for i in range(len(player.buildings)):
@@ -679,6 +704,9 @@ while running:
                             if bullets[k].x + bullets[k].width / 2 < boss[i].x + boss[i].width / 2:
                                 boss[i].x -= 5
                             break
+            if current_time - enemyspawntimer > 10000:
+                enemyspawn()
+                enemyspawntimer = current_time
     windowdraw(screenidentity)
     if screenidentity == 2:
         Name_rect.w = max(230,Namebox.get_width()+10)
