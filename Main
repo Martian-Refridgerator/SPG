@@ -32,7 +32,6 @@ mixer.music.load("BeepBox-Song.wav")
 amounts=[5,10,15]
 costs=[100,150,200]
 taken=["Untaken","Untaken","Untaken","Untaken"]
-
 sceneline=-1
 
 
@@ -568,10 +567,24 @@ while running:
                 menu_sound.play()
                 screenidentity=2
             if continuebutton.isOver(pos) and screenidentity == 1:
-                mixer.music.load("Little Cactus - 8 Bit Song.wav")
-                mixer.music.play(-1)
-                menu_sound.play()
-                screenidentity=5
+                Game_Data = [income, money_production, healmod, healingrange, bulletspeed, damagetakenmod, chargemod,
+                             level, cutscenenumber,player.score, player.currency, player.character]
+                Game_Data_WHY = []
+                load = open("Non-Persistent_Data.txt", "r")
+                for line in load:
+                    Game_Data_WHY.append(int(line))
+                load.close()
+                for i in range(len(Game_Data)):
+                    Game_Data[i] = Game_Data_WHY[i]
+                    if i == 9:
+                        player.score = Game_Data[i]
+                    if i == 10:
+                        player.currency = Game_Data[i]
+                    if i == 11:
+                        player.character = Game_Data[i]
+                    player.name = "Name"
+                    nametext = small_header_font.render(player.name, 1, (0, 0, 0))
+                screenidentity=4
             if quitbutton.isOver(pos) and screenidentity == 1:
                 screenidentity=6
                 menu_sound.play()
@@ -595,6 +608,8 @@ while running:
                 screenidentity= 1
             if finishbutton.isOver(pos) and screenidentity==2 and game_beaten==True:
                 menu_sound.play()
+                if Name == "":
+                    Name = "Name"
                 player.name=Name
                 nametext = small_header_font.render(player.name, 1, (0, 0, 0))
                 player.character=charselectvar
@@ -604,6 +619,8 @@ while running:
             if finishbutton.isOver(pos) and screenidentity == 2 and game_beaten==False:
                 menu_sound.play()
                 if charselectvar<4:
+                    if Name == "":
+                        Name = "Name"
                     player.name = Name
                     nametext = small_header_font.render(player.name, 1, (0, 0, 0))
                     player.character = charselectvar
@@ -708,7 +725,7 @@ while running:
                     for i in range(len(shopbuttons)):
                         if shopbuttons[i] != None and shopbuttons[i].isOver(pos):
                             for j in range(len(amounts)):
-                                if buttontypes[i]=="money_buff"+str(amounts[j]) and player.currency>=costs[j] and taken[i]=="Untaken":
+                                if buttontypes[i]=="money"+str(amounts[j]) and player.currency>=costs[j] and taken[i]=="Untaken":
                                     money_production+=amounts[j]
                                     player.currency-=costs[j]
                                 if buttontypes[i]=="healing"+str(amounts[j]) and player.currency>=costs[j] and taken[i]=="Untaken":
@@ -735,6 +752,12 @@ while running:
                 if shopcontinuebutton.isOver(pos):
                     enemyspawn()
                     level += 1
+                    Game_Data = [income, money_production, healmod, healingrange, bulletspeed, damagetakenmod, chargemod, level, cutscenenumber, player.character,player.score, player.currency]
+                    save = open("Non-Persistent_Data.txt", "w")
+                    for i in range(len(Game_Data)):
+                        save.write(str(Game_Data[i]))
+                        save.write("\n")
+                    save.close()
                     screenidentity = 4
             if screenidentity==6 and cutscenenumber==0 and sceneline<=3:
                 sceneline+=1
@@ -1149,6 +1172,11 @@ while running:
                 bossspawned = 0
             else:
                 game_beaten = True
+                Persistent_Game_Data= [game_beaten, game_beaten_general, game_beaten_perfect]
+                save = open("Persistent_Game_Data.txt","w")
+                for i in range(len(Persistent_Game_Data)):
+                    save.write(str(Persistent_Game_Data[i]))
+                save.close
                 bossspawned = 0
                 level = 1
                 screenidentity = 1
