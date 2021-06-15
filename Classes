@@ -9,26 +9,31 @@ money_building=pygame.image.load("money_building.png")
 untaken=pygame.image.load("secret_shield.png")
 
 class player:
-    def __init__(self):
-        self.currency = 0
+    def __init__(self,income,moneyproduction,damage,speed,dtm):
+        self.currency = 100
         self.score = 0
         self.character = None
         self.name = None
         self.shield = None
-        self.charge=0
+        self.charge=100
         self.chargemax=100
+        self.income=income
+        self.money_production=moneyproduction
         self.buildings = []
         self.enemies = []
+        self.damage=damage
+        self.bulletspeed=speed
+        self.damagetakenmod=dtm
 
 class healShield:
-    def __init__(self,x,y):
+    def __init__(self,x,y,chargem):
         self.abilitypower = 1
         self.size = 3
         self.chargespeed = 3
         self.speed = 3
         self.abilitymultiplier = 1
         self.sizem = 1
-        self.chargem = 1
+        self.chargem = chargem
         self.speedm = 1
         self.x = x
         self.y = y
@@ -41,14 +46,14 @@ class healShield:
 
 
 class strongshield:
-    def __init__(self,x,y):
+    def __init__(self,x,y,chargem):
         self.abilitypower = 1
         self.size = 3
         self.chargespeed = 3
         self.speed = 3
         self.abilitymultiplier = 1
         self.sizem = 1
-        self.chargem = 1
+        self.chargem = chargem
         self.speedm = 1
         self.x = x
         self.y = y
@@ -58,14 +63,14 @@ class strongshield:
         self.colour=(126, 215, 242)
 
 class attackshield:
-    def __init__(self,x,y):
+    def __init__(self,x,y,chargem):
         self.abilitypower = 1
         self.size = 3
         self.chargespeed = 3
         self.speed = 3
         self.abilitymultiplier = 1
         self.sizem = 1
-        self.chargem = 1
+        self.chargem = chargem
         self.speedm = 1
         self.x = x
         self.y = y
@@ -76,14 +81,14 @@ class attackshield:
 
 
 class businessshield:
-    def __init__(self,x,y):
+    def __init__(self,x,y,chargem):
         self.abilitypower = 1
         self.size = 3
         self.chargespeed = 3
         self.speed = 3
         self.abilitymult = 2
         self.sizem = 1
-        self.chargem = 1
+        self.chargem = chargem
         self.speedm = 1
         self.x = x
         self.y = y
@@ -116,14 +121,13 @@ class attackbuilding:
         self.picture = pygame.transform.scale(attack_building, (60,100))
 
 class healbuilding:
-    def __init__(self,x,y):
+    def __init__(self,x,y,healmod,healingrange):
         self.price = 10
         self.maxhealth = 120
         self.health = 120
-        self.healing = 10
-        self.healingrange = 2
-        self.healm = 1
-        self.range = 1
+        self.healing = 0.05
+        self.healm = healmod
+        self.range = healingrange
         self.width = 100
         self.height = 120
         self.hpbarmod= 0.7
@@ -204,23 +208,25 @@ class buffship(enemyship):
 
 
 class bossship:
-    def __init__(self,ability,x,y,picture):
+    def __init__(self,ability,x,y,picture,width,height):
         self.health = 200
         self.maxhealth = 200
-        self.ability = 1
+        self.ability = ability
         self.damage = 30
         self.attackspeed = 2
         self.x = x
         self.y = y
+        self.width = width
+        self.height = height
+        self.timer = 0
         self.picture=picture
-    def use(self):
-        pass
 
 
 class bullet:
     def __init__(self,shotx,shoty,targetx,targety,shotspeed,bullettype,width,height):
         self.speed = shotspeed
         self.type = bullettype
+        self.health = 20
         self.x = shotx
         self.y = shoty
         self.width = width
@@ -259,3 +265,26 @@ class button():
                 return True
 
         return False
+
+class text:
+    def __init__(self, picture,text,side,name):
+        self.picture=picture
+        self.text=text
+        self.side=side
+        self.name=name
+
+    def draw(self,screen,y):
+        pygame.draw.rect(screen,(0,0,0),(300-2,y-2,800+4,200+4),0)
+        pygame.draw.rect(screen,(250,250,250),(300,y,800,200),0)
+        font = pygame.font.Font('Pixel Digivolve.otf', 20)
+        text=font.render(self.text,1,(0,0,0))
+        screen.blit(text,(320,y+100-text.get_height()/2))
+        screen.blit(self.picture,(70,y))
+        text2=font.render(self.name,1,(0,0,0))
+        screen.blit(text2, (300, y -20 - text.get_height() / 2))
+
+
+
+
+
+
