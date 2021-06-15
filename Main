@@ -122,7 +122,7 @@ Megumin=bossship("EXPLOSION",600,0,"stop asking",300,120)
 final=bossship("Shield",600,200,"leave me alone",191,64)
 enemies=[]
 bullets = []
-boss = [final]
+boss = [Megumin]
 for i in range(6):
     x=400
     a=freespace(x+120*i+10*i,700)
@@ -244,19 +244,18 @@ def windowdraw(number):
                 screen.blit(scaled_mean_player_bullet,(bullets[i].x,bullets[i].y))
             if bullets[i].type == "BOOM":
                 screen.blit(scaled_explosion_boss_bullet, (bullets[i].x, bullets[i].y))
-            for i in range(len(boss)):
-                if boss[i].ability == "Healing":
-                    screen.blit(scaled_mechanic_boss, (boss[i].x, boss[i].y))
-                if boss[i].ability == "Teleportation":
-                    screen.blit(scaled_teleport_boss, (boss[i].x, boss[i].y))
-                if boss[i].ability == "EXPLOSION":
-                    screen.blit(scaled_explosion_boss, (boss[i].x, boss[i].y))
-                if boss[i].ability == "Shield":
-                    screen.blit((scaled_mean_shield), (boss[i].x, boss[i].y))
-                pygame.draw.rect(screen, (0, 0, 0), (boss[i].x + 13 - 2, boss[i].y + boss[i].height + 5 - 2, 54, 14), 0)
-                pygame.draw.rect(screen, (252, 3, 19), (
-                boss[i].x + 13, boss[i].y + boss[i].height + 5, boss[i].maxhealth / 100 * boss[i].health * 0.225, 10),
-                                 0)
+        for i in range(len(boss)):
+            if boss[i].ability == "Healing":
+                screen.blit(scaled_mechanic_boss, (boss[i].x, boss[i].y))
+            if boss[i].ability == "Teleportation":
+                screen.blit(scaled_teleport_boss, (boss[i].x, boss[i].y))
+            if boss[i].ability == "EXPLOSION":
+                screen.blit(scaled_explosion_boss, (boss[i].x, boss[i].y))
+            if boss[i].ability == "Shield":
+                screen.blit((scaled_mean_shield), (boss[i].x, boss[i].y))
+            pygame.draw.rect(screen, (0, 0, 0), (boss[i].x + 13 - 2, boss[i].y + boss[i].height + 5 - 2, 54, 14), 0)
+            pygame.draw.rect(screen, (252, 3, 19), (
+            boss[i].x + 13, boss[i].y + boss[i].height + 5, boss[i].maxhealth / 100 * boss[i].health * 0.225, 10), 0)
 
     if number==5:
         moneytext = small_header_font.render("Money: " + str(player.currency), 1, (0, 0, 0))
@@ -690,7 +689,7 @@ while running:
             if screenidentity==5 :
                 if shopbuttons[0]!=None and shopbuttons[1]!=None and shopbuttons[2]!=None and shopbuttons[3]!=None:
                     for i in range(len(shopbuttons)):
-                        if shopbuttons[i].isOver(pos):
+                        if shopbuttons[i] != None and shopbuttons[i].isOver(pos):
                             for j in range(len(amounts)):
                                 if buttontypes[i]=="money_buff"+str(amounts[j]) and player.currency>=costs[j] and taken[i]=="Untaken":
                                     money_production+=amounts[j]
@@ -925,13 +924,8 @@ while running:
                             bulletstobedeleted.append(i)
                             boss[k].health -= 50
                 for k in range(len(bullets)):
-                    if bullets[i].x >= bullets[k].x and bullets[i].x <= bullets[k].x + bullets[k].width and bullets[i].type == "BOOM" and bullets[k].type == "player" or bullets[i].x + bullets[i].width >= bullets[
-                        k].x and bullets[i].x + bullets[i].width <= bullets[k].x + bullets[k].width and bullets[
-                        i].type == "BOOM" and bullets[k].type == "player":
-                        if bullets[i].y >= bullets[k].y and bullets[i].y <= bullets[k].y + bullets[k].height and \
-                                bullets[i].type == "BOOM" and bullets[k].type == "player" or bullets[i].y + bullets[
-                            i].height >= bullets[k].y and bullets[i].y + bullets[i].height <= bullets[k].y + bullets[
-                            k].height and bullets[i].type == "BOOM" and bullets[k].type == "player":
+                    if bullets[i].x >= bullets[k].x and bullets[i].x <= bullets[k].x + bullets[k].width and bullets[i].type == "BOOM" and bullets[k].type == "player" or bullets[i].x + bullets[i].width >= bullets[k].x and bullets[i].x + bullets[i].width <= bullets[k].x + bullets[k].width and bullets[i].type == "BOOM" and bullets[k].type == "player":
+                        if bullets[i].y >= bullets[k].y and bullets[i].y <= bullets[k].y + bullets[k].height and bullets[i].type == "BOOM" and bullets[k].type == "player" or bullets[i].y + bullets[i].height >= bullets[k].y and bullets[i].y + bullets[i].height <= bullets[k].y + bullets[k].height and bullets[i].type == "BOOM" and bullets[k].type == "player":
                             for j in range(len(bulletstobedeleted)):
                                 if k == bulletstobedeleted[j]:
                                     bulletstobedeleted.pop(j)
@@ -965,6 +959,15 @@ while running:
                                         bulletstobedeleted.pop(j)
                                 bulletstobedeleted.append(i)
                                 player.buildings[k].health-=20-20/100*player.damagetakenmod
+                for k in range(len(player.buildings)):
+                    if player.buildings[k].__class__ != freespace:
+                        if bullets[i].x >= player.buildings[k].x and bullets[i].x <= player.buildings[k].x + player.buildings[k].width and bullets[i].type == "BOOM" or bullets[i].x + bullets[i].width >= player.buildings[k].x and bullets[i].x + bullets[i].width <= player.buildings[k].x + player.buildings[k].width and bullets[i].type == "BOOM":
+                            if bullets[i].y >= player.buildings[k].y and bullets[i].y <= player.buildings[k].y + player.buildings[k].height and bullets[i].type == "BOOM" or bullets[i].y + bullets[i].height >= player.buildings[k].y and bullets[i].y + bullets[i].height <= player.buildings[k].y + player.buildings[k].height and bullets[i].type == "BOOM":
+                                bulletstobedeleted.append(i)
+                                for j in range(len(player.buildings)):
+                                    if player.buildings[j].__class__ != freespace:
+                                        player.buildings[j].health -= 50-50/100*player.damagetakenmod
+
 
                 if bullets[i].x >= player.shield.x and bullets[i].x <= player.shield.x + player.shield.width and bullets[i].type == "fastship" or bullets[i].x + bullets[i].width >= player.shield.x and bullets[i].x + bullets[i].width <= player.shield.x + player.shield.width and bullets[i].type == "fastship":
                     if bullets[i].y >= player.shield.y and bullets[i].y <= player.shield.y + player.shield.height and bullets[i].type == "fastship" or bullets[i].y + bullets[i].height >= player.shield.y and bullets[i].y + bullets[i].height <= player.shield.y + player.shield.height and bullets[i].type == "fastship":
@@ -994,6 +997,21 @@ while running:
                                 player.charge += 2 * player.shield.chargespeed
                                 print(player.charge)
 
+                if bullets[i].x >= player.shield.x and bullets[i].x <= player.shield.x + player.shield.width and bullets[i].type == "BOOM" or bullets[i].x + bullets[i].width >= player.shield.x and bullets[i].x + bullets[i].width <= player.shield.x + player.shield.width and bullets[i].type == "BOOM":
+                    if bullets[i].y >= player.shield.y and bullets[i].y <= player.shield.y + player.shield.height and bullets[i].type == "BOOM" or bullets[i].y + bullets[i].height >= player.shield.y and bullets[i].y + bullets[i].height <= player.shield.y + player.shield.height and bullets[i].type == "BOOM":
+                        bulletstobedeleted.append(i)
+                        if shieldabilityactive != 1 and businessabilityactive != 1:
+                            if player.charge + 2 * player.shield.chargespeed > 100:
+                                player.charge = 100
+                                print(player.charge)
+                            else:
+                                player.charge += 2 * player.shield.chargespeed
+                                print(player.charge)
+                            for j in range(len(player.buildings)):
+                                if player.buildings[j].__class__ != freespace:
+                                    player.buildings[j].health -= 25-25/100*player.damagetakenmod
+
+                            blockscore += 1
 
                 if bullets[i].x + bullets[i].dx + bullets[i].width > 1200 or bullets[i].x + bullets[i].dx < 350 or bullets[i].y + bullets[i].dy +bullets[i].height > 800 or bullets[i].y + bullets[i].dy < 0:
                     for j in range(len(bulletstobedeleted)):
@@ -1010,6 +1028,13 @@ while running:
                     for j in range (len(player.buildings)):
                         if player.buildings[j].__class__!=freespace:
                             player.buildings[j].health-=5-5/100*player.damagetakenmod
+                if bullets[i].y + bullets[i].dy + bullets[i].height >= 720 and bullets[i].type == "BOOM":
+                    explode_sound.play()
+                    bulletstobedeleted.append(i)
+                    for j in range(len(player.buildings)):
+                        if player.buildings[j].__class__ != freespace:
+                            player.buildings[j].health -= 50-50/100*player.damagetakenmod
+
                 if shieldabilityactive ==1:
                     if bullets[i].y >= player.shield.y and bullets[i].y <= player.shield.y + player.shield.height and bullets[i].type == "fastship" or bullets[i].y + bullets[i].height >= player.shield.y and bullets[i].y + bullets[i].height <= player.shield.y + player.shield.height and bullets[i].type == "fastship":
                         for j in range(len(bulletstobedeleted)):
@@ -1021,6 +1046,12 @@ while running:
                             if i == bulletstobedeleted[j]:
                                 bulletstobedeleted.pop(j)
                         bulletstobedeleted.append(i)
+                    if bullets[i].y >= player.shield.y and bullets[i].y <= player.shield.y + player.shield.height and bullets[i].type == "BOOM" or bullets[i].y + bullets[i].height >= player.shield.y and bullets[i].y + bullets[i].height <= player.shield.y + player.shield.height and bullets[i].type == "BOOM":
+                        bulletstobedeleted.append(i)
+                        for j in range(len(player.buildings)):
+                            if player.buildings[j].__class__ != freespace:
+                                player.buildings[j].health -= 25-25/100*player.damagetakenmod
+
                 bullets[i].x += bullets[i].dx
                 bullets[i].y += bullets[i].dy
             for i in range(len(bulletstobedeleted)):
@@ -1043,12 +1074,38 @@ while running:
                         y = player.buildings[i].y + player.buildings[i].height
                         player.buildings[i] = freespace(x, y)
         enemiestobedeleted=[]
+        bosstobedeleted=[]
+        for i in range(len(bullets)):
+            if bullets[i].health <= 0:
+                bulletstobedeleted.append(i)
         for i in range(len(enemies)):
             if enemies[i].health <= 0:
                 enemiestobedeleted.append(i)
         for i in range(len(enemiestobedeleted)):
             destroy_sound.play()
             del enemies[enemiestobedeleted[len(enemiestobedeleted)-i-1]]
+            if boss != []:
+                if boss[0].ability == "Healing":
+                    if boss[0].health + 20 > boss[0].maxhealth:
+                        boss[0].health = boss[0].maxhealth
+                    else:
+                        boss[0].health += 20
+        for i in range(len(boss)):
+            if boss[i].health <= 0:
+                bosstobedeleted.append(i)
+        for i in range(len(bosstobedeleted)):
+            del boss[bosstobedeleted[len(bosstobedeleted) - i - 1]]
+            player.score += 10
+        for i in range(len(boss)):
+            if boss[i].ability == "Shield":
+                for k in range(len(bullets)):
+                    if bullets[k].type == "player" and bullets[k].y > boss[i].y or bullets[k].type == "meanplayer" and \
+                            bullets[k].y > boss[i].y:
+                        if bullets[k].x + bullets[k].width / 2 > boss[i].x + boss[i].width / 2:
+                            boss[i].x += 5
+                        if bullets[k].x + bullets[k].width / 2 < boss[i].x + boss[i].width / 2:
+                            boss[i].x -= 5
+                        break
     if screenidentity==4 and timer==40:
         player.currency+=player.income
         timer=0
