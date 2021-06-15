@@ -72,7 +72,7 @@ factorystorage=0
 moneyscore=0
 blockscore=0
 cutscenenumber=0
-
+bossspawned=0
 def enemyspawn():
     buffpresent=0
     for i in range(3):
@@ -122,7 +122,7 @@ Megumin=bossship("EXPLOSION",600,0,"stop asking",300,120)
 final=bossship("Shield",600,200,"leave me alone",191,64)
 enemies=[]
 bullets = []
-boss = [Megumin]
+boss = []
 for i in range(6):
     x=400
     a=freespace(x+120*i+10*i,700)
@@ -458,6 +458,23 @@ running = True
 enemyspawn()
 while running:
     current_time = pygame.time.get_ticks()
+    if level == 1 and bossspawned == 0 and screenidentity == 4:
+        if current_time > 1000:
+            enemyspawn()
+            bossspawned = 1
+    if level == 2 and bossspawned == 0 and screenidentity == 4:
+        boss = [junkyard]
+        bossspawned = 1
+    if level == 3 and bossspawned == 0 and screenidentity == 4:
+        boss = [teleport]
+        bossspawned = 1
+    if level == 4 and bossspawned == 0 and screenidentity == 4:
+        boss = [Megumin]
+        bossspawned = 1
+    if level == 5 and bossspawned == 0 and screenidentity == 4:
+        boss = [final]
+        bossspawned = 1
+
     for i in range(len(player.buildings)):
         if player.buildings[i].__class__ == healbuilding:
             if businessabilityactive == 1:
@@ -715,6 +732,10 @@ while running:
                             if buttontypes[i]=="chargespd" and player.currency>=300 and taken[i]=="Untaken":
                                 chargemod+=1
                                 player.currency-=300
+                if shopcontinuebutton.isOver(pos):
+                    enemyspawn()
+                    level += 1
+                    screenidentity = 4
             if screenidentity==6 and cutscenenumber==0 and sceneline<=3:
                 sceneline+=1
             if screenidentity==6 and cutscenenumber==0 and sceneline==4:
@@ -844,6 +865,8 @@ while running:
                     r = random.randrange(0, 50)
                 else:
                     r = 2
+            else:
+                r = 2
             if enemies[i].x + enemies[i].width < 1200 and enemies[i].direction == "r":
                 if r == 1:
                     if enemies[i].x + enemies[i].width + 200 > 1200:
@@ -1117,9 +1140,23 @@ while running:
                         if bullets[k].x + bullets[k].width / 2 < boss[i].x + boss[i].width / 2:
                             boss[i].x -= 5
                         break
-        if current_time - enemyspawntimer > 20000:
+        if current_time - enemyspawntimer > 20000 and boss != []:
             enemyspawn()
             enemyspawntimer = current_time
+        if boss == [] and enemies == []:
+            if level != 5:
+                screenidentity = 5
+                bossspawned = 0
+            else:
+                game_beaten = True
+                bossspawned = 0
+                level = 1
+                screenidentity = 1
+                junkyard = bossship("Healing", 600, 0, "idfk", 300, 120)
+                teleport = bossship("Teleportation", 600, 0, "stilldfk", 300, 120)
+                Megumin = bossship("EXPLOSION", 600, 0, "stop asking", 300, 120)
+                final = bossship("Shield", 600, 200, "leave me alone", 191, 64)
+                enemyspawn()
     if screenidentity==4 and timer==40:
         player.currency+=player.income
         timer=0
