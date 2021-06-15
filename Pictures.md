@@ -52,7 +52,20 @@
 
 - Boss 1
 
-![boss_1](https://user-images.githubusercontent.com/84735216/120809122-0fe74a80-c54a-11eb-8a6a-81f910d8be07.png)
+![Mechanic_Boss](https://user-images.githubusercontent.com/84735216/122052626-2ad97a80-cde6-11eb-9376-344c329b19fd.png)
+
+- Boss 2
+
+![Teleport_Boss](https://user-images.githubusercontent.com/84735216/122052628-2b721100-cde6-11eb-8384-d33100067c87.png)
+
+- Boss 3
+
+![BOOMBOI](https://user-images.githubusercontent.com/84735216/122052631-2c0aa780-cde6-11eb-9b9d-1e3f1d77da00.png)
+
+- Boss 3 projectile
+
+![BOOMBOISON](https://user-images.githubusercontent.com/84735216/122052637-2d3bd480-cde6-11eb-97ca-8b7298a38100.png)
+
 
 # Portraits (i made speaking gifs in case we need em)
 - Heal Lizard
