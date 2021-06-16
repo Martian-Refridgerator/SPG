@@ -208,7 +208,7 @@ class buffship(enemyship):
 
 
 class bossship:
-    def __init__(self,ability,x,y,picture,width,height,maxhealth):
+    def __init__(self,ability,x,y,picture,width,height,maxhealth,hpbarmod):
         self.health = maxhealth
         self.maxhealth = maxhealth
         self.ability = ability
@@ -220,7 +220,7 @@ class bossship:
         self.height = height
         self.timer = 0
         self.picture=picture
-
+        self.hpbarmod=hpbarmod
 
 class bullet:
     def __init__(self,shotx,shoty,targetx,targety,shotspeed,bullettype,width,height,damage):
