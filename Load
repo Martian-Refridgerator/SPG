@@ -425,5 +425,3 @@ c13t2=main_font.render("the Khvlik'i managed to form an alliance with humanity."
 c13t3=main_font.render("Peace has returned to the world",1,(0,0,0))
 
 c13t=[c13t1,c13t2,c13t3]
-
-
