@@ -632,6 +632,8 @@ while running:
                 load.close()
                 for i in range(len(Game_Data)):
                     Game_Data[i] = Game_Data_WHY[i]
+                    if i == 7:
+                        level = Game_Data[i]
                     if i == 9:
                         player.score = Game_Data[i]
                     if i == 10:
@@ -640,7 +642,10 @@ while running:
                         player.character = Game_Data[i]
                     player.name = "Name"
                     nametext = small_header_font.render(player.name, 1, (0, 0, 0))
+                bossspawned = 0
+                print(level)
                 screenidentity = 4
+                print(level)
             if quitbutton.isOver(pos) and screenidentity == 1:
                 screenidentity=6
                 menu_sound.play()
@@ -812,8 +817,8 @@ while running:
                         mixer.music.load("BeepBox-Song.wav")
                         mixer.music.play(-1)
                         level = 2
-                        Game_Data = [income, money_production, healmod, healingrange, bulletspeed, damagetakenmod,
-                                     chargemod, level, cutscenenumber, player.character, player.score, player.currency]
+                        Game_Data = [income, money_production, healmod, healingrange, bulletspeed, damagetakenmod, chargemod,
+                             level, cutscenenumber, player.score, player.currency, player.character]
                         save = open("Non-Persistent_Data.txt", "w")
                         for i in range(len(Game_Data)):
                             save.write(str(Game_Data[i]))
@@ -825,8 +830,8 @@ while running:
                         mixer.music.load("BeepBox-Song.wav")
                         mixer.music.play(-1)
                         level = 3
-                        Game_Data = [income, money_production, healmod, healingrange, bulletspeed, damagetakenmod,
-                                     chargemod, level, cutscenenumber, player.character, player.score, player.currency]
+                        Game_Data = [income, money_production, healmod, healingrange, bulletspeed, damagetakenmod, chargemod,
+                             level, cutscenenumber, player.score, player.currency, player.character]
                         save = open("Non-Persistent_Data.txt", "w")
                         for i in range(len(Game_Data)):
                             save.write(str(Game_Data[i]))
@@ -839,7 +844,8 @@ while running:
                         mixer.music.play(-1)
                         level = 4
                         Game_Data = [income, money_production, healmod, healingrange, bulletspeed, damagetakenmod,
-                                     chargemod, level, cutscenenumber, player.character, player.score, player.currency]
+                                     chargemod,
+                                     level, cutscenenumber, player.score, player.currency, player.character]
                         save = open("Non-Persistent_Data.txt", "w")
                         for i in range(len(Game_Data)):
                             save.write(str(Game_Data[i]))
@@ -851,8 +857,7 @@ while running:
                         mixer.music.load("BeepBox-Song.wav")
                         mixer.music.play(-1)
                         level = 5
-                        Game_Data = [income, money_production, healmod, healingrange, bulletspeed, damagetakenmod,
-                                     chargemod, level, cutscenenumber, player.character, player.score, player.currency]
+                        Game_Data = [income, money_production, healmod, healingrange, bulletspeed, damagetakenmod,chargemod,level, cutscenenumber, player.score, player.currency, player.character]
                         save = open("Non-Persistent_Data.txt", "w")
                         for i in range(len(Game_Data)):
                             save.write(str(Game_Data[i]))
