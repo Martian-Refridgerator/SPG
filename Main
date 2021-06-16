@@ -4,6 +4,7 @@ pygame.init()
 from Classes import *
 from pygame import mixer
 import random
+import os.path
 pygame.mouse.set_cursor(*pygame.cursors.arrow)
 income=1
 money_production=0
@@ -15,6 +16,7 @@ bulletspeed=4
 damagetakenmod=0
 enemyspawntimer=0
 chargemod=1
+buildingdied=0
 playermods=[income,money_production,damage,bulletspeed,damagetakenmod]
 player=player(income,money_production,damage,bulletspeed,damagetakenmod)
 playerstuff=[player.income,player.money_production,player.damage,player.bulletspeed,player.damagetakenmod]
@@ -53,7 +55,7 @@ deleting_active=False
 action_active=False
 level=1
 active = False
-game_beaten=1
+game_beaten=0
 game_beaten_general=0
 game_beaten_perfect=0
 movingright=0
@@ -73,6 +75,20 @@ moneyscore=0
 blockscore=0
 cutscenenumber=0
 bossspawned=0
+Game_Data_Permanent=[]
+if os.path.isfile('Persistent_Game_Data.txt'):
+    loadpermanent=open("Persistent_Game_Data.txt","r")
+    for line in loadpermanent:
+        Game_Data_Permanent.append(int(line))
+    loadpermanent.close()
+    for i in range(len(Game_Data_Permanent)):
+        if i == 0:
+            game_beaten = Game_Data_Permanent[i]
+        if i == 1:
+            game_beaten_general = Game_Data_Permanent[i]
+        if i == 2:
+            game_beaten_perfect = Game_Data_Permanent[i]
+
 def enemyspawn():
     buffpresent=0
     for i in range(3):
@@ -116,10 +132,10 @@ def healability():
     player.charge=0
 
 
-junkyard=bossship("Healing",600,0,"idfk",300,120,200)
-teleport=bossship("Teleportation",600,0,"stilldfk",300,120,300)
-Megumin=bossship("EXPLOSION",600,0,"stop asking",300,120,300)
-final=bossship("Shield",600,200,"leave me alone",191,64,400)
+junkyard = bossship("Healing", 600, 0, "idfk", 300, 120, 200, 0.745)
+teleport = bossship("Teleportation", 600, 0, "stilldfk", 300, 120, 300, 0.33)
+Megumin = bossship("EXPLOSION", 600, 0, "stop asking", 300, 120, 300, 0.33)
+final = bossship("Shield", 600, 200, "leave me alone", 191, 64, 400, 0.2)
 enemies=[]
 bullets = []
 boss = []
@@ -268,9 +284,9 @@ def windowdraw(number):
             if boss[i].ability == "Shield":
                 screen.blit(boss4name, (20, 40))
                 screen.blit((scaled_mean_shield), (boss[i].x, boss[i].y))
-            pygame.draw.rect(screen, (250, 250, 250), (20-2,70-2,300+2,50+4), 0)
+            pygame.draw.rect(screen, (250, 250, 250), (20 - 2, 70 - 2, 300 + 2, 50 + 4), 0)
             pygame.draw.rect(screen, (252, 3, 19), (
-            20,70, boss[i].maxhealth / 100 * boss[i].health*0.745, 50), 0)
+                20, 70, boss[i].maxhealth / 100 * boss[i].health * boss[i].hpbarmod, 50), 0)
 
     if number==5:
         moneytext = small_header_font.render("Money: " + str(player.currency), 1, (0, 0, 0))
@@ -557,13 +573,13 @@ while running:
                             if player.buildings[i - k - 1].health + (player.buildings[i].healing+player.buildings[i].healing/100*player.buildings[i].healm) <= player.buildings[i - k - 1].maxhealth:
                                 player.buildings[i - k - 1].health += player.buildings[i].healing+player.buildings[i].healing/100*player.buildings[i].healm
         if player.buildings[i].__class__ == factory:
-            if factorystorage < 40+40/100*player.money_production:
+            if factorystorage < 40:
                 if businessabilityactive ==1:
-                    factorystorage += 0.1 * player.shield.abilitymult
+                    factorystorage += (0.1+0.1/100*player.money_production) * player.shield.abilitymult
                 else:
-                    factorystorage+=0.1
-            if factorystorage >= 40+40/100*player.money_production:
-                player.currency+=40+40/100*player.money_production
+                    factorystorage+=0.1+0.1/100*player.money_production
+            if factorystorage >= 40:
+                player.currency+=40
                 factorystorage=0
                 moneyscore+=1
 
@@ -621,10 +637,11 @@ while running:
                 active = False
             if startbutton.isOver(pos) and screenidentity == 1:
                 menu_sound.play()
+                buildingdied = 0
                 screenidentity=2
             if continuebutton.isOver(pos) and screenidentity == 1:
                 Game_Data = [income, money_production, healmod, healingrange, bulletspeed, damagetakenmod, chargemod,
-                             level, cutscenenumber, player.score, player.currency, player.character]
+                             level, cutscenenumber, player.score, player.currency, player.character,buildingdied]
                 Game_Data_WHY = []
                 load = open("Non-Persistent_Data.txt", "r")
                 for line in load:
@@ -632,20 +649,42 @@ while running:
                 load.close()
                 for i in range(len(Game_Data)):
                     Game_Data[i] = Game_Data_WHY[i]
+                    if i == 0:
+                        income = Game_Data[i]
+                    if i == 1:
+                        money_production = Game_Data[i]
+                    if i == 2:
+                        healmod = Game_Data[i]
+                    if i == 3:
+                        healingrange = Game_Data[i]
+                    if i == 4:
+                        bulletspeed = Game_Data[i]
+                    if i == 5:
+                        damagetakenmod = Game_Data[i]
+                    if i == 6:
+                        chargemod = Game_Data[i]
                     if i == 7:
                         level = Game_Data[i]
+                    if i == 8:
+                        cutscenenumber = Game_Data[i]
                     if i == 9:
                         player.score = Game_Data[i]
                     if i == 10:
                         player.currency = Game_Data[i]
                     if i == 11:
                         player.character = Game_Data[i]
-                    player.name = "Name"
+                    if i == 12:
+                        buildingdied = Game_Data[i]
+                    loadname = open("Name.txt","r")
+                    player.name = loadname.read()
+                    loadname.close()
                     nametext = small_header_font.render(player.name, 1, (0, 0, 0))
                 bossspawned = 0
-                print(level)
+                print([income, money_production, healmod, healingrange, bulletspeed, damagetakenmod, chargemod,
+                 level, cutscenenumber, player.score, player.currency, player.character])
                 screenidentity = 4
-                print(level)
+                print([income, money_production, healmod, healingrange, bulletspeed, damagetakenmod, chargemod,
+                             level, cutscenenumber, player.score, player.currency, player.character])
             if quitbutton.isOver(pos) and screenidentity == 1:
                 screenidentity=6
                 menu_sound.play()
@@ -818,12 +857,15 @@ while running:
                         mixer.music.play(-1)
                         level = 2
                         Game_Data = [income, money_production, healmod, healingrange, bulletspeed, damagetakenmod, chargemod,
-                             level, cutscenenumber, player.score, player.currency, player.character]
+                             level, cutscenenumber, player.score, player.currency, player.character,buildingdied]
                         save = open("Non-Persistent_Data.txt", "w")
                         for i in range(len(Game_Data)):
                             save.write(str(Game_Data[i]))
                             save.write("\n")
                         save.close()
+                        savename = open("Name.txt","w")
+                        savename.write(player.name)
+                        savename.close()
                     elif level==2:
                         screenidentity = 6
                         cutscenenumber = 6
@@ -831,7 +873,7 @@ while running:
                         mixer.music.play(-1)
                         level = 3
                         Game_Data = [income, money_production, healmod, healingrange, bulletspeed, damagetakenmod, chargemod,
-                             level, cutscenenumber, player.score, player.currency, player.character]
+                             level, cutscenenumber, player.score, player.currency, player.character,buildingdied]
                         save = open("Non-Persistent_Data.txt", "w")
                         for i in range(len(Game_Data)):
                             save.write(str(Game_Data[i]))
@@ -845,7 +887,7 @@ while running:
                         level = 4
                         Game_Data = [income, money_production, healmod, healingrange, bulletspeed, damagetakenmod,
                                      chargemod,
-                                     level, cutscenenumber, player.score, player.currency, player.character]
+                                     level, cutscenenumber, player.score, player.currency, player.character,buildingdied]
                         save = open("Non-Persistent_Data.txt", "w")
                         for i in range(len(Game_Data)):
                             save.write(str(Game_Data[i]))
@@ -857,7 +899,7 @@ while running:
                         mixer.music.load("BeepBox-Song.wav")
                         mixer.music.play(-1)
                         level = 5
-                        Game_Data = [income, money_production, healmod, healingrange, bulletspeed, damagetakenmod,chargemod,level, cutscenenumber, player.score, player.currency, player.character]
+                        Game_Data = [income, money_production, healmod, healingrange, bulletspeed, damagetakenmod,chargemod,level, cutscenenumber, player.score, player.currency, player.character,buildingdied]
                         save = open("Non-Persistent_Data.txt", "w")
                         for i in range(len(Game_Data)):
                             save.write(str(Game_Data[i]))
@@ -1101,22 +1143,6 @@ while running:
                                     bulletstobedeleted.pop(j)
                             bulletstobedeleted.append(i)
                             boss[k].health -= 50
-                for k in range(len(bullets)):
-                    if bullets[i].x >= bullets[k].x and bullets[i].x <= bullets[k].x + bullets[k].width and bullets[i].type == "BOOM" and bullets[k].type == "player" or bullets[i].x + bullets[i].width >= bullets[k].x and bullets[i].x + bullets[i].width <= bullets[k].x + bullets[k].width and bullets[i].type == "BOOM" and bullets[k].type == "player":
-                        if bullets[i].y >= bullets[k].y and bullets[i].y <= bullets[k].y + bullets[k].height and bullets[i].type == "BOOM" and bullets[k].type == "player" or bullets[i].y + bullets[i].height >= bullets[k].y and bullets[i].y + bullets[i].height <= bullets[k].y + bullets[k].height and bullets[i].type == "BOOM" and bullets[k].type == "player":
-                            for j in range(len(bulletstobedeleted)):
-                                if k == bulletstobedeleted[j]:
-                                    bulletstobedeleted.pop(j)
-                            bulletstobedeleted.append(k)
-                            bullets[i].health -= 4
-
-                    if bullets[i].x >= bullets[k].x and bullets[i].x <= bullets[k].x + bullets[k].width and bullets[i].type == "BOOM" and bullets[k].type == "meanplayer" or bullets[i].x + bullets[i].width >=bullets[k].x and bullets[i].x + bullets[i].width <= bullets[k].x + bullets[k].width and bullets[i].type == "BOOM" and bullets[k].type == "meanplayer":
-                        if bullets[i].y >= bullets[k].y and bullets[i].y <= bullets[k].y + bullets[k].height and bullets[i].type == "BOOM" and bullets[k].type == "meanplayer" or bullets[i].y + bullets[i].height >= bullets[k].y and bullets[i].y + bullets[i].height <= bullets[k].y + bullets[k].height and bullets[i].type == "BOOM" and bullets[k].type == "meanplayer":
-                            for j in range(len(bulletstobedeleted)):
-                                if k == bulletstobedeleted[j]:
-                                    bulletstobedeleted.pop(j)
-                            bulletstobedeleted.append(k)
-                            bullets[i].health -= 20
                 for k in range(len(player.buildings)):
                     if player.buildings[k].__class__ != freespace:
                         if bullets[i].x >= player.buildings[k].x and bullets[i].x <= player.buildings[k].x + player.buildings[k].width and bullets[i].type == "fastship" or bullets[i].x + bullets[i].width >= player.buildings[k].x and bullets[i].x + bullets[i].width <= player.buildings[k].x + player.buildings[k].width and bullets[i].type == "fastship":
@@ -1244,16 +1270,11 @@ while running:
 
                 bullets[i].x += bullets[i].dx
                 bullets[i].y += bullets[i].dy
-            for i in range(len(bullets)):
-                if bullets[i].health <= 0:
-                    for j in range(len(bulletstobedeleted)):
-                        if i == bulletstobedeleted[j]:
-                            bulletstobedeleted.pop(j)
-                    bulletstobedeleted.append(i)
             for i in range(len(bulletstobedeleted)):
                 del bullets[bulletstobedeleted[len(bulletstobedeleted)-i-1]]
             for i in range(len(player.buildings)):
                 if player.buildings[i].__class__!=freespace and player.buildings[i].health <= 0:
+                    buildingdied = 1
                     if player.buildings[i].__class__ == attackbuilding:
                         destroy_sound.play()
                         x = player.buildings[i].x
@@ -1352,18 +1373,23 @@ while running:
                 pygame.mouse.set_cursor(*pygame.cursors.arrow)
             if level>5:
                 game_beaten = 1
+                if player.character == 4:
+                    game_beaten_general = 1
+                if buildingdied == 0:
+                    game_beaten_perfect = 1
                 Persistent_Game_Data = [game_beaten, game_beaten_general, game_beaten_perfect]
                 save = open("Persistent_Game_Data.txt", "w")
                 for i in range(len(Persistent_Game_Data)):
                     save.write(str(Persistent_Game_Data[i]))
+                    save.write("\n")
                 save.close
                 bossspawned = 0
                 level = 1
                 screenidentity = 1
-                junkyard = bossship("Healing", 600, 0, "idfk", 300, 120,200)
-                teleport = bossship("Teleportation", 600, 0, "stilldfk", 300, 120,300)
-                Megumin = bossship("EXPLOSION", 600, 0, "stop asking", 300, 120,300)
-                final = bossship("Shield", 600, 200, "leave me alone", 191, 64,400)
+                junkyard = bossship("Healing", 600, 0, "idfk", 300, 120, 200, 0.745)
+                teleport = bossship("Teleportation", 600, 0, "stilldfk", 300, 120, 300, 0.33)
+                Megumin = bossship("EXPLOSION", 600, 0, "stop asking", 300, 120, 300, 0.33)
+                final = bossship("Shield", 600, 200, "leave me alone", 191, 64, 400, 0.2)
                 enemyspawn()
     if screenidentity==4 and timer==40:
         player.currency+=player.income
