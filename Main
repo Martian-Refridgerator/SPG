@@ -221,15 +221,18 @@ def windowdraw(number):
                 if enemies[i].buff == "Firerate":
                     screen.blit(scaled_buff_ship_firerate, (enemies[i].x, enemies[i].y))
                     for j in range(len(enemies)):
-                        if enemies[j].__class__==fastship or enemies[j].__class__==strongship:
-                            enemies[j].attackspeed+=0.1
+                        if enemies[j].__class__==fastship and enemies[j].attackspeed<3 or enemies[j].__class__==strongship and enemies[j].attackspeed<2:
+                            enemies[j].attackspeed+=1
                 if enemies[i].buff == "Projectile_speed":
                     screen.blit(scaled_buff_ship_speed, (enemies[i].x, enemies[i].y))
                     for j in range(len(enemies)):
-                        if enemies[j].__class__==fastship or enemies[j].__class__==strongship:
+                        if enemies[j].__class__==fastship and enemies[j].shotspeed<2 or enemies[j].__class__==strongship and enemies[j].shotspeed<2:
                             enemies[j].shotspeed+=1
                 if enemies[i].buff == "Strength":
                     for j in range(len(bullets)):
+                        if bullets[j].type=="strongship" and bullets[j].damage<45:
+                            bullets[j].damage+=10
+                        if bullets[j].type=="fastship" and bullets[j].damage<30:
                             bullets[j].damage+=10
                     screen.blit(scaled_buff_ship_strength, (enemies[i].x, enemies[i].y))
             pygame.draw.rect(screen, (0, 0, 0), (enemies[i].x+13 - 2, enemies[i].y+enemies[i].height+5 - 2, 54, 14), 0)
