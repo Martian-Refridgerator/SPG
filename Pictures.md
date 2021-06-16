@@ -136,3 +136,13 @@
 
 ![humantown](https://user-images.githubusercontent.com/84735216/121912402-d922e880-cd30-11eb-82ca-624920ba3379.png)
 
+# Shop icons
+![more_money](https://user-images.githubusercontent.com/84735216/122209487-dc3ee580-cea4-11eb-95aa-528659e6bde2.png)
+![passive_money](https://user-images.githubusercontent.com/84735216/122209489-dcd77c00-cea4-11eb-9bd2-7672ea214c29.png)
+![charge](https://user-images.githubusercontent.com/84735216/122209496-dfd26c80-cea4-11eb-82c9-024016f8cbed.png)
+![healing_amount](https://user-images.githubusercontent.com/84735216/122209504-e234c680-cea4-11eb-82a9-9bb00fc41da1.png)
+![healing_range](https://user-images.githubusercontent.com/84735216/122209505-e234c680-cea4-11eb-8592-fc308cea2ba8.png)
+![damage](https://user-images.githubusercontent.com/84735216/122209510-e52fb700-cea4-11eb-884a-30e30355b52e.png)
+![damage_taken](https://user-images.githubusercontent.com/84735216/122209511-e52fb700-cea4-11eb-850e-f0ccdc11e5bf.png)
+![bullet_speed](https://user-images.githubusercontent.com/84735216/122209520-e7921100-cea4-11eb-9c6e-4dddaf6222e0.png)
+
