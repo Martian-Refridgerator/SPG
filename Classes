@@ -3,100 +3,84 @@ import pygame
 import math
 pygame.init()
 
+# Loading images for buldings
 attack_building=pygame.image.load("attack_building.png")
 heal_building=pygame.image.load("heal_building.png")
 money_building=pygame.image.load("money_building.png")
 untaken=pygame.image.load("secret_shield.png")
 
+# Player Class
 class player:
     def __init__(self,income,moneyproduction,damage,speed,dtm):
-        self.currency = 100
-        self.score = 0
-        self.character = None
-        self.name = None
-        self.shield = None
+        self.currency = 200 # Money to buy stuff with
+        self.score = 0      # Accumulated points
+        self.character = None   # Number of Character
+        self.__name = None   # Player Name
+        self.shield = None   # Shield Type
         self.charge=100
-        self.chargemax=100
-        self.income=income
-        self.money_production=moneyproduction
-        self.buildings = []
-        self.enemies = []
-        self.damage=damage
-        self.bulletspeed=speed
-        self.damagetakenmod=dtm
+        self.chargemax=100   # Maximum charge possible-abilities
+        self.income=income   # Passive money gain
+        self.money_production=moneyproduction  # Modifier for the speed of generation buildings making money
+        self.buildings = []   # Player Buildings
+        self.enemies = []     # All Enemies
+        self.damage=damage    # Modifier for player damage
+        self.bulletspeed=speed # Modifier for player bullet speed
+        self.damagetakenmod=dtm # How much is damage taken lowered
 
+    # Name setter and getter
+    def setname(self,name):
+        self.__name=name
+    def getname(self):
+        return self.__name
+
+# Shields
 class healShield:
     def __init__(self,x,y,chargem):
-        self.abilitypower = 1
-        self.size = 3
-        self.chargespeed = 3
-        self.speed = 3
-        self.abilitymultiplier = 1
-        self.sizem = 1
-        self.chargem = chargem
-        self.speedm = 1
-        self.x = x
-        self.y = y
-        self.width = 191
-        self.height = 64
-        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
-        self.colour= (161, 255, 107)
+        self.chargespeed = 3 # How quick the charge goes up
+        self.chargem = chargem # Modifier for charging
+        self.x = x # x of shield
+        self.y = y # y of shield
+        self.width = 191 # width of shield
+        self.height = 64 # height of shield
+        self.colour= (161, 255, 107) # colour of the character the shield belongs to
 
 
 
 
 class strongshield:
     def __init__(self,x,y,chargem):
-        self.abilitypower = 1
-        self.size = 3
         self.chargespeed = 3
-        self.speed = 3
-        self.abilitymultiplier = 1
-        self.sizem = 1
         self.chargem = chargem
-        self.speedm = 1
         self.x = x
         self.y = y
         self.width = 191
         self.height = 64
-        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
         self.colour=(126, 215, 242)
-
+# Same as above
 class attackshield:
     def __init__(self,x,y,chargem):
-        self.abilitypower = 1
-        self.size = 3
         self.chargespeed = 3
-        self.speed = 3
-        self.abilitymultiplier = 1
-        self.sizem = 1
         self.chargem = chargem
-        self.speedm = 1
         self.x = x
         self.y = y
         self.width = 191
         self.height = 64
-        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
         self.colour= (235, 80, 80)
 
-
+# Same as above
 class businessshield:
     def __init__(self,x,y,chargem):
-        self.abilitypower = 1
-        self.size = 3
         self.chargespeed = 3
-        self.speed = 3
-        self.abilitymult = 2
-        self.sizem = 1
+        self.abilitymult = 2 # Multiplier its ability gives
         self.chargem = chargem
         self.speedm = 1
         self.x = x
         self.y = y
         self.width = 191
         self.height = 64
-        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
         self.colour=(242, 228, 126)
-
+# Same as above
+# Special building class for unoccupied spaces
 class freespace:
     def __init__(self,x,y):
         self.x=x
@@ -104,20 +88,16 @@ class freespace:
         self.picture=pygame.transform.scale(untaken, (120,20))
 class attackbuilding:
     def __init__(self,x,y):
-        self.price = 10
         self.maxhealth = 100
         self.health = 100
         self.damage = 10
-        self.attackspeed = 2
-        self.shotspeed = 1
-        self.damagem = 1
-        self.speedm = 1
+        self.attackspeed = 2 # Firerate
+        self.shotspeed = 1 # How quick the bullet moves
         self.width = 60
         self.height = 100
-        self.hpbarmod=1
+        self.hpbarmod=1 # Modifier for its hp bar
         self.x = x
         self.y = y - self.height+10
-        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
         self.picture = pygame.transform.scale(attack_building, (60,100))
 
 class healbuilding:
@@ -125,41 +105,34 @@ class healbuilding:
         self.price = 10
         self.maxhealth = 120
         self.health = 120
-        self.healing = 0.05
-        self.healm = healmod
-        self.range = healingrange
+        self.healing = 0.05 # How much it heals passively
+        self.healm = healmod # Modifier for healing
+        self.range = healingrange # Range of healing
         self.width = 100
         self.height = 120
         self.hpbarmod= 0.7
         self.x = x
         self.y = y - self.height+20
-        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
         self.picture = pygame.transform.scale(heal_building, (100,120))
 
 
 class factory:
     def __init__(self,x,y):
-        self.price = 10
         self.maxhealth = 80
         self.health = 80
-        self.productionspeed = 1
-        self.value = 5
-        self.speedm = 1
-        self.valuem = 1
         self.width=70
         self.height=150
         self.hpbarmod=1.57
         self.x = x
         self.y = y - self.height
-        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
         self.picture = pygame.transform.scale(money_building, (70,160))
-    def produce(self):
-        pass
+# All enemy ships
 class enemyship:
     def __init__(self):
         self.maxhealth= 150
         self.health= 150
         self.size= 30
+#Enemy ship with big strong bullets
 class strongship(enemyship):
     def __init__(self,x,y,spawntime):
         super().__init__()
@@ -167,15 +140,13 @@ class strongship(enemyship):
         self.damage = 10
         self.attackspeed = 1
         self.shotspeed = 1
-        self.healthm = 1
         self.x = x
         self.y = y
-        self.timer=spawntime
+        self.timer=spawntime # Timer for one to spawn
         self.width = 80
         self.height = 80
-        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
-        self.direction = "r"
-
+        self.direction = "r" # Direction in which it moves
+# Enemy ship with fast weaker bullets
 class fastship(enemyship):
     def __init__(self,x,y,spawntime):
         super().__init__()
@@ -188,30 +159,27 @@ class fastship(enemyship):
         self.timer=spawntime
         self.width = 80
         self.height = 80
-        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
         self.direction = "r"
-
+# Enemy ship that buffs the other ships
 class buffship(enemyship):
     def __init__(self,bufftype,x,y,spawntime):
         super().__init__()
         self.speed = 1
-        self.bufftype = None
-        self.buff = bufftype
-        self.range = 1
+        self.bufftype = None # Type of buff it gives(can be dmg,firerate or bullet speed)
+        self.buff = bufftype #^ just for a few other uses
         self.x = x
         self.y = y
         self.timer=spawntime
         self.width = 80
         self.height = 80
-        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
         self.direction = "r"
 
-
+# Class for all different bosses
 class bossship:
     def __init__(self,ability,x,y,picture,width,height,maxhealth,hpbarmod):
         self.health = maxhealth
         self.maxhealth = maxhealth
-        self.ability = ability
+        self.ability = ability# The ability it uses
         self.damage = 30
         self.attackspeed = 2
         self.x = x
@@ -220,23 +188,24 @@ class bossship:
         self.height = height
         self.timer = 0
         self.picture=picture
-        self.hpbarmod=hpbarmod
+        self.hpbarmod=hpbarmod #Modifier for hp bar
 
+
+# Class for bullets
 class bullet:
     def __init__(self,shotx,shoty,targetx,targety,shotspeed,bullettype,width,height,damage):
         self.speed = shotspeed
-        self.type = bullettype
+        self.type = bullettype # Which buildng/ship shot it
         self.health = 20
         self.x = shotx
         self.y = shoty
         self.width = width
         self.height = height
         self.damage=damage
-        self.angle = math.atan2(targety-shoty,targetx-shotx)
-        self.dx = math.cos(self.angle)*self.speed
-        self.dy = math.sin(self.angle)*self.speed
-        self.hitbox = pygame.rect.Rect((self.x, self.y), (self.width, self.height))
-
+        self.angle = math.atan2(targety-shoty,targetx-shotx) # Angle at which it shoots based on cursor position
+        self.dx = math.cos(self.angle)*self.speed # how much it moves on the x axis
+        self.dy = math.sin(self.angle)*self.speed # how much it moves on the y axis
+# Class for buttons
 class button():
     def __init__(self, color, x,y,width,height, text=''):
         self.color = color
@@ -249,32 +218,34 @@ class button():
     def draw(self, screen, outline=None):
         # Call this method to draw the button on the screen
         if outline:
+            # If the button has outline
             pygame.draw.rect(screen, outline, (self.x - 2, self.y - 2, self.width + 4, self.height + 4), 0)
 
         pygame.draw.rect(screen, self.color, (self.x, self.y, self.width, self.height), 0)
 
         if self.text != '':
-            font = pygame.font.Font('Pixel Digivolve.otf', 20)
-            text = font.render(self.text, 1, (0, 0, 0))
+
+            font = pygame.font.Font('Pixel Digivolve.otf', 20) # Loads Font
+            text = font.render(self.text, 1, (0, 0, 0)) # Loads Text
             screen.blit(text, (
             self.x + (self.width / 2 - text.get_width() / 2), self.y + (self.height / 2 - text.get_height() / 2)))
 
-    def isOver(self, pos):
-        # Pos is the mouse position or a tuple of (x,y) coordinates
+    def isOver(self, pos): # To change colout when moused over
+        # Pos is the mouse position
         if pos[0] > self.x and pos[0] < self.x + self.width:
             if pos[1] > self.y and pos[1] < self.y + self.height:
                 return True
 
         return False
 
-class text:
+class text: # Class for cutscene text
     def __init__(self, picture,text,side,name):
-        self.picture=picture
+        self.picture=picture # Picture of person speaking
         self.text=text
-        self.side=side
-        self.name=name
+        self.side=side # ally or enemy
+        self.name=name # name of person speaking
 
-    def draw(self,screen,y):
+    def draw(self,screen,y): # Draws the text
         pygame.draw.rect(screen,(0,0,0),(300-2,y-2,800+4,200+4),0)
         pygame.draw.rect(screen,(250,250,250),(300,y,800,200),0)
         font = pygame.font.Font('Pixel Digivolve.otf', 20)
@@ -283,9 +254,6 @@ class text:
         screen.blit(self.picture,(70,y))
         text2=font.render(self.name,1,(0,0,0))
         screen.blit(text2, (300, y -20 - text.get_height() / 2))
-
-
-
 
 
 
