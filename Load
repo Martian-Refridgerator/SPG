@@ -2,7 +2,7 @@ import pygame
 from Classes import *
 
 pygame.init()
-#Images
+# Images
 main_screen_bg=pygame.image.load("mainscreen.png")
 pygame.display.set_caption("lizardshieldthing")
 heal_shield_img = pygame.image.load("healshield.png")
@@ -41,6 +41,7 @@ more_damage=pygame.image.load("damage.png")
 projectile_speed=pygame.image.load("bullet_speed.png")
 damage_taken=pygame.image.load("damage_taken.png")
 charge_bonus=pygame.image.load("charge.png")
+background=pygame.image.load("background.png")
 humantown=pygame.image.load("humantown.png")
 lizardtown=pygame.image.load("lizardtown.png")
 baselizard=pygame.image.load("baselizard.png")
@@ -56,7 +57,7 @@ explosion_boss_bullet=pygame.image.load("BOOMBOISON.png")
 heallizard=pygame.image.load("heallizard.png")
 shieldlizard=pygame.image.load("shieldlizard.png")
 moneylizard=pygame.image.load("moneylizard.png")
-#Resizes
+# Resizes
 rescaled_mean_lizard=pygame.transform.scale(meanlizard,(200,200))
 rescaled_heal_lizard=pygame.transform.scale(heallizard,(200,200))
 rescaled_shield_lizard=pygame.transform.scale(shieldlizard,(200,200))
@@ -110,20 +111,20 @@ scaled_teleport_boss=pygame.transform.scale(teleport_boss,(300,120))
 scaled_explosion_boss=pygame.transform.scale(explosion_boss,(300,120))
 scaled_explosion_boss_bullet=pygame.transform.scale(explosion_boss_bullet,(60,60))
 
-#Fonts
+# Fonts
 header_font=pygame.font.Font('Pixel Digivolve.otf', 70)
 achievement_font=pygame.font.Font('Pixel Digivolve.otf',40)
 main_font=pygame.font.Font('Pixel Digivolve.otf', 18)
 small_header_font=pygame.font.Font('Pixel Digivolve.otf', 24)
 typing_font = pygame.font.Font('Pixel Digivolve.otf',32)
 
-#Colours
+# Colours
 color_passive = (0,0,0)
 color_active = (200,200,200)
 color = color_passive
-Name_rect = pygame.Rect(182,570,297,35) #not a color but it fits with the stuff above so buzz off my case, what are you my dad?
+Name_rect = pygame.Rect(182,570,297,35) #not a color but it fits with the stuff above for the name input
 
-#Headers
+# Headers
 
 maintext=header_font.render("Choose your reptile",1,(0,0,0))
 abilityheader = small_header_font.render("Ability:", 1, (0, 0, 0))
@@ -131,10 +132,10 @@ achievementheader = header_font.render("Achievements",1,(125,255,255))
 achievementsubheader = small_header_font.render("Seriously, how much time have you spent on this game?",1,(125,255,255))
 etext=small_header_font.render("E",1,(250,250,250))
 shopheader=header_font.render("Shop",1,(0,0,0))
-#Text
+# Text
 boss1name=small_header_font.render("Crankz the Mechanic", 1, (250,250,250))
 boss2name=small_header_font.render("Charles the Strategist", 1, (250,250,250))
-boss3name=small_header_font.render("Bom the Explosives Expert", 1, (250,250,250))
+boss3name=small_header_font.render("Boom the Explosiont", 1, (250,250,250))
 boss4name=small_header_font.render("Baq the Supreme Leader", 1, (250,250,250))
 
 secretselectedtext=main_font.render("Please select an available character.",1,(0,0,0))
@@ -200,20 +201,18 @@ achievementtext3true=achievement_font.render("A flawless run, eh? Pretty impress
 achievementsubtext3=small_header_font.render("(Beat the game without incurring any losses)",1,(125,255,255))
 
 
-#heronumbers
+# heronumbers so anything that has something to do with player character
 shield_hero= [shieldabilitytext,shieldabilitytext2,shieldabilitytext3,scaled_shield_man,scaled_shield_shield,scaled_shield_icon,shieldloretext1,shieldloretext2,shieldloretext3,shieldloretext4,shieldloretext5,shieldloretext6]
 heal_hero= [healabilitytext,healabilitytext2,healabilitytext3,scaled_heal_man,scaled_heal_shield,scaled_heal_icon,healloretext1,healloretext2,healloretext3,healloretext4,healloretext5,healloretext6]
 money_hero= [moneyabilitytext,moneyabilitytext2,moneyabilitytext3,scaled_money_man,scaled_money_shield,scaled_money_icon,moneyloretext1,moneyloretext2,moneyloretext3,moneyloretext4,moneyloretext5,moneyloretext6]
 attack_hero= [attackabilitytext,attackabilitytext2,attackabilitytext3,scaled_mean_man,scaled_mean_shield,scaled_attack_icon,attackloretext1,attackloretext2,attackloretext3,attackloretext4,attackloretext5,attackloretext6]
 heroes=[shield_hero,heal_hero,money_hero,attack_hero]
-
 charscreencoords=[(600,350),(500,370),(500,390),(150, 220),(500, 253),(670,214),(500,430),(500,450),(500,470),(500,490),(500,510),(500,530)]
 characterpictures=[main_scaled_shield_man,main_scaled_heal_man,main_scaled_money_man,main_scaled_mean_man]
 abilitypictures=[scaled_shield_icon,scaled_heal_icon,scaled_money_icon,scaled_attack_icon]
 charcutscenepics=[rescaled_shield_lizard,rescaled_heal_lizard,rescaled_money_lizard,rescaled_mean_lizard]
-#buttons
 
-
+# buttons
 startbutton = button((125,255,255),520,500,150,30,"New Game")
 continuebutton = button((125,255,255),520,550,150,30,"Continue")
 achievementbutton = button((125,255,255),515,600,160,30,"Achievements")
@@ -226,9 +225,9 @@ finishbutton = button((255,255,255),950,720,200,30,"Finish")
 
 cancelbutton=button((255,255,255),20,530,30,30,"X")
 deletebutton=button((255,255,255),70,530,160,30,"Delete")
-attackbutton=button((255,255,255),20,440,300,80,"Attack Building")
-healbutton=button((255,255,255),20,350,300,80,"Heal Building")
-genbutton=button((255,255,255),20,260,300,80,"Business Building")
+attackbutton=button((255,255,255),20,440,300,80,"Attack Building  50G") # For purchasing attack buildings
+healbutton=button((255,255,255),20,350,300,80,"Heal Building  50G") # For purchasing healing buildings
+genbutton=button((255,255,255),20,260,300,80,"Business Building  40G") # For purchasing generation buildings
 buildingbuttons=[cancelbutton,deletebutton,attackbutton,healbutton,genbutton]
 
 shopcontinuebutton=button((255,255,255),1000,400,150,30,"Continue")
