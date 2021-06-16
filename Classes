@@ -208,9 +208,9 @@ class buffship(enemyship):
 
 
 class bossship:
-    def __init__(self,ability,x,y,picture,width,height):
-        self.health = 200
-        self.maxhealth = 200
+    def __init__(self,ability,x,y,picture,width,height,maxhealth):
+        self.health = maxhealth
+        self.maxhealth = maxhealth
         self.ability = ability
         self.damage = 30
         self.attackspeed = 2
@@ -223,7 +223,7 @@ class bossship:
 
 
 class bullet:
-    def __init__(self,shotx,shoty,targetx,targety,shotspeed,bullettype,width,height):
+    def __init__(self,shotx,shoty,targetx,targety,shotspeed,bullettype,width,height,damage):
         self.speed = shotspeed
         self.type = bullettype
         self.health = 20
@@ -231,6 +231,7 @@ class bullet:
         self.y = shoty
         self.width = width
         self.height = height
+        self.damage=damage
         self.angle = math.atan2(targety-shoty,targetx-shotx)
         self.dx = math.cos(self.angle)*self.speed
         self.dy = math.sin(self.angle)*self.speed
@@ -282,6 +283,11 @@ class text:
         screen.blit(self.picture,(70,y))
         text2=font.render(self.name,1,(0,0,0))
         screen.blit(text2, (300, y -20 - text.get_height() / 2))
+
+
+
+
+
 
 
 
